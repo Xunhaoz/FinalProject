@@ -44,8 +44,8 @@ public class ViewController {
         nowStage.setScene(scene);
     }
 
-    public static void toLevelSelect() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/levelSelectPage.fxml")));
+    public static void toLevel() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/levelPage.fxml")));
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 工程五館 - 關卡選擇");

@@ -1,10 +1,21 @@
 package hellofx.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 import java.io.IOException;
 
 public class Route{
+    public Button backButton;
+    public Button startButton;
+    public Button selectButton;
+    public Button mailBox;
+    public Button level;
+    public Button market;
+    public Button dorm;
+    public Button trash;
+    public Button ad;
+
     // 從 startPage 跳轉至其他頁面再跳回來的部分
     @FXML
     public void startToSetting() throws IOException {
@@ -38,12 +49,12 @@ public class Route{
 
     // 從 mapPage 跳轉至其他頁面再跳回來的部分
     @FXML
-    public void mapToLevelSelect() throws IOException {
-        ViewController.toLevelSelect();
+    public void mapToLevel() throws IOException {
+        ViewController.toLevel();
     }
 
     @FXML
-    public void levelSelectToMap() throws IOException {
+    public void levelToMap() throws IOException {
         ViewController.toMap();
     }
 

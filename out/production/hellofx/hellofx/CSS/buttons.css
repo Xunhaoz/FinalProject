@@ -1,0 +1,82 @@
+/* 所有的返回鍵 */
+#backButton {
+    -fx-background-color: #00000000;
+    -fx-background-image: url(../resource/back.png);
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 30;
+    -fx-background-size: 100%;
+}
+
+#backButton:hover {
+    -fx-background-color: #00000000;
+    -fx-background-image: url(../resource/back.png);
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.2) , 4, 5, 0 , 0);
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 35;
+    -fx-background-size: 100.5%;
+}
+
+/* startPage 的按鈕們 */
+#startButton {
+    -fx-background-color: #00000000;
+    -fx-background-image: url(../resource/start_button.png);
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 30 200 30;
+    -fx-background-size: 80%;
+}
+
+#startButton:hover {
+    -fx-background-color: #00000000;
+    -fx-background-image: url(../resource/start_button.png);
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 4, 5, 0 , 0);
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 32 205 32;
+    -fx-background-size: 81%;
+}
+
+#selectButton {
+    -fx-background-color: #00000000;
+    -fx-background-image: url(../resource/select_button.png);
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 30 200 30;
+    -fx-background-size: 80%;
+}
+
+#selectButton:hover {
+    -fx-background-color: #00000000;
+    -fx-background-image: url(../resource/select_button.png);
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 4, 5, 0 , 0);
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 32 205 32;
+    -fx-background-size: 81%;
+}
+
+#mailBox {
+    -fx-background-color: #00000000;
+    -fx-background-image: url(../resource/mailbox.png);
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 30 60 30;
+    -fx-background-size: 70%;
+}
+
+#mailBox:hover {
+    -fx-background-color: #00000000;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 4, 5, 0 , 0);
+    -fx-background-image: url(../resource/mailbox.png);
+    -fx-background-repeat: no-repeat;
+    -fx-padding: 32 65 32;
+    -fx-background-size: 72%;
+}
+
+/* mapPage 的按鈕們 */
+#level, #dorm, #trash, #ad, #market {
+    -fx-background-color:#00000000;
+}
+
+#level:hover, #dorm:hover, #market:hover, #ad:hover, #trash:hover {
+    -fx-background-color:#00000000;
+    -fx-padding: 102%;
+    -fx-background-size: 102%;
+    -fx-effect: dropshadow( gaussian , rgba(251, 183, 0, 0.2), 4, 5, 0, 0);
+}
+
