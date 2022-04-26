@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Font?>
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="720.0" prefWidth="1280.0" spacing="10.0" xmlns="http://javafx.com/javafx/16"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellofx.controller.Route">
+    <AnchorPane>
+        <Label text="這裡是宿舍">
+            <font>
+                <Font size="36.0"/>
+            </font>
+        </Label>
+        <Button mnemonicParsing="false" layoutX="30.0" layoutY="635.0" onAction="#dormToMap"
+                style="-fx-background-color:#00000000">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="50.0">
+                    <Image url="@../resource/back.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+    </AnchorPane>
+</VBox>
