@@ -83,5 +83,21 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 敵方圖鑑");
         nowStage.setScene(scene);
     }
+
+    public static void toVoice() throws IOException{
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/voicePage.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 選項 - 音量控制");
+        nowStage.setScene(scene);
+    }
+
+    public static void toInfo() throws IOException{
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/infoPage.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 選項 - 開發人員");
+        nowStage.setScene(scene);
+    }
 }
 

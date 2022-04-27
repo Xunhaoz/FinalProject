@@ -19,6 +19,6 @@
             </font>
         </Label>
         <Button fx:id="backButton" mnemonicParsing="false" layoutX="30.0" layoutY="630.0" onAction="#dormToMap"
-                stylesheets="@../CSS/buttons.css"/>
+                stylesheets="@../styles/buttons.css"/>
     </AnchorPane>
 </VBox>

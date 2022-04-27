@@ -1,5 +1,6 @@
 package hellofx.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
@@ -96,5 +97,26 @@ public class Route{
     @FXML
     public void adToMap() throws IOException {
         ViewController.toMap();
+    }
+
+    // 從 settingPage 跳轉至其他畫面
+    @FXML
+    public void settingToVoice(ActionEvent actionEvent) throws IOException {
+        ViewController.toVoice();
+    }
+
+    @FXML
+    public void voiceToSetting(ActionEvent actionEvent) throws IOException {
+        ViewController.toSetting();
+    }
+
+    @FXML
+    public void settingToInfo(ActionEvent actionEvent) throws IOException {
+        ViewController.toInfo();
+    }
+
+    @FXML
+    public void infoToSetting(ActionEvent actionEvent) throws IOException{
+        ViewController.toSetting();
     }
 }
