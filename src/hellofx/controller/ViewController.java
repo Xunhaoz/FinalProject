@@ -13,15 +13,15 @@ public class ViewController {
     public static Stage nowStage;
 
     public static void toSetting() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/settingPage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/settings/settingPage.fxml")));
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
-        nowStage.setTitle("資工系大戰爭 - 設定選項");
+        nowStage.setTitle("資工系大戰爭 - 選項");
         nowStage.setScene(scene);
     }
 
     public static void toMap() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/mapPage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/maps/mapPage.fxml")));
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖");
@@ -32,7 +32,7 @@ public class ViewController {
         Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/startPage.fxml")));
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
-        nowStage.setTitle("資工系大戰爭 - 起始畫面");
+        nowStage.setTitle("資工系大戰爭 - 歡迎來到資工大戰爭");
         nowStage.setScene(scene);
     }
 
@@ -45,47 +45,47 @@ public class ViewController {
     }
 
     public static void toLevel() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/levelPage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/maps/levelPage.fxml")));
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
-        nowStage.setTitle("資工系大戰爭 - 地圖 - 工程五館 - 關卡選擇");
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 工程五館: 關卡選擇");
         nowStage.setScene(scene);
     }
 
     public static void toMarket() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/marketPage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/maps/marketPage.fxml")));
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
-        nowStage.setTitle("資工系大戰爭 - 地圖 - 市集 - 購買道具");
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 市集: 購買道具");
         nowStage.setScene(scene);
     }
 
     public static void toTrash() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/trashPage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/maps/trashPage.fxml")));
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
-        nowStage.setTitle("資工系大戰爭 - 地圖 - 垃圾場 - 隱藏功能");
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 垃圾場: 隱藏功能");
         nowStage.setScene(scene);
     }
 
     public static void toDorm() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/dormPage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/maps/dormPage.fxml")));
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
-        nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍 - 我方圖鑑");
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍: 我方圖鑑");
         nowStage.setScene(scene);
     }
 
     public static void toAd() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/adPage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/maps/adPage.fxml")));
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
-        nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 敵方圖鑑");
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓: 敵方圖鑑");
         nowStage.setScene(scene);
     }
 
     public static void toVoice() throws IOException{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/voicePage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/settings/voicePage.fxml")));
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 選項 - 音量控制");
@@ -93,11 +93,10 @@ public class ViewController {
     }
 
     public static void toInfo() throws IOException{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/infoPage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/settings/infoPage.fxml")));
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 選項 - 開發人員");
         nowStage.setScene(scene);
     }
 }
-

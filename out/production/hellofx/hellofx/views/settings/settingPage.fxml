@@ -9,7 +9,7 @@
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" spacing="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellofx.controller.Route">
     <AnchorPane>
         <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../resource/regularBackground.png" />
+            <Image url="@../../resource/regularBackground.png" />
         </ImageView>
         <Label text="這裡是設定">
             <font>
@@ -29,7 +29,6 @@
                 </font>
             </Button>
         </VBox>
-        <Button fx:id="backButton" layoutX="30.0" layoutY="630.0" mnemonicParsing="false" onAction="#settingToStart" stylesheets="@../styles/buttons.css" />
+        <Button fx:id="backButton" layoutX="30.0" layoutY="630.0" mnemonicParsing="false" onAction="#settingToStart" stylesheets="@../../styles/buttons.css" />
     </AnchorPane>
-
 </VBox>
