@@ -99,4 +99,12 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 選項 - 開發人員");
         nowStage.setScene(scene);
     }
+
+    public static void toFirstLevel() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/maps/firstLevelPage.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 工程五館 - 第一關");
+        nowStage.setScene(scene);
+    }
 }

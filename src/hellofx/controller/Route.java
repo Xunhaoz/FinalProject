@@ -3,6 +3,7 @@ package hellofx.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleGroup;
 
 import java.io.IOException;
 
@@ -16,6 +17,8 @@ public class Route{
     public Button dorm;
     public Button trash;
     public Button ad;
+    public Button firstLevel;
+    public ToggleGroup emailSelect;
 
     // 從 startPage 跳轉至其他頁面再跳回來的部分
     @FXML
@@ -43,10 +46,7 @@ public class Route{
         ViewController.toMailbox();
     }
 
-    @FXML
-    public void mailboxToStart() throws IOException {
-        ViewController.toStart();
-    }
+
 
     // 從 mapPage 跳轉至其他頁面再跳回來的部分
     @FXML
@@ -118,5 +118,15 @@ public class Route{
     @FXML
     public void infoToSetting(ActionEvent actionEvent) throws IOException{
         ViewController.toSetting();
+    }
+
+    @FXML
+    public void levelToFirstLevel(ActionEvent actionEvent) throws IOException {
+        ViewController.toFirstLevel();
+    }
+
+    @FXML
+    public void firstLevelToLevel(ActionEvent actionEvent) throws IOException {
+        ViewController.toLevel();
     }
 }
