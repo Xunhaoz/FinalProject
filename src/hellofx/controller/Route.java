@@ -18,7 +18,6 @@ public class Route{
     public Button trash;
     public Button ad;
     public Button firstLevel;
-    public ToggleGroup emailSelect;
 
     // 從 startPage 跳轉至其他頁面再跳回來的部分
     @FXML
