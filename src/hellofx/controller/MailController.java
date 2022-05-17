@@ -22,18 +22,15 @@ public class MailController {
     @FXML
     Label label;
 
-    private String userName = "leo20020529@gmail.com"; // 寄件者信箱
-    private String password = "jdamrgkzzsibowsw"; // 寄件者密碼
-    private String[] customers = {"leo20020529@gmail.com", "boson13579@gmail.com", "leo20020529@gmail.com", "leo20020529@gmail.com"}; // 收件者郵箱
-    private String subject;
-    private String txt;
+    final private String[] customers = {"leo20020529@gmail.com", "sundayevening2249@gmail.com", "orianna901001@gmail.com", "leo20020529@gmail.com"};
 
     @FXML
     public void sendMail() {
         if (check()) return;
+
         String index = emailSelect.getSelectedToggle().getUserData().toString();
-        subject = textField.getText();
-        txt = textArea.getText();
+        String subject = textField.getText();
+        String txt = textArea.getText();
 
         Properties prop = new Properties();
         prop.setProperty("mail.transport.protocol", "smtp");
@@ -44,20 +41,21 @@ public class MailController {
         prop.put("mail.smtp.socketFactory.port", "465");
         prop.put("mail.debug", "true");
 
+        String userName = "leo20020529@gmail.com";
+        String password = "jdamrgkzzsibowsw";
+
         Auth auth = new Auth(userName, password);
         Session session = Session.getDefaultInstance(prop, auth);
         MimeMessage message = new MimeMessage(session);
         try {
-            InternetAddress sender = new InternetAddress(userName);
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(customers[Integer.parseInt(index)]));
             message.setSubject(subject);
             message.setContent(txt, "text/html;charset = UTF-8");
             Transport transport = session.getTransport();
-            transport.send(message);
+            Transport.send(message);
             transport.close();
 
         } catch (MessagingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -72,10 +70,6 @@ public class MailController {
         ViewController.toStart();
     }
 
-    @FXML
-    public void debugger() {
-        System.out.println(Integer.parseInt(emailSelect.getSelectedToggle().getUserData().toString()));
-    }
 
     public boolean check() {
         if (emailSelect.getSelectedToggle() == null) {
@@ -97,8 +91,8 @@ public class MailController {
 
 class Auth extends Authenticator {
 
-    private String userName;
-    private String password;
+    final private String userName;
+    final private String password;
 
     public Auth(String userName, String password) {
         this.userName = userName;
@@ -110,5 +104,4 @@ class Auth extends Authenticator {
         PasswordAuthentication pa = new PasswordAuthentication(userName, password);
         return pa;
     }
-
 }

@@ -84,7 +84,7 @@ public class ViewController {
         nowStage.setScene(scene);
     }
 
-    public static void toVoice() throws IOException{
+    public static void toVoice() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/settings/voicePage.fxml")));
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
@@ -92,7 +92,7 @@ public class ViewController {
         nowStage.setScene(scene);
     }
 
-    public static void toInfo() throws IOException{
+    public static void toInfo() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/settings/infoPage.fxml")));
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();

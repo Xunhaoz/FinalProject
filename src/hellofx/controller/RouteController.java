@@ -1,13 +1,11 @@
 package hellofx.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ToggleGroup;
 
 import java.io.IOException;
 
-public class Route{
+public class RouteController {
     public Button backButton;
     public Button startButton;
     public Button selectButton;
@@ -19,7 +17,6 @@ public class Route{
     public Button ad;
     public Button firstLevel;
 
-    // 從 startPage 跳轉至其他頁面再跳回來的部分
     @FXML
     public void startToSetting() throws IOException {
         ViewController.toSetting();
@@ -45,9 +42,6 @@ public class Route{
         ViewController.toMailbox();
     }
 
-
-
-    // 從 mapPage 跳轉至其他頁面再跳回來的部分
     @FXML
     public void mapToLevel() throws IOException {
         ViewController.toLevel();
@@ -98,34 +92,29 @@ public class Route{
         ViewController.toMap();
     }
 
-    // 從 settingPage 跳轉至其他畫面
     @FXML
-    public void settingToVoice(ActionEvent actionEvent) throws IOException {
+    public void settingToVoice() throws IOException {
         ViewController.toVoice();
     }
 
-    @FXML
-    public void voiceToSetting(ActionEvent actionEvent) throws IOException {
-        ViewController.toSetting();
-    }
 
     @FXML
-    public void settingToInfo(ActionEvent actionEvent) throws IOException {
+    public void settingToInfo() throws IOException {
         ViewController.toInfo();
     }
 
     @FXML
-    public void infoToSetting(ActionEvent actionEvent) throws IOException{
+    public void infoToSetting() throws IOException {
         ViewController.toSetting();
     }
 
     @FXML
-    public void levelToFirstLevel(ActionEvent actionEvent) throws IOException {
+    public void levelToFirstLevel() throws IOException {
         ViewController.toFirstLevel();
     }
 
     @FXML
-    public void firstLevelToLevel(ActionEvent actionEvent) throws IOException {
+    public void firstLevelToLevel() throws IOException {
         ViewController.toLevel();
     }
 }
