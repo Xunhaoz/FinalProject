@@ -11,7 +11,6 @@ public class csWarApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         ViewController.nowStage = stage;
-        System.out.println("test");
         ViewController.toStart();
         ViewController.nowStage.show();
     }
