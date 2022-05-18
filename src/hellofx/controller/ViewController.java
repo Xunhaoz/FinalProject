@@ -107,4 +107,33 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 地圖 - 工程五館 - 第一關");
         nowStage.setScene(scene);
     }
+    public static void toPage_1() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/maps/dorm1/dor_1.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 腳色介紹 - p1");
+        nowStage.setScene(scene);
+    }
+    public static void toPage_2() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/maps/dorm1/dor_1.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 腳色介紹 - p2");
+        nowStage.setScene(scene);
+    }
+    public static void toPage_3() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/dorm1/dor_1.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 腳色介紹 - p3");
+        nowStage.setScene(scene);
+    }
+    public static void toPage_4() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/dorm1/dor_1.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 腳色介紹 - p4");
+        nowStage.setScene(scene);
+    }
+
 }

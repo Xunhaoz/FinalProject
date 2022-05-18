@@ -3,52 +3,61 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox fx:id="vBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" spacing="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellofx.controller.FirstLevelController">
-    <children>
-        <ScrollPane fx:id="scrollPlane" prefHeight="758.0" prefViewportHeight="720.0" prefViewportWidth="1280.0" prefWidth="1280.0">
-            <content>
-                <AnchorPane fx:id="anchorPane" mouseTransparent="true" prefHeight="708.0" prefWidth="1280.0">
-                    <children>
-                        <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="720.0" prefWidth="1280.0" spacing="10.0" xmlns="http://javafx.com/javafx/16"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellofx.controller.FirstLevelController">
+
+
+    <AnchorPane fx:id="anchorPane" prefHeight="708.0" prefWidth="1280.0">
+        <children>
+
+            <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../resource/GameImgs/levelOneBackground.png"/>
+                </image>
+            </ImageView>
+            <HBox fx:id="hBox" layoutX="334.0" layoutY="536.0" prefHeight="129.0" prefWidth="698.0" spacing="25.0">
+                <children>
+                    <Button mnemonicParsing="false" prefHeight="118.0" prefWidth="216.0">
+                        <graphic>
+                            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@../../resource/role/Hero/yams/miniYams.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button mnemonicParsing="false">
+                        <graphic>
+                            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@../../resource/role/Hero/salmonSteak/miniSalmonSteak.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </children>
+                <Button mnemonicParsing="false" onAction="#createFreshChick">
+                    <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="200.0">
                             <image>
-                                <Image url="@../../resource/GameImgs/levelOneBackground.png" />
+                                <Image url="@../../resource/role/Hero/freshChick/miniFreshChick.png"/>
                             </image>
                         </ImageView>
-                        <HBox fx:id="hBox" layoutX="334.0" layoutY="536.0" prefHeight="129.0" prefWidth="698.0" spacing="25.0">
-                            <children>
-                                <Button mnemonicParsing="false" prefHeight="118.0" prefWidth="216.0">
-                                    <graphic>
-                                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../../resource/role/Hero/yams/miniYams.png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                </Button>
-                                <Button mnemonicParsing="false">
-                                    <graphic>
-                                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../../resource/role/Hero/salmonSteak/miniSalmonSteak.png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                </Button>
-                                <Button mnemonicParsing="false">
-                                    <graphic>
-                                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../../resource/role/Hero/freshChick/miniFreshChick.png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                </Button>
-                            </children>
-                        </HBox>
-                    </children>
-                </AnchorPane>
-            </content>
-        </ScrollPane>
-    </children>
+                    </graphic>
+                </Button>
+            </HBox>
+            <Button fx:id="backButton" layoutX="30.0" layoutY="630.0" mnemonicParsing="false"
+                    onAction="#levelOneToLevel" stylesheets="@../../styles/buttons.css"/>
+
+            <Label fx:id="label" layoutX="1158.0" layoutY="33.0" text="0">
+                <font>
+                    <Font size="36.0"/>
+                </font>
+            </Label>
+        </children>
+    </AnchorPane>
+
 </VBox>
