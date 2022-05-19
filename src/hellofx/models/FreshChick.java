@@ -31,6 +31,8 @@ public class FreshChick extends Role {
         imageView = new ImageView(walkImagesArray.get(0));
         imageView.setX(this.x);
         imageView.setY(this.y);
+        imageView.setFitWidth(68);
+        imageView.setFitHeight(76.7);
     }
 
     private void move(int preStatus) {

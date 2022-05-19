@@ -15,6 +15,7 @@ import javafx.util.Duration;
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class FirstLevelController {
@@ -35,7 +36,7 @@ public class FirstLevelController {
 
     @FXML
     public void initialize() {
-        csieTower = new CSIETower(0, 250);
+        csieTower = new CSIETower(0, 180);
         csieTower.move();
         anchorPane.getChildren().add(csieTower.getImageview());
 
@@ -61,7 +62,9 @@ public class FirstLevelController {
         }
         money -= 50;
 
-        FreshChick freshChick = new FreshChick(1000, 330);
+        Random randomInt = new Random();
+        int ranInt = (randomInt.nextInt(4) - 2) * 20;
+        FreshChick freshChick = new FreshChick(1000, 420 + ranInt);
         freshChickAL.add(freshChick);
         freshChick.portal(1);
         anchorPane.getChildren().add(freshChick.getImageview());

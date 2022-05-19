@@ -23,8 +23,8 @@ public class CSIETower extends Role {
         this.bounds = imageView.getLayoutBounds();
         imageView.setX(this.x);
         imageView.setY(this.y);
-        imageView.setFitHeight(248.0);
-        imageView.setFitWidth(179.5);
+        imageView.setFitHeight(330.6);
+        imageView.setFitWidth(239.3);
     }
 
     public void move() {
