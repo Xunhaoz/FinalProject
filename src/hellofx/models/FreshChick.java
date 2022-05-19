@@ -23,10 +23,10 @@ public class FreshChick extends Role {
         walkImagesArray = new ArrayList<>();
         attackImagesArray = new ArrayList<>();
         for (int i = 1; i < 6; i++) {
-            walkImagesArray.add(new Image("C:\\Users\\leo20\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\freshChick\\walk\\freshChickWalking" + Integer.toString(i) + ".png"));
+            walkImagesArray.add(new Image("C:\\Users\\陳俊宇\\IdeaProjects\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\freshChick\\walk\\freshChickWalking" + Integer.toString(i) + ".png"));
         }
         for (int i = 1; i < 5; i++) {
-            attackImagesArray.add(new Image("C:\\Users\\leo20\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\freshChick\\attack\\freshChickAtk" + Integer.toString(i) + ".png"));
+            attackImagesArray.add(new Image("C:\\Users\\陳俊宇\\IdeaProjects\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\freshChick\\attack\\freshChickAtk" + Integer.toString(i) + ".png"));
         }
         imageView = new ImageView(walkImagesArray.get(0));
         imageView.setX(this.x);

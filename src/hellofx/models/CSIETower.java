@@ -17,12 +17,14 @@ public class CSIETower extends Role {
         this.attack = 10;
         walkImagesArray = new ArrayList<>();
         for (int i = 1; i < 4; i++) {
-            walkImagesArray.add(new Image("C:\\Users\\leo20\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\Enemy\\ciseTowers\\csieTower" + Integer.toString(i) + ".png"));
+            walkImagesArray.add(new Image("C:\\Users\\陳俊宇\\IdeaProjects\\FinalProject\\src\\hellofx\\resource\\role\\Enemy\\ciseTowers\\csieTower" + Integer.toString(i) + ".png"));
         }
         imageView = new ImageView(walkImagesArray.get(0));
         this.bounds = imageView.getLayoutBounds();
         imageView.setX(this.x);
         imageView.setY(this.y);
+        imageView.setFitHeight(248.0);
+        imageView.setFitWidth(179.5);
     }
 
     public void move() {

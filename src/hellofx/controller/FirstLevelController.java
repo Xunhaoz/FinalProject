@@ -7,6 +7,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -17,6 +18,9 @@ import java.util.ArrayList;
 
 
 public class FirstLevelController {
+    public Button backButton;
+    @FXML
+    Label labelMax;
     @FXML
     AnchorPane anchorPane;
     @FXML
@@ -26,16 +30,24 @@ public class FirstLevelController {
     private int money = 0;
     ArrayList<FreshChick> freshChickAL = new ArrayList<>();
     Timeline timeline = new Timeline();
+    int max = 1000;
+    int moneyRate = 100;
 
     @FXML
     public void initialize() {
-        csieTower = new CSIETower(0, 0);
+        csieTower = new CSIETower(0, 250);
         csieTower.move();
         anchorPane.getChildren().add(csieTower.getImageview());
 
-        timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(moneyRate), e -> {
             this.money += 1;
-            label.setText(Integer.toString(money));
+            if (money < max) {
+                label.setText(String.format("%04d", money));
+            }
+            else {
+                label.setText(String.format("%04d", max));
+                money = max;
+            }
             statusDetector();
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
