@@ -23,10 +23,10 @@ public class FreshChick extends Role {
         walkImagesArray = new ArrayList<>();
         attackImagesArray = new ArrayList<>();
         for (int i = 1; i < 6; i++) {
-            walkImagesArray.add(new Image("C:\\Users\\陳俊宇\\IdeaProjects\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\freshChick\\walk\\freshChickWalking" + Integer.toString(i) + ".png"));
+            walkImagesArray.add(new Image("C:\\Users\\leo20\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\freshChick\\walk\\freshChickWalking" + Integer.toString(i) + ".png"));
         }
         for (int i = 1; i < 5; i++) {
-            attackImagesArray.add(new Image("C:\\Users\\陳俊宇\\IdeaProjects\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\freshChick\\attack\\freshChickAtk" + Integer.toString(i) + ".png"));
+            attackImagesArray.add(new Image("C:\\Users\\leo20\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\freshChick\\attack\\freshChickAtk" + Integer.toString(i) + ".png"));
         }
         imageView = new ImageView(walkImagesArray.get(0));
         imageView.setX(this.x);
@@ -35,8 +35,8 @@ public class FreshChick extends Role {
         imageView.setFitHeight(76.7);
     }
 
-    private void move(int preStatus) {
-        if(preStatus == 1) return;
+    private void move() {
+        if (this.preStatus == 1) return;
         timeline.stop();
         AtomicInteger count = new AtomicInteger(1);
         timeline = new Timeline(new KeyFrame(Duration.millis(300), e -> {
@@ -51,10 +51,10 @@ public class FreshChick extends Role {
         timeline.play();
     }
 
-    private void attack(int preStatus) {
-        if(preStatus == 2) return;
-        AtomicInteger count = new AtomicInteger(1);
+    private void attack() {
+        if (this.preStatus == 2) return;
         timeline.stop();
+        AtomicInteger count = new AtomicInteger(1);
         timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
             imageView.setImage(attackImagesArray.get((count.getAndIncrement()) % 4));
         }));
@@ -64,25 +64,19 @@ public class FreshChick extends Role {
 
 
     private void die() {
+        timeline.stop();
         imageView.setImage(new Image("C:\\Users\\leo20\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\death.png"));
     }
 
-
-
     public void portal(int status) {
-        int preStatus = this.status;
+        preStatus = this.status;
         this.status = status;
         if (this.status == 1) {
-            move(preStatus);
+            move();
         } else if (this.status == 2) {
-            attack(preStatus);
+            attack();
         } else if (this.status == 3) {
             die();
         }
     }
-
-    public void setBounds(){
-        this.bounds = imageView.getBoundsInParent();
-    }
-
 }

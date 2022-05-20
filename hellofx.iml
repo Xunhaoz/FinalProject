@@ -11,7 +11,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/.idea/libraries/activation.jar!/" />
+          <root url="jar://$MODULE_DIR$/../FinalProject1/.idea/libraries/activation.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -20,7 +20,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/.idea/libraries/mail.jar!/" />
+          <root url="jar://$MODULE_DIR$/../FinalProject1/.idea/libraries/mail.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -113,8 +113,4 @@ public class RouteController {
         ViewController.toFirstLevel();
     }
 
-    @FXML
-    public void firstLevelToLevel() throws IOException {
-        ViewController.toLevel();
-    }
 }

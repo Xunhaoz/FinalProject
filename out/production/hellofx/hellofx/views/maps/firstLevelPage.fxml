@@ -19,7 +19,7 @@
                 </image>
             </ImageView>
             <HBox layoutY="545.0" prefHeight="175.0" prefWidth="1280.0" spacing="250" alignment="BOTTOM_CENTER">
-                <Button prefHeight="175.0" mnemonicParsing="false" text="經濟 Level 1">
+                <Button fx:id="levelButton" onAction="#economic" prefHeight="175.0" mnemonicParsing="false" text="經濟 Level 1">
                     <font>
                         <Font size="24.0"/>
                     </font>
@@ -35,7 +35,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false">
+                        <Button onAction="#createSalmonSteak" mnemonicParsing="false">
                             <graphic>
                                 <ImageView fitHeight="75.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -65,7 +65,7 @@
                     onAction="#levelOneToLevel" stylesheets="@../../styles/buttons.css"/>
             <HBox layoutX="980.0" layoutY="30.0" spacing="10.0" alignment="CENTER">
                 <ImageView fitHeight="55.0" fitWidth="55.0">
-                    <Image url="@../../resource/fastfood.png" />
+                    <Image url="@../../resource/fastfood.png"/>
                 </ImageView>
                 <Label fx:id="label" text="0000">
                     <font>

@@ -3,8 +3,11 @@ package hellofx.controller;
 
 import hellofx.models.CSIETower;
 import hellofx.models.FreshChick;
+import hellofx.models.GrandpaTower;
+import hellofx.models.SalmonSteak;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
@@ -26,28 +29,36 @@ public class FirstLevelController {
     AnchorPane anchorPane;
     @FXML
     Label label;
+    @FXML
+    Button levelButton;
 
-    private CSIETower csieTower;
     private int money = 0;
-    ArrayList<FreshChick> freshChickAL = new ArrayList<>();
-    Timeline timeline = new Timeline();
-    int max = 1000;
-    int moneyRate = 100;
+    private CSIETower csieTower;
+    private GrandpaTower grandpaTower;
+    final private ArrayList<FreshChick> freshChickAL = new ArrayList<>();
+    final private ArrayList<SalmonSteak> salmonSteaksAL = new ArrayList<>();
+    private int moneyMax = 1000;
+    final private Random randomInt = new Random();
+    int moneyRate;
+    int moneyLevel;
 
     @FXML
     public void initialize() {
         csieTower = new CSIETower(0, 180);
+        grandpaTower = new GrandpaTower(1040, 100);
         csieTower.move();
-        anchorPane.getChildren().add(csieTower.getImageview());
+        anchorPane.getChildren().addAll(csieTower.getImageview(), grandpaTower.getImageview());
 
-        timeline = new Timeline(new KeyFrame(Duration.millis(moneyRate), e -> {
-            this.money += 1;
-            if (money < max) {
+        moneyRate = 2;
+        moneyLevel = 1;
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(200), e -> {
+            this.money += moneyRate;
+            if (money < moneyMax) {
                 label.setText(String.format("%04d", money));
-            }
-            else {
-                label.setText(String.format("%04d", max));
-                money = max;
+            } else {
+                label.setText(String.format("%04d", moneyMax));
+                money = moneyMax;
             }
             statusDetector();
         }));
@@ -61,14 +72,28 @@ public class FirstLevelController {
             return;
         }
         money -= 50;
-
-        Random randomInt = new Random();
         int ranInt = (randomInt.nextInt(4) - 2) * 20;
         FreshChick freshChick = new FreshChick(1000, 420 + ranInt);
         freshChickAL.add(freshChick);
         freshChick.portal(1);
         anchorPane.getChildren().add(freshChick.getImageview());
         freshChick.setBounds();
+    }
+
+    @FXML
+    public void createSalmonSteak() {
+        if (Integer.parseInt(label.getText()) < 100) {
+            return;
+        }
+        money -= 100;
+
+
+        int ranInt = (randomInt.nextInt(4) - 2) * 20;
+        SalmonSteak salmonSteak = new SalmonSteak(1000, 420 + ranInt);
+        salmonSteaksAL.add(salmonSteak);
+        salmonSteak.portal(1);
+        anchorPane.getChildren().add(salmonSteak.getImageview());
+        salmonSteak.setBounds();
     }
 
     @FXML
@@ -81,10 +106,33 @@ public class FirstLevelController {
             if (freshChick.getBounds().intersects(csieTower.getBounds())) {
                 freshChick.portal(2);
                 csieTower.minusHealth(freshChick.getATK());
-                System.out.println(csieTower.getHealth());
+            } else if (freshChick.getHealth() < 0) {
+                freshChick.portal(3);
             } else {
                 freshChick.portal(1);
             }
         }
+
+        for (SalmonSteak salmonSteak : salmonSteaksAL) {
+            if (salmonSteak.getBounds().intersects(csieTower.getBounds())) {
+                salmonSteak.portal(2);
+                csieTower.minusHealth(salmonSteak.getATK());
+            } else if (salmonSteak.getHealth() < 0) {
+                salmonSteak.portal(3);
+            } else {
+                salmonSteak.portal(1);
+            }
+        }
+    }
+
+    public void economic() {
+        if (moneyLevel > 7 || money < (moneyMax / 2)) return;
+
+        money -= (moneyMax / 2);
+        moneyRate++;
+        moneyMax += 200;
+        moneyLevel++;
+        labelMax.setText("/ " + Integer.toString(moneyMax));
+        levelButton.setText("經濟 Level " + Integer.toString(moneyLevel));
     }
 }

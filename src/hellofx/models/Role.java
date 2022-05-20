@@ -16,6 +16,7 @@ public class Role {
     protected int y;
     protected ImageView imageView;
     protected int status = -1;
+    protected int preStatus;
     // 1 : move, 2 : attack, 3 : die
     protected Timeline timeline = new Timeline();
     protected ArrayList<Image> walkImagesArray;
@@ -46,4 +47,9 @@ public class Role {
     public int getHealth(){
         return this.health;
     }
+
+    public void setBounds(){
+        this.bounds = imageView.getBoundsInParent();
+    }
+
 }

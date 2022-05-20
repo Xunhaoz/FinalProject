@@ -17,7 +17,7 @@ public class CSIETower extends Role {
         this.attack = 10;
         walkImagesArray = new ArrayList<>();
         for (int i = 1; i < 4; i++) {
-            walkImagesArray.add(new Image("C:\\Users\\陳俊宇\\IdeaProjects\\FinalProject\\src\\hellofx\\resource\\role\\Enemy\\ciseTowers\\csieTower" + Integer.toString(i) + ".png"));
+            walkImagesArray.add(new Image("C:\\Users\\leo20\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\Enemy\\ciseTowers\\csieTower" + Integer.toString(i) + ".png"));
         }
         imageView = new ImageView(walkImagesArray.get(0));
         this.bounds = imageView.getLayoutBounds();
@@ -34,6 +34,7 @@ public class CSIETower extends Role {
             imageView.setImage(walkImagesArray.get((count.getAndIncrement()) % 3));
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
+
         timeline.play();
     }
 
