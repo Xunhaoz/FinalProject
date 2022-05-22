@@ -1,10 +1,7 @@
 package hellofx.controller;
 
 
-import hellofx.models.CSIETower;
-import hellofx.models.FreshChick;
-import hellofx.models.GrandpaTower;
-import hellofx.models.SalmonSteak;
+import hellofx.models.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -32,11 +29,12 @@ public class FirstLevelController {
     @FXML
     Button levelButton;
 
-    private int money = 0;
+    private int money = 500; // need to be modified to 0
     private CSIETower csieTower;
     private GrandpaTower grandpaTower;
     final private ArrayList<FreshChick> freshChickAL = new ArrayList<>();
     final private ArrayList<SalmonSteak> salmonSteaksAL = new ArrayList<>();
+    final private ArrayList<Yams> yamsAL = new ArrayList<>() ;
     private int moneyMax = 1000;
     final private Random randomInt = new Random();
     int moneyRate;

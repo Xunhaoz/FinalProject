@@ -11,7 +11,7 @@ public class GrandpaTower extends Role {
         this.health = 100;
         this.attack = 10;
         walkImagesArray = new ArrayList<>();
-        walkImagesArray.add(new Image("C:\\Users\\leo20\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\grandpaTower\\grandpaTower.png"));
+        walkImagesArray.add(new Image("C:\\Users\\許弘奕\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\grandpaTower\\grandpaTower.png"));
         imageView = new ImageView(walkImagesArray.get(0));
         this.bounds = imageView.getLayoutBounds();
         imageView.setX(this.x);

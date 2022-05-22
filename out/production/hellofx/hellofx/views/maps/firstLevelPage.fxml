@@ -44,7 +44,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false">
+                        <Button onAction="#createYams" mnemonicParsing="false">
                             <graphic>
                                 <ImageView fitHeight="75.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                                     <image>

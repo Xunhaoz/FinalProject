@@ -19,10 +19,10 @@ public class SalmonSteak extends Role {
         walkImagesArray = new ArrayList<>();
         attackImagesArray = new ArrayList<>();
         for (int i = 1; i < 7; i++) {
-            walkImagesArray.add(new Image("C:\\Users\\leo20\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\salmonSteak\\walk\\salmonSteakWalking" + Integer.toString(i) + ".png"));
+            walkImagesArray.add(new Image("C:\\Users\\許弘奕\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\salmonSteak\\walk\\salmonSteakWalking" + Integer.toString(i) + ".png"));
         }
         for (int i = 1; i < 7; i++) {
-            attackImagesArray.add(new Image("C:\\Users\\leo20\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\salmonSteak\\attack\\salmonSteakAtk" + Integer.toString(i) + ".png"));
+            attackImagesArray.add(new Image("C:\\Users\\許弘奕\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\salmonSteak\\attack\\salmonSteakAtk" + Integer.toString(i) + ".png"));
         }
         imageView = new ImageView(walkImagesArray.get(0));
         imageView.setX(this.x);
