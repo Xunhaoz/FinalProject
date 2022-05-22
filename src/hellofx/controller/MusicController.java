@@ -41,7 +41,7 @@ public class MusicController {
     static public double getVolume(){
         return volume;
     }
-
+    
     static public void checkNowStage() {
         System.out.println(ViewController.nowStageStr);
         // stage 一樣時不用換 music
