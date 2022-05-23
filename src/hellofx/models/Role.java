@@ -52,4 +52,9 @@ public class Role {
         this.bounds = imageView.getBoundsInParent();
     }
 
+    protected void die() {
+        timeline.stop();
+        imageView.setImage(new Image("hellofx\\resource\\role\\role\\death.png"));
+    }
+
 }

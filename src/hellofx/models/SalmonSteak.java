@@ -19,10 +19,10 @@ public class SalmonSteak extends Role {
         walkImagesArray = new ArrayList<>();
         attackImagesArray = new ArrayList<>();
         for (int i = 1; i < 7; i++) {
-            walkImagesArray.add(new Image("C:\\Users\\許弘奕\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\salmonSteak\\walk\\salmonSteakWalking" + Integer.toString(i) + ".png"));
+            walkImagesArray.add(new Image("hellofx\\resource\\role\\Hero\\salmonSteak\\walk\\salmonSteakWalking" + Integer.toString(i) + ".png"));
         }
         for (int i = 1; i < 7; i++) {
-            attackImagesArray.add(new Image("C:\\Users\\許弘奕\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\salmonSteak\\attack\\salmonSteakAtk" + Integer.toString(i) + ".png"));
+            attackImagesArray.add(new Image("hellofx\\resource\\role\\Hero\\salmonSteak\\attack\\salmonSteakAtk" + Integer.toString(i) + ".png"));
         }
         imageView = new ImageView(walkImagesArray.get(0));
         imageView.setX(this.x);
@@ -48,8 +48,9 @@ public class SalmonSteak extends Role {
         timeline.stop();
         AtomicInteger count = new AtomicInteger(1);
         timeline = new Timeline(new KeyFrame(Duration.millis(300), e -> {
-            imageView.setImage(walkImagesArray.get((count.getAndIncrement()) % 6));
-            this.imageView.setY(this.y);
+            int jheight = (count.getAndIncrement()) % 6;
+            imageView.setImage(walkImagesArray.get(jheight));
+            this.imageView.setY(this.y + jheight * 5);
             this.imageView.setX(this.x);
             this.x -= this.speed;
             this.bounds = imageView.getBoundsInParent();
@@ -69,8 +70,5 @@ public class SalmonSteak extends Role {
         timeline.play();
     }
 
-    private void die() {
-        timeline.stop();
-        imageView.setImage(new Image("C:\\Users\\leo20\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\death.png"));
-    }
+
 }

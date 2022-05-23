@@ -65,6 +65,18 @@ public class FirstLevelController {
     }
 
     @FXML
+    public void createYams() {
+        if (Integer.parseInt(label.getText()) < 50) return;
+        money -= 50;
+        int ranInt = (randomInt.nextInt(4) - 2) * 20;
+        Yams yams = new Yams(1000, 420 + ranInt, randomInt.nextInt(100)%3);
+        yamsAL.add(yams);
+        yams.portal(1);
+        anchorPane.getChildren().add(yams.getImageview());
+        yams.setBounds();
+    }
+
+    @FXML
     public void createFreshChick() {
         if (Integer.parseInt(label.getText()) < 50) {
             return;
@@ -101,24 +113,35 @@ public class FirstLevelController {
 
     public void statusDetector() {
         for (FreshChick freshChick : freshChickAL) {
-            if (freshChick.getBounds().intersects(csieTower.getBounds())) {
-                freshChick.portal(2);
-                csieTower.minusHealth(freshChick.getATK());
-            } else if (freshChick.getHealth() < 0) {
+            if (freshChick.getHealth() < 0) {
                 freshChick.portal(3);
+                csieTower.minusHealth(freshChick.getATK());
+            } else if (freshChick.getBounds().intersects(csieTower.getBounds())) {
+                freshChick.portal(2);
             } else {
                 freshChick.portal(1);
             }
         }
 
         for (SalmonSteak salmonSteak : salmonSteaksAL) {
-            if (salmonSteak.getBounds().intersects(csieTower.getBounds())) {
-                salmonSteak.portal(2);
-                csieTower.minusHealth(salmonSteak.getATK());
-            } else if (salmonSteak.getHealth() < 0) {
+            if (salmonSteak.getHealth() < 0) {
                 salmonSteak.portal(3);
+                csieTower.minusHealth(salmonSteak.getATK());
+            } else if (salmonSteak.getBounds().intersects(csieTower.getBounds())) {
+                salmonSteak.portal(2);
             } else {
                 salmonSteak.portal(1);
+            }
+        }
+
+        for (Yams yams: yamsAL) {
+            if (yams.getHealth() < 0) {
+                yams.portal(3);
+                csieTower.minusHealth(yams.getATK());
+            } else if (yams.getBounds().intersects(csieTower.getBounds())) {
+                yams.portal(2);
+            } else {
+                yams.portal(1);
             }
         }
     }
