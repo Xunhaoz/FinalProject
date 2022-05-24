@@ -1,6 +1,7 @@
 package hellofx;
 
 import hellofx.controller.MusicController;
+import hellofx.controller.MusicPlayController;
 import javafx.application.Application;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -18,6 +19,9 @@ public class csWarApplication extends Application {
     public void start(Stage stage) throws IOException {
         ViewController.nowStage = stage;
         ViewController.toStart() ;
+
+        MusicPlayController.checkNowStage();
+
         ViewController.nowStage.show();
     }
 

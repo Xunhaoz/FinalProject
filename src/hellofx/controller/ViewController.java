@@ -20,8 +20,6 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 選項");
         nowStage.setScene(scene);
         nowStageStr = "setting" ;
-
-        MusicController.checkNowStage();
     }
 
     public static void toMap() throws IOException {
@@ -31,8 +29,6 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 地圖");
         nowStage.setScene(scene);
         nowStageStr = "start" ;
-
-        MusicController.checkNowStage();
     }
 
     public static void toStart() throws IOException {
@@ -42,8 +38,6 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 歡迎來到資工大戰爭");
         nowStage.setScene(scene);
         nowStageStr = "start" ;
-
-        MusicController.checkNowStage();
     }
 
     public static void toMailbox() throws IOException {
@@ -53,8 +47,6 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 信箱");
         nowStage.setScene(scene);
         nowStageStr = "mailbox" ;
-
-        MusicController.checkNowStage();
     }
 
     public static void toLevel() throws IOException {
@@ -64,8 +56,6 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 地圖 - 工程五館: 關卡選擇");
         nowStage.setScene(scene);
         nowStageStr = "level" ;
-
-        MusicController.checkNowStage();
     }
 
     public static void toMarket() throws IOException {
@@ -75,8 +65,6 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 地圖 - 市集: 購買道具");
         nowStage.setScene(scene);
         nowStageStr = "market" ;
-
-        MusicController.checkNowStage();
     }
 
     public static void toTrash() throws IOException {
@@ -86,8 +74,6 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 地圖 - 垃圾場: 隱藏功能");
         nowStage.setScene(scene);
         nowStageStr = "trash" ;
-
-        MusicController.checkNowStage();
     }
 
     public static void toDorm() throws IOException {
@@ -97,8 +83,6 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍: 我方圖鑑");
         nowStage.setScene(scene);
         nowStageStr = "dorm" ;
-
-        MusicController.checkNowStage();
     }
 
     public static void toAd() throws IOException {
@@ -108,8 +92,6 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓: 敵方圖鑑");
         nowStage.setScene(scene);
         nowStageStr = "ad" ;
-
-        MusicController.checkNowStage();
     }
 
     public static void toVoice() throws IOException {
@@ -119,8 +101,6 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 選項 - 音量控制");
         nowStage.setScene(scene);
         nowStageStr = "setting" ;
-
-        MusicController.checkNowStage();
     }
 
     public static void toInfo() throws IOException {
@@ -130,8 +110,6 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 選項 - 開發人員");
         nowStage.setScene(scene);
         nowStageStr = "setting" ;
-
-        MusicController.checkNowStage();
     }
 
     public static void toFirstLevel() throws IOException {
@@ -141,8 +119,6 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 地圖 - 工程五館 - 第一關");
         nowStage.setScene(scene);
         nowStageStr = "firstLevel" ;
-
-        MusicController.checkNowStage();
     }
     public static void toPage_1() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/maps/dorm1/dor_1.fxml")));
@@ -151,8 +127,6 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 腳色介紹 - p1");
         nowStage.setScene(scene);
         nowStageStr = "characterIntro" ;
-
-        MusicController.checkNowStage();
     }
     public static void toPage_2() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/maps/dorm1/dor_1.fxml")));
@@ -161,8 +135,6 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 腳色介紹 - p2");
         nowStage.setScene(scene);
         nowStageStr = "characterIntro" ;
-
-        MusicController.checkNowStage();
     }
     public static void toPage_3() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/dorm1/dor_1.fxml")));
@@ -171,8 +143,6 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 腳色介紹 - p3");
         nowStage.setScene(scene);
         nowStageStr = "characterIntro" ;
-
-        MusicController.checkNowStage();
     }
     public static void toPage_4() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/dorm1/dor_1.fxml")));
@@ -181,8 +151,6 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 腳色介紹 - p4");
         nowStage.setScene(scene);
         nowStageStr = "characterIntro" ;
-
-        MusicController.checkNowStage();
     }
 
 }
