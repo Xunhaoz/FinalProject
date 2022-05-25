@@ -12,10 +12,14 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class FreshChick extends Role {
+    static private int level = 0;
+    static public void chLevel(int a){
+        level += a;
+    }
 
     public FreshChick(int x, int y) {
         super(x, y);
-        this.health = 100;
+        this.health = 100 + level*5;
         this.attack = 10;
         this.CD = 1;
         this.speed = 5;

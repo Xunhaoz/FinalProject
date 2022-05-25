@@ -5,14 +5,19 @@ import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
+
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class CSIETower extends Role {
 
+    static private int health = 100;
+    static public void chHealth(int a) {
+        health += a;
+    }
+
     public CSIETower(int x, int y) {
         super(x, y);
-        this.health = 100;
         this.attack = 10;
         walkImagesArray = new ArrayList<>();
         for (int i = 1; i < 4; i++) {

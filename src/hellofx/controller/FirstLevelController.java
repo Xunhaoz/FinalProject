@@ -35,7 +35,6 @@ public class FirstLevelController extends LevelController{
     final private ArrayList<FreshChick> freshChickAL = new ArrayList<>();
     final private ArrayList<SalmonSteak> salmonSteaksAL = new ArrayList<>();
     final private ArrayList<Yams> yamsAL = new ArrayList<>() ;
-
     final private Random randomInt = new Random();
 
 
@@ -45,7 +44,6 @@ public class FirstLevelController extends LevelController{
         grandpaTower = new GrandpaTower(1040, 100);
         csieTower.move();
         anchorPane.getChildren().addAll(csieTower.getImageview(), grandpaTower.getImageview());
-
         moneyRate = 2;
         moneyLevel = 1;
         labelMax.setText(Integer.toString(moneyMax));
