@@ -4,21 +4,18 @@ package hellofx.controller;
 import hellofx.models.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 
-public class FirstLevelController extends LevelController{
+public class ThirdLevelController {
     public Button backButton;
     @FXML
     Label labelMax;
@@ -32,11 +29,14 @@ public class FirstLevelController extends LevelController{
     private int money = 500; // need to be modified to 0
     private CSIETower csieTower;
     private GrandpaTower grandpaTower;
+    protected int moneyMax = 1000;
     final private ArrayList<FreshChick> freshChickAL = new ArrayList<>();
     final private ArrayList<SalmonSteak> salmonSteaksAL = new ArrayList<>();
     final private ArrayList<Yams> yamsAL = new ArrayList<>() ;
-
     final private Random randomInt = new Random();
+    int moneyRate;
+    int moneyLevel;
+
 
 
     @FXML
@@ -45,10 +45,9 @@ public class FirstLevelController extends LevelController{
         grandpaTower = new GrandpaTower(1040, 100);
         csieTower.move();
         anchorPane.getChildren().addAll(csieTower.getImageview(), grandpaTower.getImageview());
-
         moneyRate = 2;
         moneyLevel = 1;
-        labelMax.setText(Integer.toString(moneyMax));
+
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(200), e -> {
             this.money += moneyRate;
             if (money < moneyMax) {
@@ -145,9 +144,9 @@ public class FirstLevelController extends LevelController{
         }
     }
 
+
     public void economic() {
         if (moneyLevel > 7 || money < (moneyMax / 2)) return;
-
         money -= (moneyMax / 2);
         moneyRate++;
         moneyMax += 200;

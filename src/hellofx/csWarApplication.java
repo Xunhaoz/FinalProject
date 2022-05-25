@@ -19,7 +19,6 @@ public class csWarApplication extends Application {
     public void start(Stage stage) throws IOException {
         ViewController.nowStage = stage;
         ViewController.toStart() ;
-
         MusicPlayController.checkNowStage();
 
         ViewController.nowStage.show();

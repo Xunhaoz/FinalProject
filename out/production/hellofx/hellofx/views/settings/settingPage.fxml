@@ -31,6 +31,6 @@
                 </font>
             </Button>
         </VBox>
-        <Button fx:id="backButton" layoutX="30.0" layoutY="630.0" mnemonicParsing="false" onAction="#settingToStart" stylesheets="@../../styles/buttons.css" />
+        <Button fx:id="backButton" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#settingToStart" stylesheets="@../../styles/buttons.css" />
     </AnchorPane>
 </VBox>

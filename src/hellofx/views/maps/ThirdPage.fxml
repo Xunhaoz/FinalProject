@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" spacing="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellofx.controller.ThirdLevelController">
+
+
+    <AnchorPane fx:id="anchorPane" prefHeight="708.0" prefWidth="1280.0">
+        <children>
+
+            <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../resource/GameImgs/levelOneBackground.png" />
+                </image>
+            </ImageView>
+            <HBox alignment="BOTTOM_CENTER" layoutY="545.0" prefHeight="175.0" prefWidth="1280.0" spacing="250">
+                <Button fx:id="levelButton" mnemonicParsing="false" onAction="#economic" prefHeight="175.0" text="經濟 Level 1">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Button>
+                <HBox fx:id="hBox" alignment="CENTER" layoutY="545.0" prefHeight="175.0" spacing="25.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#createFreshChick">
+                            <graphic>
+                                <ImageView fitHeight="75.0" fitWidth="100.0">
+                                    <image>
+                                        <Image url="@../../resource/role/Hero/freshChick/miniFreshChick.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#createSalmonSteak">
+                            <graphic>
+                                <ImageView fitHeight="75.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../resource/role/Hero/salmonSteak/miniSalmonSteak.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#createYams">
+                            <graphic>
+                                <ImageView fitHeight="75.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../resource/role/Hero/yams/miniYams.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </HBox>
+                <Button mnemonicParsing="false" prefHeight="175.0" text="大砲 Level 1">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Button>
+            </HBox>
+            <Button fx:id="backButton" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#levelOneToLevel" stylesheets="@../../styles/buttons.css" />
+            <HBox alignment="CENTER" layoutX="980.0" layoutY="30.0" spacing="10.0">
+                <ImageView fitHeight="55.0" fitWidth="55.0">
+                    <Image url="@../../resource/fastfood.png" />
+                </ImageView>
+                <Label fx:id="label" text="0000">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelMax" text="/ 1000">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                </Label>
+            </HBox>
+        </children>
+    </AnchorPane>
+
+</VBox>

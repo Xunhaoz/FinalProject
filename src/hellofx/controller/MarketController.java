@@ -1,16 +1,18 @@
 package hellofx.controller;
 
 
-import javafx.fxml.FXML;
+import hellofx.models.LevelController;
 
-import java.awt.*;
 import java.io.IOException;
 
-public class StoreController {
+public class MarketController {
 
 
     public void DorCharacterToSetting() throws IOException {
         ViewController.toSetting();
     }
 
+    public void addMaxM(){
+        LevelController.changeMaxM(200);
+    }
 }

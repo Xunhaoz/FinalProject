@@ -36,13 +36,13 @@ public class Yams extends Role {
             regular_walkImageArray.add(new Image("hellofx\\resource\\role\\Hero\\yams\\regularYam\\walk\\regularYamWalk" + Integer.toString(i) + ".png"));
         }
         for (int i = 1; i < 4; i++) {
-            bad_attackImagesArray.add(new Image("hellofx\\resource\\role\\Hero\\yams\\badYam\\walk\\badYamWalk" + Integer.toString(i) + ".png"));
+            bad_attackImagesArray.add(new Image("hellofx\\resource\\role\\Hero\\yams\\badYam\\attack\\badYamAtk" + Integer.toString(i) + ".png"));
         }
-        for (int i = 1; i < 4; i++) {
-            excellent_attackImagesArray.add(new Image("hellofx\\resource\\role\\Hero\\yams\\excellentYam\\walk\\excellentYamWalk" + Integer.toString(i) + ".png"));
+        for (int i = 1; i < 11; i++) {
+            excellent_attackImagesArray.add(new Image("hellofx\\resource\\role\\Hero\\yams\\excellentYam\\attack\\excellentYamAtk" + Integer.toString(i) + ".png"));
         }
-        for (int i = 1; i < 4; i++) {
-            regular_attackImageArray.add(new Image("hellofx\\resource\\role\\Hero\\yams\\regularYam\\walk\\regularYamWalk" + Integer.toString(i) + ".png"));
+        for (int i = 1; i < 7; i++) {
+            regular_attackImageArray.add(new Image("C:\\Users\\Orianna\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\yams\\regularYam\\attack\\regularYamAtk" + Integer.toString(i) + ".png"));
         }
 
         allWalkImagesArray = new ArrayList<ArrayList<Image>>();
