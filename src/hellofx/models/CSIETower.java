@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class CSIETower extends Role {
 
-    static private int health = 100;
+    static private int health = 10000000;
     static public void chHealth(int a) {
         health += a;
     }
@@ -21,14 +21,12 @@ public class CSIETower extends Role {
         this.attack = 10;
         walkImagesArray = new ArrayList<>();
         for (int i = 1; i < 4; i++) {
-            walkImagesArray.add(new Image("C:\\Users\\Orianna\\FinalProject\\src\\hellofx\\resource\\role\\Enemy\\ciseTowers\\csieTower" + Integer.toString(i) + ".png"));
+            walkImagesArray.add(new Image("hellofx\\resource\\role\\Enemy\\ciseTowers\\csieTower" + Integer.toString(i) + ".png"));
         }
         imageView = new ImageView(walkImagesArray.get(0));
         this.bounds = imageView.getLayoutBounds();
         imageView.setX(this.x);
         imageView.setY(this.y);
-        imageView.setFitHeight(330.6);
-        imageView.setFitWidth(239.3);
     }
 
     public void move() {

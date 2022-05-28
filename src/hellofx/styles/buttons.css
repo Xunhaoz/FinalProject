@@ -75,7 +75,5 @@
 
 #level:hover, #dorm:hover, #market:hover, #ad:hover, #trash:hover {
     -fx-background-color:#00000000;
-    -fx-padding: 102%;
-    -fx-background-size: 102%;
-    -fx-effect: dropshadow( gaussian , rgba(251, 183, 0, 0.2), 4, 5, 0, 0);
+    -fx-effect: dropshadow( gaussian , rgba(255, 255, 255, 0.53), 4, 10, 0, 0);
 }

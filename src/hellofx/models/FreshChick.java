@@ -1,9 +1,7 @@
 package hellofx.models;
 
-import hellofx.controller.FirstLevelController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.geometry.Bounds;
 import javafx.util.Duration;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

@@ -35,22 +35,22 @@ public class Yams extends Role {
         for (int i = 1; i < 4; i++) {
             regular_walkImageArray.add(new Image("hellofx\\resource\\role\\Hero\\yams\\regularYam\\walk\\regularYamWalk" + Integer.toString(i) + ".png"));
         }
-        for (int i = 1; i < 4; i++) {
+        for (int i = 1; i < 5; i++) {
             bad_attackImagesArray.add(new Image("hellofx\\resource\\role\\Hero\\yams\\badYam\\attack\\badYamAtk" + Integer.toString(i) + ".png"));
         }
-        for (int i = 1; i < 11; i++) {
+        for (int i = 1; i < 12; i++) {
             excellent_attackImagesArray.add(new Image("hellofx\\resource\\role\\Hero\\yams\\excellentYam\\attack\\excellentYamAtk" + Integer.toString(i) + ".png"));
         }
-        for (int i = 1; i < 7; i++) {
-            regular_attackImageArray.add(new Image("C:\\Users\\Orianna\\FinalProject\\src\\hellofx\\resource\\role\\Hero\\yams\\regularYam\\attack\\regularYamAtk" + Integer.toString(i) + ".png"));
+        for (int i = 1; i < 8; i++) {
+            regular_attackImageArray.add(new Image("hellofx\\resource\\role\\Hero\\yams\\regularYam\\attack\\regularYamAtk" + Integer.toString(i) + ".png"));
         }
 
-        allWalkImagesArray = new ArrayList<ArrayList<Image>>();
+        allWalkImagesArray = new ArrayList<>();
         allWalkImagesArray.add(bad_walkImagesArray);
         allWalkImagesArray.add(excellent_walkImagesArray);
         allWalkImagesArray.add(regular_walkImageArray);
 
-        allAttackImagesArray = new ArrayList<ArrayList<Image>>();
+        allAttackImagesArray = new ArrayList<>();
         allAttackImagesArray.add(bad_attackImagesArray);
         allAttackImagesArray.add(excellent_attackImagesArray);
         allAttackImagesArray.add(regular_attackImageArray);
@@ -65,11 +65,14 @@ public class Yams extends Role {
         getResource();
         this.characteristic = characteristic;
         this.imageView = new ImageView(allWalkImagesArray.get(this.characteristic).get(0));
+        if (this.characteristic == 0)
+            this.x = 947;
+        else if (this.characteristic == 1)
+            this.x = 763;
+        else if (this.characteristic == 2)
+            this.x = 830;
         imageView.setX(this.x);
         imageView.setY(this.y);
-        imageView.setFitWidth(68);
-        imageView.setFitHeight(76.7);
-
     }
 
     public void move() {
@@ -92,8 +95,16 @@ public class Yams extends Role {
         if (this.preStatus == 2) return;
         timeline.stop();
         AtomicInteger count = new AtomicInteger(1);
-        timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
-            imageView.setImage(allAttackImagesArray.get(this.characteristic).get(count.getAndIncrement() % 3));
+        int changePics = 1;
+        if (this.characteristic == 0)
+            changePics = 4;
+        else if (this.characteristic == 1)
+            changePics = 11;
+        else if (this.characteristic == 2)
+            changePics = 7;
+        int finalChangePics = changePics;
+        timeline = new Timeline(new KeyFrame(Duration.millis(250), e -> {
+            imageView.setImage(allAttackImagesArray.get(this.characteristic).get(count.getAndIncrement() % finalChangePics));
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();

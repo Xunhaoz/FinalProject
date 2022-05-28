@@ -4,54 +4,46 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="720.0" prefWidth="1280.0" spacing="10.0" xmlns="http://javafx.com/javafx/16"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellofx.controller.RouteController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" spacing="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellofx.mainController.RouteController">
     <AnchorPane>
         <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../../resource/mapPage/map.png"/>
+            <Image url="@../../resource/mapPage/map.png" />
         </ImageView>
-        <Button fx:id="level" mnemonicParsing="false" layoutX="60.0" layoutY="180.0" onAction="#mapToLevel"
-                stylesheets="@../../styles/buttons.css">
+        <Button fx:id="level" layoutX="60.0" layoutY="200.0" mnemonicParsing="false" onAction="#mapToLevel" stylesheets="@../../styles/buttons.css">
             <graphic>
-                <ImageView fitHeight="443.0" fitWidth="334.0">
-                    <Image url="@../../resource/mapPage/e5.png"/>
+                <ImageView fitHeight="383.0" fitWidth="302.0">
+                    <Image url="@../../resource/mapPage/e5.png" />
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="market" mnemonicParsing="false" layoutX="450.0" layoutY="60.0" onAction="#mapToMarket"
-                stylesheets="@../../styles/buttons.css">
+        <Button fx:id="market" layoutX="430.0" layoutY="130.0" mnemonicParsing="false" onAction="#mapToMarket" stylesheets="@../../styles/buttons.css" >
             <graphic>
-                <ImageView fitHeight="257.0" fitWidth="318.0">
-                    <Image url="@../../resource/mapPage/market.png"/>
+                <ImageView fitHeight="218.0" fitWidth="392.7">
+                    <Image url="@../../resource/mapPage/market.png" />
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="dorm" mnemonicParsing="false" layoutX="500.0" layoutY="430.0" onAction="#mapToDorm"
-                stylesheets="@../../styles/buttons.css">
+        <Button fx:id="dorm" layoutX="450.0" layoutY="390.0" mnemonicParsing="false" onAction="#mapToDorm" stylesheets="@../../styles/buttons.css">
             <graphic>
-                <ImageView fitHeight="245.0" fitWidth="266.0">
-                    <Image url="@../../resource/mapPage/dorm.png"/>
+                <ImageView fitHeight="293.0" fitWidth="293.0">
+                    <Image url="@../../resource/mapPage/dorm.png" />
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="trash" mnemonicParsing="false" layoutX="820.0" layoutY="80.0" onAction="#mapToTrash"
-                stylesheets="@../../styles/buttons.css">
+        <Button fx:id="trash" layoutX="875.0" layoutY="153.0" mnemonicParsing="false" onAction="#mapToTrash" stylesheets="@../../styles/buttons.css">
             <graphic>
                 <ImageView fitHeight="218.0" fitWidth="237.0">
-                    <Image url="@../../resource/mapPage/trash2.png"/>
+                    <Image url="@../../resource/mapPage/trash2.png" />
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="ad" mnemonicParsing="false" layoutX="850.0" layoutY="340.0" onAction="#mapToAd"
-                stylesheets="@../../styles/buttons.css">
+        <Button fx:id="ad" layoutX="870.0" layoutY="420.0" mnemonicParsing="false" onAction="#mapToAd" stylesheets="@../../styles/buttons.css" >
             <graphic>
-                <ImageView fitHeight="225.0" fitWidth="352.0">
-                    <Image url="@../../resource/mapPage/ad.png"/>
+                <ImageView fitHeight="235.4" fitWidth="366.7">
+                    <Image url="@../../resource/mapPage/ad.png" />
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="backButton" mnemonicParsing="false" layoutX="30.0" layoutY="630.0" onAction="#mapToStart"
-                stylesheets="@../../styles/buttons.css" />
+        <Button fx:id="backButton" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#mapToStart" stylesheets="@../../styles/buttons.css" />
     </AnchorPane>
 </VBox>

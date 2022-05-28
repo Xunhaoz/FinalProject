@@ -27,8 +27,8 @@ public class SalmonSteak extends Role {
         imageView = new ImageView(walkImagesArray.get(0));
         imageView.setX(this.x);
         imageView.setY(this.y);
-        imageView.setFitWidth(68);
-        imageView.setFitHeight(76.7);
+        imageView.setFitWidth(90.0);
+        imageView.setFitHeight(122);
     }
 
     public void portal(int status) {
