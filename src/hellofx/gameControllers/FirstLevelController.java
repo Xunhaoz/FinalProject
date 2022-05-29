@@ -1,6 +1,8 @@
 package hellofx.gameControllers;
 
 
+import hellofx.MusicControllers.MusicController;
+import hellofx.MusicControllers.MusicPlayController;
 import hellofx.mainController.ViewController;
 import hellofx.models.*;
 import javafx.animation.KeyFrame;
@@ -40,7 +42,13 @@ public class FirstLevelController extends LevelController{
     @FXML
     public void initialize() {
         csieTower = new CSIETower(0, 180);
+        csieTower.setBounds();
+        System.out.println(csieTower.getBounds());
+
         grandpaTower = new GrandpaTower(1040, 180);
+        grandpaTower.setBounds();
+        System.out.println(grandpaTower.getBounds());
+
         csieTower.move();
         grandpaTower.move();
         anchorPane.getChildren().addAll(csieTower.getImageview(), grandpaTower.getImageview());
@@ -107,6 +115,7 @@ public class FirstLevelController extends LevelController{
     @FXML
     public void levelOneToLevel() throws IOException {
         ViewController.toLevel();
+        MusicPlayController.checkNowStage();
     }
 
     public void statusDetector() {

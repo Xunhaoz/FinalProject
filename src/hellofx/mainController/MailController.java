@@ -1,5 +1,6 @@
 package hellofx.mainController;
 
+import hellofx.MusicControllers.MusicPlayController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -68,6 +69,7 @@ public class MailController {
     @FXML
     public void mailboxToStart() throws IOException {
         ViewController.toStart();
+        MusicPlayController.checkNowStage();
     }
 
 

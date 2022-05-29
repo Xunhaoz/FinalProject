@@ -1,5 +1,6 @@
 package hellofx;
 
+import hellofx.MusicControllers.MusicController;
 import hellofx.MusicControllers.MusicPlayController;
 import javafx.application.Application;
 import javafx.stage.Stage;

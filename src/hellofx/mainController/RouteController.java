@@ -116,7 +116,6 @@ public class RouteController {
         MusicPlayController.checkNowStage();
     }
 
-
     @FXML
     public void settingToInfo() throws IOException {
         ViewController.toInfo();

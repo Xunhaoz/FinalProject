@@ -2,13 +2,13 @@ package hellofx.MusicControllers;
 
 import hellofx.mainController.ViewController;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 
 import java.io.IOException;
 
 public class MusicController {
-    static private double volume = 0.5;
-
+    static private double volume = 1;
 
     @FXML
     Slider slider;
@@ -24,6 +24,7 @@ public class MusicController {
     @FXML
     public void voiceToSetting() throws IOException {
         ViewController.toSetting();
+        MusicPlayController.checkNowStage();
     }
 
     @FXML

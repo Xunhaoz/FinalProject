@@ -16,7 +16,10 @@ public class MusicPlayController {
     static public void checkNowStage() {
         System.out.println(ViewController.nowStageStr);
         // stage 一樣時不用換 music
-        if (ViewController.nowStageStr.equals(preStage)) return ;
+        if (ViewController.nowStageStr.equals(preStage)) {
+            // System.out.println(mp3.getVolume());
+            return ;
+        }
 
         // 進入遊戲後不用停掉上個 stage 的音樂
         if (!preStage.equals("")) {
@@ -56,6 +59,9 @@ public class MusicPlayController {
 
         // 循環播放
         mp3.setCycleCount(MediaPlayer.INDEFINITE);
+        mp3.setVolume(MusicController.getVolume());
         mp3.play();
+
+        // System.out.println(mp3.getVolume());
     }
 }
