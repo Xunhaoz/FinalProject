@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class DormController {
     @FXML
-    public void dormToMap() throws IOException {
-        ViewController.toMap();
+    public void backToDorm() throws IOException {
+        ViewController.toDorm();
         MusicPlayController.checkNowStage();
     }
 

@@ -77,3 +77,12 @@
     -fx-background-color:#00000000;
     -fx-effect: dropshadow( gaussian , rgba(255, 255, 255, 0.53), 4, 10, 0, 0);
 }
+
+.button {
+    -fx-background-color:#00000000;
+}
+
+.button:hover {
+    -fx-background-color:#00000000;
+    -fx-effect: dropshadow( gaussian , rgba(255, 255, 255, 0.53), 4, 6, 0, 0);
+}

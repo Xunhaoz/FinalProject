@@ -1,6 +1,7 @@
 package hellofx.mainController;
 
 import hellofx.MusicControllers.MusicPlayController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
@@ -17,6 +18,7 @@ public class RouteController {
     public Button trash;
     public Button ad;
     public Button firstLevel;
+    public Button slideDragonInfoPage;
 
     @FXML
     public void startToSetting() throws IOException {
@@ -133,4 +135,69 @@ public class RouteController {
         MusicPlayController.checkNowStage();
     }
 
+    // 從行政大樓到敵人角色介紹
+    public void adToSildeDragonInfoPage() throws IOException {
+        ViewController.toSlideDragonInfoPage();
+        MusicPlayController.checkNowStage();
+    }
+
+    public void adToErhuInfoPage() throws IOException {
+        ViewController.toErhuInfoPage();
+        MusicPlayController.checkNowStage();
+    }
+
+    public void adToDreamBeeInfoPage() throws IOException {
+        ViewController.toDreamBeeInfoPage();
+        MusicPlayController.checkNowStage();
+    }
+
+    public void adToTasInfoPage() throws IOException {
+        ViewController.toTasInfoPage();
+        MusicPlayController.checkNowStage();
+    }
+
+    public void adToWongInfoPage() throws IOException {
+        ViewController.toWongInfoPage();
+        MusicPlayController.checkNowStage();
+    }
+
+    public void dormToFreshChickInfoPage() throws IOException {
+        ViewController.toFreshChickInfoPage();
+        MusicPlayController.checkNowStage();
+    }
+
+    public void dormToSalmonSteakInfoPage() throws IOException {
+        ViewController.toSalmonSteakInfoPage();
+        MusicPlayController.checkNowStage();
+    }
+
+    public void dormToYamsInfoPage() throws IOException {
+        ViewController.toYamsInfoPage();
+        MusicPlayController.checkNowStage();
+    }
+
+    public void dormToElecGodInfoPage() throws IOException {
+        ViewController.toElecGodInfoPage();
+        MusicPlayController.checkNowStage();
+    }
+
+    public void dormToXunhoazBuBuInfoPage() throws IOException {
+        ViewController.toXunhaozBuBuInfoPage();
+        MusicPlayController.checkNowStage();
+    }
+
+    public void dormToAlienThrowingHandInfoPage() throws IOException {
+        ViewController.toAlienThrowingHandInfoPage();
+        MusicPlayController.checkNowStage();
+    }
+
+    public void backToAd()  throws IOException {
+        ViewController.toAd();
+        MusicPlayController.checkNowStage();
+    }
+
+    public void backToDorm() throws IOException {
+        ViewController.toDorm();
+        MusicPlayController.checkNowStage();
+    }
 }

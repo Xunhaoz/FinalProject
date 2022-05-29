@@ -82,7 +82,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍: 我方圖鑑");
         nowStage.setScene(scene);
-        nowStageStr = "dorm" ;
+        nowStageStr = "HeroIntro" ;
     }
 
     public static void toAd() throws IOException {
@@ -91,7 +91,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓: 敵方圖鑑");
         nowStage.setScene(scene);
-        nowStageStr = "ad" ;
+        nowStageStr = "EnemyIntro" ;
     }
 
     public static void toVoice() throws IOException {
@@ -120,37 +120,102 @@ public class ViewController {
         nowStage.setScene(scene);
         nowStageStr = "firstLevel" ;
     }
-    public static void toPage_1() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/maps/dorm1/dor_1.fxml")));
+    public static void toSlideDragonInfoPage() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/enemyInfoPage/slideDragon.fxml")));
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
-        nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 腳色介紹 - p1");
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 敵方圖鑑 - 滑龍爺爺");
         nowStage.setScene(scene);
-        nowStageStr = "characterIntro" ;
-    }
-    public static void toPage_2() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/maps/dorm1/dor_1.fxml")));
-        Scene scene = new Scene(root);
-        scene.getRoot().requestFocus();
-        nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 腳色介紹 - p2");
-        nowStage.setScene(scene);
-        nowStageStr = "characterIntro" ;
-    }
-    public static void toPage_3() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/dorm1/dor_1.fxml")));
-        Scene scene = new Scene(root);
-        scene.getRoot().requestFocus();
-        nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 腳色介紹 - p3");
-        nowStage.setScene(scene);
-        nowStageStr = "characterIntro" ;
-    }
-    public static void toPage_4() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/dorm1/dor_1.fxml")));
-        Scene scene = new Scene(root);
-        scene.getRoot().requestFocus();
-        nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 腳色介紹 - p4");
-        nowStage.setScene(scene);
-        nowStageStr = "characterIntro" ;
+        nowStageStr = "EnemyIntro" ;
     }
 
+    public static void toErhuInfoPage() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/enemyInfoPage/erhu.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 敵方圖鑑 - 二胡伯伯");
+        nowStage.setScene(scene);
+        nowStageStr = "EnemyIntro" ;
+    }
+
+    public static void toTasInfoPage() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/enemyInfoPage/tas.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 敵方圖鑑 - 助教ABC");
+        nowStage.setScene(scene);
+        nowStageStr = "EnemyIntro" ;
+    }
+
+    public static void toWongInfoPage() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/enemyInfoPage/Wong.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 敵方圖鑑 - 王家慶記");
+        nowStage.setScene(scene);
+        nowStageStr = "EnemyIntro" ;
+    }
+
+    public static void toDreamBeeInfoPage() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/enemyInfoPage/dreamBee.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 敵方圖鑑 - 夢蜂");
+        nowStage.setScene(scene);
+        nowStageStr = "EnemyIntro" ;
+    }
+
+    public static void toFreshChickInfoPage() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/heroInfoPage/freshChick.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍 - 我方圖鑑 - 大一菜雞");
+        nowStage.setScene(scene);
+        nowStageStr = "HeroIntro" ;
+    }
+
+    public static void toYamsInfoPage() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/heroInfoPage/yams.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍 - 我方圖鑑 - 紫薯");
+        nowStage.setScene(scene);
+        nowStageStr = "HeroIntro" ;
+    }
+
+    public static void toSalmonSteakInfoPage() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/heroInfoPage/salmonSteak.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍 - 我方圖鑑 - 鮭魚排");
+        nowStage.setScene(scene);
+        nowStageStr = "HeroIntro" ;
+    }
+
+    public static void toElecGodInfoPage() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/heroInfoPage/elecGod.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍 - 我方圖鑑 - 電神");
+        nowStage.setScene(scene);
+        nowStageStr = "HeroIntro" ;
+    }
+
+    public static void toAlienThrowingHandInfoPage() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/heroInfoPage/alienThrowingHand.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍 - 我方圖鑑 - 外星「投手」");
+        nowStage.setScene(scene);
+        nowStageStr = "HeroIntro" ;
+    }
+
+    public static void toXunhaozBuBuInfoPage() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/heroInfoPage/XunhaozBuBu.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍 - 我方圖鑑 - 勛皓列車");
+        nowStage.setScene(scene);
+        nowStageStr = "HeroIntro" ;
+    }
 }

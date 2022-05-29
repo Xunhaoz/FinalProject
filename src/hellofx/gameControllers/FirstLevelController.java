@@ -51,7 +51,8 @@ public class FirstLevelController extends LevelController{
             this.money += moneyRate;
             if (money < moneyMax) {
                 label.setText(String.format("%04d", money));
-            } else {
+            }
+            else {
                 label.setText(String.format("%04d", moneyMax));
                 money = moneyMax;
             }

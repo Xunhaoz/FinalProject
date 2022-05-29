@@ -31,6 +31,15 @@ public class MusicPlayController {
         else if (ViewController.nowStageStr.equals("setting")) {
             file = new File("src\\hellofx\\music\\settingMusic.mp3") ;
         }
+        else if (ViewController.nowStageStr.equals("EnemyIntro")) {
+            file = new File("src\\hellofx\\music\\EnemyInfo.mp3") ;
+        }
+        else if (ViewController.nowStageStr.equals("HeroIntro")) {
+            file = new File("src\\hellofx\\music\\HeroInfo.mp3") ;
+        }
+        else if (ViewController.nowStageStr.equals("firstLevel")) {
+            file = new File("src\\hellofx\\music\\firstLevelMusic.mp3") ;
+        }
         // else if ()
         else {
             mp3.stop();

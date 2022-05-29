@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="hellofx.mainController.DormController"
+            prefHeight="720.0" prefWidth="1280.0">
+    <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../../resource/regularBackground.png" />
+    </ImageView>
+    <ImageView fitHeight="95.0" fitWidth="54.0" layoutX="383.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@../../resource/role/Enemy/ciseTowers/csieFish.png" />
+        </image>
+    </ImageView>
+    <ImageView fitHeight="331.0" fitWidth="613.0" layoutX="603.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+        <image>
+            <Image url="@../../resource/regularBackground.png" />
+        </image>
+    </ImageView>
+    <ImageView fitHeight="132.0" fitWidth="153.0" layoutX="821.0" layoutY="254.0" />
+    <Button fx:id="lvup" layoutX="978.0" layoutY="630.0" mnemonicParsing="false" onAction="#chicklvup" prefHeight="34.0" prefWidth="54.0" text="升等" />
+    <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="1065.0" layoutY="22.0">
+        <Image url="@../../resource/fastfood.png" />
+    </ImageView>
+    <Text layoutX="763.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="名子：小菜雞">
+        <font>
+            <Font size="31.0" />
+        </font></Text>
+    <Text layoutX="756.0" layoutY="432.0" strokeType="OUTSIDE" strokeWidth="0.0" text="技能說明：無" />
+    <Text layoutX="879.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="雷達圖" />
+    <ImageView fitHeight="233.0" fitWidth="281.0" layoutX="268.0" layoutY="262.0">
+        <image>
+            <Image url="@../../resource/role/Hero/freshChick/attack/freshChickAtk1.png" />
+        </image>
+    </ImageView>
+    <ImageView fitHeight="95.0" fitWidth="108.0" layoutX="214.0" layoutY="18.0">
+        <image>
+            <Image url="@../../resource/role/Hero/salmonSteak/attack/salmonSteakAtk1.png" />
+        </image>
+    </ImageView>
+    <ImageView fitHeight="95.0" fitWidth="108.0" layoutX="474.0" layoutY="31.0">
+        <image>
+            <Image url="@../../resource/role/Hero/yams/miniYams.png" />
+        </image>
+    </ImageView>
+    <Label layoutX="119.0" layoutY="502.0" prefHeight="162.0" prefWidth="527.0" text="帶著蛋殼的小菜雞，長相普普能力普普，甚麼都普普，唯獨看著好欺負跟一身呆萌四處散發，天天沒事就迷路、常被混混紫薯坑蒙拐騙，夢想是擺脫砲灰生活，得到主角光環變成神奇老屁股。" wrapText="true" />
+    <Label layoutX="808.0" layoutY="39.0" prefHeight="104.0" prefWidth="331.0" text="等級" />
+    <Button fx:id="backButton" mnemonicParsing="false" layoutX="30.0" layoutY="30.0" onAction="#backToDorm"
+            stylesheets="@../../styles/buttons.css"/>
+</AnchorPane>
