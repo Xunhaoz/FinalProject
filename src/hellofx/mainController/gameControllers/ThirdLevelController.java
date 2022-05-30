@@ -1,18 +1,15 @@
-package hellofx.gameControllers;
+package hellofx.mainController.gameControllers;
 
 
-import hellofx.MusicControllers.ButtonSoundPlayController;
-import hellofx.MusicControllers.MusicController;
-import hellofx.MusicControllers.MusicPlayController;
+import hellofx.mainController.MusicControllers.ButtonSoundPlayController;
+import hellofx.mainController.MusicControllers.MusicPlayController;
 import hellofx.mainController.ViewController;
 import hellofx.models.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
@@ -21,12 +18,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class FirstLevelController extends LevelController{
+public class ThirdLevelController {
     public Button backButton;
-    public ProgressBar csieTowerHP;
-    public ProgressBar grandpaTowerHP;
-    public Label csieHealthLable;
-    public Label grandpaHealthLable;
     @FXML
     Label labelMax;
     @FXML
@@ -39,41 +32,33 @@ public class FirstLevelController extends LevelController{
     private int money = 500; // need to be modified to 0
     private CSIETower csieTower;
     private GrandpaTower grandpaTower;
+    protected int moneyMax = 1000;
     final private ArrayList<FreshChick> freshChickAL = new ArrayList<>();
     final private ArrayList<SalmonSteak> salmonSteaksAL = new ArrayList<>();
     final private ArrayList<Yams> yamsAL = new ArrayList<>() ;
     final private Random randomInt = new Random();
+    int moneyRate;
+    int moneyLevel;
+
 
 
     @FXML
     public void initialize() {
         csieTower = new CSIETower(0, 180);
-        csieTower.setBounds();
-        System.out.println(csieTower.getBounds());
-
-        grandpaTower = new GrandpaTower(1040, 180);
-        grandpaTower.setBounds();
-        System.out.println(grandpaTower.getBounds());
-
+        grandpaTower = new GrandpaTower(1040, 100);
         csieTower.move();
-        grandpaTower.move();
         anchorPane.getChildren().addAll(csieTower.getImageview(), grandpaTower.getImageview());
         moneyRate = 2;
         moneyLevel = 1;
-        labelMax.setText(Integer.toString(moneyMax));
+
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(200), e -> {
             this.money += moneyRate;
             if (money < moneyMax) {
                 label.setText(String.format("%04d", money));
-            }
-            else {
+            } else {
                 label.setText(String.format("%04d", moneyMax));
                 money = moneyMax;
             }
-            csieHealthLable.setText(Integer.toString(csieTower.getHealth()) + " / 100");
-            grandpaHealthLable.setText(Integer.toString(grandpaTower.getHealth()) + " / 10000");
-            csieTowerHP.setProgress((double) csieTower.getHealth() / 100);
-            grandpaTowerHP.setProgress((double) grandpaTower.getHealth() / 10000);
             statusDetector();
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -82,10 +67,10 @@ public class FirstLevelController extends LevelController{
 
     @FXML
     public void createYams() {
-        if (Integer.parseInt(label.getText()) < 1) return;
-        money -= 1;
+        if (Integer.parseInt(label.getText()) < 50) return;
+        money -= 50;
         int ranInt = (randomInt.nextInt(4) - 2) * 20;
-        Yams yams = new Yams(1000, 360 + ranInt, randomInt.nextInt(100)%3);
+        Yams yams = new Yams(1000, 420 + ranInt, randomInt.nextInt(100)%3);
         yamsAL.add(yams);
         yams.portal(1);
         anchorPane.getChildren().add(yams.getImageview());
@@ -115,7 +100,7 @@ public class FirstLevelController extends LevelController{
 
 
         int ranInt = (randomInt.nextInt(4) - 2) * 20;
-        SalmonSteak salmonSteak = new SalmonSteak(1000, 370 + ranInt);
+        SalmonSteak salmonSteak = new SalmonSteak(1000, 420 + ranInt);
         salmonSteaksAL.add(salmonSteak);
         salmonSteak.portal(1);
         anchorPane.getChildren().add(salmonSteak.getImageview());
@@ -164,14 +149,14 @@ public class FirstLevelController extends LevelController{
         }
     }
 
+
     public void economic() {
         if (moneyLevel > 7 || money < (moneyMax / 2)) return;
-
         money -= (moneyMax / 2);
         moneyRate++;
         moneyMax += 200;
         moneyLevel++;
-        labelMax.setText(Integer.toString(moneyMax));
+        labelMax.setText("/ " + Integer.toString(moneyMax));
         levelButton.setText("經濟 Level " + Integer.toString(moneyLevel));
     }
 }

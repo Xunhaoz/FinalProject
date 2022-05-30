@@ -10,9 +10,10 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GrandpaTower extends Role {
+    static private int healthLevel = 0;
     public GrandpaTower(int x, int y) {
         super(x, y);
-        this.health = 10000;
+        this.health = 10000 + healthLevel*200;
         this.attack = 10;
         walkImagesArray = new ArrayList<>();
         for (int i = 1; i < 4; i++) {
@@ -35,5 +36,8 @@ public class GrandpaTower extends Role {
         timeline.setCycleCount(Timeline.INDEFINITE);
 
         timeline.play();
+    }
+    static public void chHealth(int ch){
+        healthLevel += ch;
     }
 }

@@ -1,4 +1,4 @@
-package hellofx.MusicControllers;
+package hellofx.mainController.MusicControllers;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -12,7 +12,7 @@ public class ButtonSoundPlayController {
     static MediaPlayer mp3 ;
 
     static public void buttonSoundPlay() {
-        file = new File("src\\hellofx\\MusicControllers\\sound\\buttonSound.mp3") ;
+        file = new File("src\\hellofx\\music\\sound\\buttonSound.mp3") ;
 
         try {
             Mp3play = file.toURI().toURL().toString() ;

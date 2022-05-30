@@ -1,9 +1,8 @@
-package hellofx.gameControllers;
+package hellofx.mainController.gameControllers;
 
-import hellofx.MusicControllers.ButtonSoundPlayController;
-import hellofx.MusicControllers.MusicPlayController;
+import hellofx.mainController.MusicControllers.ButtonSoundPlayController;
+import hellofx.mainController.MusicControllers.MusicPlayController;
 import hellofx.mainController.ViewController;
-import javafx.event.ActionEvent;
 
 import java.io.IOException;
 

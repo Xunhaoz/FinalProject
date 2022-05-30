@@ -21,6 +21,7 @@ public class FreshChick extends Role {
         this.attack = 10;
         this.CD = 1;
         this.speed = 5;
+        this.cost = 50;
         walkImagesArray = new ArrayList<>();
         attackImagesArray = new ArrayList<>();
         for (int i = 1; i < 6; i++) {

@@ -1,12 +1,14 @@
 package hellofx.mainController;
 
 
-import hellofx.MusicControllers.ButtonSoundPlayController;
-import hellofx.MusicControllers.MusicPlayController;
+import hellofx.mainController.MusicControllers.ButtonSoundPlayController;
+import hellofx.mainController.MusicControllers.MusicPlayController;
+import hellofx.models.GrandpaTower;
 import hellofx.models.LevelController;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
+
 import javafx.scene.control.Button;
 
 
@@ -26,14 +28,16 @@ public class MarketController {
         ButtonSoundPlayController.buttonSoundPlay();
     }
 
-    public void addMaxM(){
+    public void addMaxM() {
         LevelController.changeMaxM(200);
     }
-    public void addMaxR(){
-        LevelController.changeRateM(2);
-    }
-    public void addTowerHealth(){
 
+    public void addMaxR() {
+        LevelController.changeRateM(1);
+    }
+
+    public void addTowerHealth() {
+        GrandpaTower.chHealth(1);
     }
 
 }

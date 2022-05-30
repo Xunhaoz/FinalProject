@@ -1,4 +1,4 @@
-package hellofx.MusicControllers;
+package hellofx.mainController.MusicControllers;
 
 import hellofx.mainController.ViewController;
 import javafx.scene.media.Media;
@@ -14,7 +14,7 @@ public class MusicPlayController {
     static String preStage = "" ;
 
     static public void checkNowStage() {
-        System.out.println(ViewController.nowStageStr);
+        //System.out.println(ViewController.nowStageStr);
         // stage 一樣時不用換 music
         if (ViewController.nowStageStr.equals(preStage)) {
             // System.out.println(mp3.getVolume());

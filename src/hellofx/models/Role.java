@@ -12,6 +12,7 @@ public class Role {
     protected int attack = 0;
     protected int speed = 0;
     protected int CD = 0;
+    protected int cost = 0;
     protected int x;
     protected int y;
     protected ImageView imageView;
@@ -44,17 +45,21 @@ public class Role {
         return attack;
     }
 
-    public int getHealth(){
+    public int getHealth() {
         return this.health;
     }
 
-    public void setBounds(){
+    public void setBounds() {
         this.bounds = imageView.getBoundsInParent();
     }
 
     protected void die() {
         timeline.stop();
         imageView.setImage(new Image("hellofx\\resource\\role\\role\\death.png"));
+    }
+
+    protected int getCost() {
+        return cost;
     }
 
 }

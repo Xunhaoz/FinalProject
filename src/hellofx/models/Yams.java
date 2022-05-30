@@ -62,6 +62,7 @@ public class Yams extends Role {
         this.attack = 50;
         this.CD = 1;
         this.speed = 5;
+        this.cost = 200;
         getResource();
         this.characteristic = characteristic;
         this.imageView = new ImageView(allWalkImagesArray.get(this.characteristic).get(0));

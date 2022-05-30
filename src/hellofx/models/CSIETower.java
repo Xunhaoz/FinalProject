@@ -18,7 +18,7 @@ public class CSIETower extends Role {
     public CSIETower(int x, int y) {
         super(x, y);
         this.attack = 10;
-        this.health = 100;
+        this.health = 10000;
         walkImagesArray = new ArrayList<>();
         for (int i = 1; i < 4; i++) {
             walkImagesArray.add(new Image("hellofx\\resource\\role\\Enemy\\ciseTowers\\csieTower" + Integer.toString(i) + ".png"));

@@ -1,10 +1,8 @@
-package hellofx.MusicControllers;
+package hellofx.mainController.MusicControllers;
 
 import hellofx.mainController.ViewController;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
