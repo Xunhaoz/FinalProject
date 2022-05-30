@@ -1,9 +1,9 @@
 package hellofx;
 
-import hellofx.mainController.MusicControllers.MusicPlayController;
+import hellofx.Controller.MusicControllers.MusicPlayController;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import hellofx.mainController.ViewController;
+import hellofx.Controller.ViewController;
 
 import java.io.IOException;
 

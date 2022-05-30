@@ -1,7 +1,7 @@
-package hellofx.mainController;
+package hellofx.Controller;
 
-import hellofx.mainController.MusicControllers.ButtonSoundPlayController;
-import hellofx.mainController.MusicControllers.MusicPlayController;
+import hellofx.Controller.MusicControllers.ButtonSoundPlayController;
+import hellofx.Controller.MusicControllers.MusicPlayController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 

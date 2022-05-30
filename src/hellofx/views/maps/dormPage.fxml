@@ -12,7 +12,7 @@
       spacing="10.0"
       xmlns="http://javafx.com/javafx/16"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="hellofx.mainController.RouteController">
+      fx:controller="hellofx.Controller.RouteController">
     <AnchorPane prefHeight="720.0" prefWidth="1280.0">
         <HBox prefWidth="1280.0" prefHeight="300.0"
               alignment="CENTER" spacing="20.0">

@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="hellofx.mainController.DormController"
+            fx:controller="hellofx.Controller.DormController"
             prefHeight="720.0" prefWidth="1280.0">
     <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@../../resource/regularBackground.png" />

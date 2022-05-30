@@ -1,4 +1,4 @@
-package hellofx.mainController.MusicControllers;
+package hellofx.Controller.MusicControllers;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;

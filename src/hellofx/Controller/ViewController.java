@@ -1,4 +1,4 @@
-package hellofx.mainController;
+package hellofx.Controller;
 
 
 import javafx.fxml.FXMLLoader;

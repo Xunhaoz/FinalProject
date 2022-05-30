@@ -1,9 +1,9 @@
-package hellofx.mainController.gameControllers;
+package hellofx.Controller.gameControllers;
 
 
-import hellofx.mainController.MusicControllers.ButtonSoundPlayController;
-import hellofx.mainController.MusicControllers.MusicPlayController;
-import hellofx.mainController.ViewController;
+import hellofx.Controller.MusicControllers.ButtonSoundPlayController;
+import hellofx.Controller.MusicControllers.MusicPlayController;
+import hellofx.Controller.ViewController;
 import hellofx.models.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

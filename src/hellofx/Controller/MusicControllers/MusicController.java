@@ -1,6 +1,6 @@
-package hellofx.mainController.MusicControllers;
+package hellofx.Controller.MusicControllers;
 
-import hellofx.mainController.ViewController;
+import hellofx.Controller.ViewController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Slider;
 
