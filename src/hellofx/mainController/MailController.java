@@ -1,5 +1,6 @@
 package hellofx.mainController;
 
+import hellofx.MusicControllers.ButtonSoundPlayController;
 import hellofx.MusicControllers.MusicPlayController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -64,12 +65,14 @@ public class MailController {
         emailSelect.getSelectedToggle().setSelected(false);
         textArea.setText("");
         textField.setText("");
+        ButtonSoundPlayController.buttonSoundPlay();
     }
 
     @FXML
     public void mailboxToStart() throws IOException {
         ViewController.toStart();
         MusicPlayController.checkNowStage();
+        ButtonSoundPlayController.buttonSoundPlay();
     }
 
 

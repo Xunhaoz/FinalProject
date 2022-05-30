@@ -11,14 +11,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class CSIETower extends Role {
 
-    static private int health = 10000000;
-    static public void chHealth(int a) {
-        health += a;
+    public void chHealth(int a) {
+        this.health += a;
     }
 
     public CSIETower(int x, int y) {
         super(x, y);
         this.attack = 10;
+        this.health = 100;
         walkImagesArray = new ArrayList<>();
         for (int i = 1; i < 4; i++) {
             walkImagesArray.add(new Image("hellofx\\resource\\role\\Enemy\\ciseTowers\\csieTower" + Integer.toString(i) + ".png"));

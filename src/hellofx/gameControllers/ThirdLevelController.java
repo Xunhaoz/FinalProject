@@ -1,6 +1,8 @@
 package hellofx.gameControllers;
 
 
+import hellofx.MusicControllers.ButtonSoundPlayController;
+import hellofx.MusicControllers.MusicPlayController;
 import hellofx.mainController.ViewController;
 import hellofx.models.*;
 import javafx.animation.KeyFrame;
@@ -108,6 +110,8 @@ public class ThirdLevelController {
     @FXML
     public void levelOneToLevel() throws IOException {
         ViewController.toLevel();
+        MusicPlayController.checkNowStage();
+        ButtonSoundPlayController.buttonSoundPlay();
     }
 
     public void statusDetector() {

@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class GrandpaTower extends Role {
     public GrandpaTower(int x, int y) {
         super(x, y);
-        this.health = 100;
+        this.health = 10000;
         this.attack = 10;
         walkImagesArray = new ArrayList<>();
         for (int i = 1; i < 4; i++) {

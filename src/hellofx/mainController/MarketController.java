@@ -1,6 +1,8 @@
 package hellofx.mainController;
 
 
+import hellofx.MusicControllers.ButtonSoundPlayController;
+import hellofx.MusicControllers.MusicPlayController;
 import hellofx.models.LevelController;
 import javafx.fxml.FXML;
 
@@ -20,6 +22,8 @@ public class MarketController {
 
     public void dormToMap() throws IOException {
         ViewController.toMap();
+        MusicPlayController.checkNowStage();
+        ButtonSoundPlayController.buttonSoundPlay();
     }
 
     public void addMaxM(){

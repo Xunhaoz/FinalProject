@@ -1,6 +1,7 @@
 package hellofx.gameControllers;
 
 
+import hellofx.MusicControllers.ButtonSoundPlayController;
 import hellofx.MusicControllers.MusicController;
 import hellofx.MusicControllers.MusicPlayController;
 import hellofx.mainController.ViewController;
@@ -11,6 +12,7 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
@@ -21,6 +23,10 @@ import java.util.Random;
 
 public class FirstLevelController extends LevelController{
     public Button backButton;
+    public ProgressBar csieTowerHP;
+    public ProgressBar grandpaTowerHP;
+    public Label csieHealthLable;
+    public Label grandpaHealthLable;
     @FXML
     Label labelMax;
     @FXML
@@ -64,6 +70,10 @@ public class FirstLevelController extends LevelController{
                 label.setText(String.format("%04d", moneyMax));
                 money = moneyMax;
             }
+            csieHealthLable.setText(Integer.toString(csieTower.getHealth()) + " / 100");
+            grandpaHealthLable.setText(Integer.toString(grandpaTower.getHealth()) + " / 10000");
+            csieTowerHP.setProgress((double) csieTower.getHealth() / 100);
+            grandpaTowerHP.setProgress((double) grandpaTower.getHealth() / 10000);
             statusDetector();
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -116,6 +126,7 @@ public class FirstLevelController extends LevelController{
     public void levelOneToLevel() throws IOException {
         ViewController.toLevel();
         MusicPlayController.checkNowStage();
+        ButtonSoundPlayController.buttonSoundPlay();
     }
 
     public void statusDetector() {

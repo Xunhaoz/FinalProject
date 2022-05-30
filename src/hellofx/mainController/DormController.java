@@ -1,5 +1,6 @@
 package hellofx.mainController;
 
+import hellofx.MusicControllers.ButtonSoundPlayController;
 import hellofx.MusicControllers.MusicPlayController;
 import hellofx.models.FreshChick;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ public class DormController {
     public void backToDorm() throws IOException {
         ViewController.toDorm();
         MusicPlayController.checkNowStage();
+        ButtonSoundPlayController.buttonSoundPlay();
     }
 
     @FXML
