@@ -86,3 +86,33 @@
     -fx-background-color:#00000000;
     -fx-effect: dropshadow( gaussian , rgba(255, 255, 255, 0.53), 4, 6, 0, 0);
 }
+
+#firstLevel {
+    -fx-background-image: url(../resource/e5/first1.png);
+    -fx-background-repeat: no-repeat;
+}
+
+#firstLevel:hover {
+    -fx-background-image: url(../resource/e5/first2.png);
+    -fx-background-repeat: no-repeat;
+}
+
+#secondLevel {
+    -fx-background-image: url(../resource/e5/second1.png);
+    -fx-background-repeat: no-repeat;
+}
+
+#secondLevel:hover {
+    -fx-background-image: url(../resource/e5/second2.png);
+    -fx-background-repeat: no-repeat;
+}
+
+#thirdLevel {
+    -fx-background-image: url(../resource/e5/third1.png);
+    -fx-background-repeat: no-repeat;
+}
+
+#thirdLevel:hover {
+    -fx-background-image: url(../resource/e5/third2.png);
+    -fx-background-repeat: no-repeat;
+}

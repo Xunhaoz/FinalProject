@@ -218,4 +218,22 @@ public class ViewController {
         nowStage.setScene(scene);
         nowStageStr = "HeroIntro" ;
     }
+
+    public static void toSecondLevel() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/games/secondLevelPage.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 工程五館 - 第二關");
+        nowStage.setScene(scene);
+        nowStageStr = "SecondLevel" ;
+    }
+
+    public static void toThirdLevel() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/games/ThirdLevel.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 工程五館 - 第三關");
+        nowStage.setScene(scene);
+        nowStageStr = "ThirdLevel" ;
+    }
 }

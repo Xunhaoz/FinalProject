@@ -1,7 +1,6 @@
 package hellofx.mainController;
 
 import hellofx.MusicControllers.MusicPlayController;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
@@ -18,7 +17,8 @@ public class RouteController {
     public Button trash;
     public Button ad;
     public Button firstLevel;
-    public Button slideDragonInfoPage;
+    public Button secondLevel;
+    public Button thirdLevel;
 
     @FXML
     public void startToSetting() throws IOException {
@@ -131,6 +131,16 @@ public class RouteController {
     @FXML
     public void levelToFirstLevel() throws IOException {
         ViewController.toFirstLevel();
+        MusicPlayController.checkNowStage();
+    }
+
+    public void levelToSecondLevel() throws IOException {
+        ViewController.toSecondLevel();
+        MusicPlayController.checkNowStage();
+    }
+
+    public void levelToThirdLevel() throws IOException {
+        ViewController.toThirdLevel();
         MusicPlayController.checkNowStage();
     }
 
