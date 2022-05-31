@@ -1,13 +1,17 @@
 package hellofx.models;
 
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Bounds;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class Role {
+public abstract class Role {
     protected int health = 0;
     protected int attack = 0;
     protected int speed = 0;
@@ -19,9 +23,13 @@ public class Role {
     protected int status = -1;
     protected int preStatus;
     // 1 : move, 2 : attack, 3 : die
+    protected boolean canAttack;
+    protected boolean canDie;
+    //0 can't attack 1 can attack
     protected Timeline timeline = new Timeline();
     protected ArrayList<Image> walkImagesArray;
     protected ArrayList<Image> attackImagesArray;
+    protected Random randomInt = new Random();
     protected Bounds bounds;
 
     public Role(int x, int y) {
@@ -54,12 +62,39 @@ public class Role {
     }
 
     protected void die() {
+        if (preStatus == 3) return;
         timeline.stop();
-        imageView.setImage(new Image("hellofx\\resource\\role\\role\\death.png"));
+        AtomicInteger count = new AtomicInteger();
+        timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
+            count.getAndIncrement();
+            this.y -= count.get() * 2;
+            imageView.setY(this.y);
+            imageView.setOpacity(1 - (count.floatValue() * 0.125));
+            if (count.get() == 8) canDie = true;
+            imageView.setImage(new Image("hellofx\\resource\\role\\death.png"));
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 
-    protected int getCost() {
-        return cost;
+    public boolean getCanAttack() {
+        return canAttack;
+    }
+
+    public boolean getCanDie() {
+        return canDie;
+    }
+
+    public void initCanAttack() {
+        canAttack = false;
+    }
+
+    public void stopTimeline() {
+        timeline.stop();
+    }
+
+    public int getStatus() {
+        return status;
     }
 
 }

@@ -47,9 +47,9 @@ public class SalmonSteak extends Role {
     private void move() {
         if (this.preStatus == 1) return;
         timeline.stop();
-        AtomicInteger count = new AtomicInteger(1);
+        AtomicInteger count = new AtomicInteger(randomInt.nextInt(5));
         timeline = new Timeline(new KeyFrame(Duration.millis(300), e -> {
-            int jheight = (count.getAndIncrement()) % 6;
+            int jheight = (count.getAndIncrement()) % walkImagesArray.size();
             imageView.setImage(walkImagesArray.get(jheight));
             this.imageView.setY(this.y + jheight * 5);
             this.imageView.setX(this.x);
@@ -65,7 +65,8 @@ public class SalmonSteak extends Role {
         timeline.stop();
         AtomicInteger count = new AtomicInteger(1);
         timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
-            imageView.setImage(attackImagesArray.get((count.getAndIncrement()) % 6));
+            if(count.get()%4 == 0) canAttack = true;
+            imageView.setImage(attackImagesArray.get((count.getAndIncrement()) % attackImagesArray.size()));
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();

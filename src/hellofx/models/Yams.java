@@ -79,9 +79,9 @@ public class Yams extends Role {
     public void move() {
         if (this.preStatus == 1) return;
         timeline.stop();
-        AtomicInteger count = new AtomicInteger(1);
+        AtomicInteger count = new AtomicInteger(randomInt.nextInt(2));
         timeline = new Timeline(new KeyFrame(Duration.millis(300), e -> {
-            imageView.setImage(allWalkImagesArray.get(this.characteristic).get(count.getAndIncrement() % 3));
+            imageView.setImage(allWalkImagesArray.get(this.characteristic).get(count.getAndIncrement() % allWalkImagesArray.get(this.characteristic).size()));
             this.imageView.setY(this.y);
             this.imageView.setX(this.x);
             this.x -= this.speed;
@@ -96,15 +96,9 @@ public class Yams extends Role {
         if (this.preStatus == 2) return;
         timeline.stop();
         AtomicInteger count = new AtomicInteger(1);
-        int changePics = 1;
-        if (this.characteristic == 0)
-            changePics = 4;
-        else if (this.characteristic == 1)
-            changePics = 11;
-        else if (this.characteristic == 2)
-            changePics = 7;
-        int finalChangePics = changePics;
+        int finalChangePics = allAttackImagesArray.get(this.characteristic).size();
         timeline = new Timeline(new KeyFrame(Duration.millis(250), e -> {
+            if(count.get()%4 == 0) canAttack = true;
             imageView.setImage(allAttackImagesArray.get(this.characteristic).get(count.getAndIncrement() % finalChangePics));
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
