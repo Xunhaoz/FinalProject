@@ -18,7 +18,7 @@ public class DormController {
 
     @FXML
     public void chicklvup() throws  IOException{
-        FreshChick.chLevel(0);
+        FreshChick.Levelup();
     }
 
 

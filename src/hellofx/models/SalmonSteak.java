@@ -12,8 +12,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class SalmonSteak extends Role {
     public SalmonSteak(int x, int y) {
         super(x, y);
-        this.health = 100;
-        this.attack = 10;
+        this.health = 1500;
+        this.attack = 20;
         this.CD = 1;
         this.speed = 5;
         this.cost = 100;
@@ -28,8 +28,6 @@ public class SalmonSteak extends Role {
         imageView = new ImageView(walkImagesArray.get(0));
         imageView.setX(this.x);
         imageView.setY(this.y);
-        imageView.setFitWidth(90.0);
-        imageView.setFitHeight(122);
     }
 
     public void portal(int status) {

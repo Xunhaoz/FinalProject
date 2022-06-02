@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="hellofx.Controller.gameControllers.WinPageController"
+            prefHeight="720.0" prefWidth="1280.0">
+    <ImageView fitHeight="720.0" fitWidth="1280.0">
+        <Image url="@../../resource/GameImgs/victory.png"/>
+    </ImageView>
+    <HBox alignment="CENTER" layoutY="105.0" prefHeight="615.0" prefWidth="1280.0" spacing="20.0">
+        <Label text="恭喜獲得" textFill="azure">
+            <font>
+                <Font size="36.0"/>
+            </font>
+        </Label>
+        <ImageView fitHeight="55.0" fitWidth="55.0">
+            <Image url="@../../resource/icecream.png" />
+        </ImageView>
+        <Label fx:id="iceCreamLabel" text="00000" textFill="azure">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <Label text="支冰淇淋" textFill="azure">
+            <font>
+                <Font size="36.0"/>
+            </font>
+        </Label>
+    </HBox>
+    <HBox alignment="CENTER" layoutY="500.0" spacing="50.0" prefWidth="1280.0" prefHeight="50.0" >
+        <Button styleClass="button" stylesheets="@../../styles/buttons.css"
+                text="再來一次" textFill="#10092b" alignment="CENTER"
+                style="-fx-background-color: #ffcc00; -fx-background-radius: 20.0;"
+                mnemonicParsing="false" onAction="#backToGame">
+            <font>
+                <Font size="36.0"/>
+            </font>
+        </Button>
+        <Button fx:id="nextLevelButton" styleClass="button" stylesheets="@../../styles/buttons.css"
+                text="去下一關" textFill="#10092b" alignment="CENTER"
+                style="-fx-background-color: #ffcc00; -fx-background-radius: 20.0;"
+                mnemonicParsing="false" onAction="#toNext">
+            <font>
+                <Font size="36.0"/>
+            </font>
+        </Button>
+    </HBox>
+    <Button fx:id="backButton" mnemonicParsing="false" layoutX="30.0" layoutY="30.0" onAction="#gameToLevel"
+            stylesheets="@../../styles/buttons.css"/>
+</AnchorPane>

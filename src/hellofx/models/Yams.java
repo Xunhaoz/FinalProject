@@ -58,20 +58,30 @@ public class Yams extends Role {
 
     public Yams(int x, int y, int characteristic) {
         super(x, y);
-        this.health = 100;
-        this.attack = 50;
         this.CD = 1;
-        this.speed = 5;
+
         this.cost = 200;
         getResource();
         this.characteristic = characteristic;
         this.imageView = new ImageView(allWalkImagesArray.get(this.characteristic).get(0));
-        if (this.characteristic == 0)
+        if (this.characteristic == 0) {
             this.x = 947;
-        else if (this.characteristic == 1)
+            this.health = 400;
+            this.attack = 3;
+            this.speed = 20;
+        }
+        else if (this.characteristic == 1) {
             this.x = 763;
-        else if (this.characteristic == 2)
+            this.health = 1600;
+            this.attack = 120;
+            this.speed = 5;
+        }
+        else if (this.characteristic == 2) {
             this.x = 830;
+            this.health = 2000;
+            this.attack = 25;
+            this.speed = 10;
+        }
         imageView.setX(this.x);
         imageView.setY(this.y);
     }
@@ -80,7 +90,7 @@ public class Yams extends Role {
         if (this.preStatus == 1) return;
         timeline.stop();
         AtomicInteger count = new AtomicInteger(randomInt.nextInt(2));
-        timeline = new Timeline(new KeyFrame(Duration.millis(300), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(270), e -> {
             imageView.setImage(allWalkImagesArray.get(this.characteristic).get(count.getAndIncrement() % allWalkImagesArray.get(this.characteristic).size()));
             this.imageView.setY(this.y);
             this.imageView.setX(this.x);
@@ -97,7 +107,7 @@ public class Yams extends Role {
         timeline.stop();
         AtomicInteger count = new AtomicInteger(1);
         int finalChangePics = allAttackImagesArray.get(this.characteristic).size();
-        timeline = new Timeline(new KeyFrame(Duration.millis(250), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(240), e -> {
             if(count.get()%4 == 0) canAttack = true;
             imageView.setImage(allAttackImagesArray.get(this.characteristic).get(count.getAndIncrement() % finalChangePics));
         }));

@@ -2,8 +2,10 @@ package hellofx.Controller;
 
 import hellofx.Controller.MusicControllers.ButtonSoundPlayController;
 import hellofx.Controller.MusicControllers.MusicPlayController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
 
@@ -20,6 +22,7 @@ public class RouteController {
     public Button firstLevel;
     public Button secondLevel;
     public Button thirdLevel;
+    public Label iceCreamLabel;
 
     @FXML
     public void startToSetting() throws IOException {
@@ -244,4 +247,5 @@ public class RouteController {
         MusicPlayController.checkNowStage();
         ButtonSoundPlayController.buttonSoundPlay();
     }
+
 }

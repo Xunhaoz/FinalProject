@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="hellofx.Controller.MarketControllers.RiceController"
+            prefHeight="720.0" prefWidth="1280.0">
+    <ImageView fitHeight="720.0" fitWidth="1280.0">
+        <Image url="@../../resource/regularBackground.png" />
+    </ImageView>
+    <HBox prefHeight="105.0" prefWidth="1280.0" style="-fx-background-color: rgba(10,10,10,0.42)" />
+    <HBox alignment="TOP_LEFT" layoutY="30.0" spacing="30.0" prefWidth="700.0" prefHeight="55.0">
+        <padding>
+            <Insets left="30.0"/>
+        </padding>
+        <Button fx:id="backButton"
+                mnemonicParsing="false"
+                onAction="#backToMarket"
+                stylesheets="@../../styles/buttons.css" />
+        <Label text="女子漢火山丼飯" textFill="azure" layoutY="35.0" layoutX="500.0">
+            <font>
+                <Font size="50.0"/>
+            </font>
+        </Label>
+    </HBox>
+    <HBox alignment="CENTER_RIGHT" layoutX="980.0" layoutY="30.0"
+          spacing="10.0" prefWidth="300.0" prefHeight="55.0">
+        <padding>
+            <Insets right="30.0"/>
+        </padding>
+        <ImageView fitHeight="55.0" fitWidth="55.0">
+            <Image url="@../../resource/icecream.png" />
+        </ImageView>
+        <Label fx:id="iceCreamLabel" textFill="azure" text="000000">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+    </HBox>
+
+    <HBox prefHeight="635.0" prefWidth="1280.0" layoutY="85.0" alignment="CENTER_LEFT" spacing="20.0">
+        <padding>
+            <Insets top="40.0" bottom="30.0" right="30.0" left="30.0"/>
+        </padding>
+        <VBox alignment="CENTER" prefWidth="500.0" spacing="100.0" style="-fx-background-color: rgba(49,39,28,0.15); -fx-background-radius: 30.0">
+            <padding>
+                <Insets topRightBottomLeft="20.0"/>
+            </padding>
+            <ImageView fitWidth="340.0" fitHeight="286.0">
+                <Image url="@../../resource/market/rice.png"/>
+            </ImageView>
+            <HBox spacing="20.0" prefWidth="500" alignment="CENTER">
+                <Label text="擁有數量: " textFill="azure">
+                    <font>
+                        <Font size="28.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="riceAmountLabel" text="0000" textFill="azure">
+                    <font>
+                        <Font size="28.0"/>
+                    </font>
+                </Label>
+            </HBox>
+        </VBox>
+        <VBox spacing="20.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: rgba(49,39,28,0.15); -fx-background-radius: 30.0">
+                <padding>
+                    <Insets top="20.0" bottom="20.0" left="50.0" right="50.0"/>
+                </padding>
+                <Label text="寶物介紹" textFill="azure">
+                    <font>
+                        <Font size="36.0"/>
+                    </font>
+                </Label>
+                <Label text="最近才剛加入央央帝國的新勢力，剛開幕的人潮直接逼走隔壁的難吃私廚。吃下充滿女子漢氣息的丼飯，讓「歡樂速食爺爺能量」的上限火山爆發一樣大幅增加。" textFill="azure" wrapText="true">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="345.0" prefWidth="800.0" style="-fx-background-color: rgba(49,39,28,0.15); -fx-background-radius: 30.0">
+                <padding>
+                    <Insets top="20.0" bottom="20.0" left="50.0" right="50.0"/>
+                </padding>
+                <HBox prefWidth="700" prefHeight="40.0" spacing="30.0" alignment="CENTER_LEFT">
+                    <Label text="購買數量:       " textFill="azure">
+                        <font>
+                            <Font size="36.0"/>
+                        </font>
+                    </Label>
+                    <Button alignment="CENTER" onAction="#riceMinus1" text="-" textFill="azure" style="-fx-background-color: rgba(249,193,0,0); -fx-background-radius: 90.0">
+                        <font>
+                            <Font size="65.0"/>
+                        </font>
+                    </Button>
+                    <Label alignment="CENTER" fx:id="amountLabel" text="0000" textFill="azure">
+                        <font>
+                            <Font size="32.0"/>
+                        </font>
+                    </Label>
+                    <Button alignment="CENTER" onAction="#ricePlus1" text="+" textFill="azure" style="-fx-background-color: rgba(249,193,0,0); -fx-background-radius: 90.0">
+                        <font>
+                            <Font size="50.0"/>
+                        </font>
+                    </Button>
+                </HBox>
+                <HBox prefWidth="700" prefHeight="40" spacing="30.0" alignment="CENTER_LEFT">
+                    <Label text="價格總計: " textFill="azure">
+                        <font>
+                            <Font size="36.0"/>
+                        </font>
+                    </Label>
+                    <Label fx:id="totalLabel" text="000000" textFill="azure" prefWidth="270.0">
+                        <font>
+                            <Font size="36.0"/>
+                        </font>
+                        <padding>
+                            <Insets left="90.0"/>
+                        </padding>
+                    </Label>
+                    <Label text="支冰淇淋" textFill="azure">
+                        <font>
+                            <Font size="36.0"/>
+                        </font>
+                    </Label>
+                </HBox>
+                <HBox prefWidth="700" prefHeight="150.0" spacing="10.0" alignment="CENTER_RIGHT">
+                    <Label fx:id="hint" text="提示字元" visible="false" textFill="#ffcece">
+                        <font>
+                            <Font size="20.0"/>
+                        </font>
+                    </Label>
+                    <Button text='確定購買' onAction="#addMaxM" textFill="azure" style="-fx-background-color: rgb(249,193,0); -fx-background-radius: 90.0">
+                        <font>
+                            <Font size="32.0"/>
+                        </font>
+                    </Button>
+                </HBox>
+            </VBox>
+        </VBox>
+    </HBox>
+</AnchorPane>

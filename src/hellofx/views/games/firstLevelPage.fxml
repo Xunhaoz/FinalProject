@@ -98,6 +98,16 @@
                     </font>
                 </Label>
             </HBox>
+            <HBox alignment="CENTER" layoutX="105.0" layoutY="30.0" spacing="10.0">
+                <ImageView fitHeight="55.0" fitWidth="55.0">
+                    <Image url="@../../resource/icecream.png" />
+                </ImageView>
+                <Label fx:id="iceCreamLabel" text="00000">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                </Label>
+            </HBox>
         </children>
     </AnchorPane>
 

@@ -10,34 +10,43 @@ import javafx.fxml.FXML;
 import java.io.IOException;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 
 public class MarketController {
 
-    @FXML
-    Button moneyrate;
-    @FXML
-    Button MaxR;
-    @FXML
-    Button addTowerHealth;
+    @FXML Label iceCreamLabel;
+    @FXML Button rice;
+    @FXML Button ham;
+    @FXML Button coffee;
 
+    public static int iceCreamNum = 0;
 
-    public void dormToMap() throws IOException {
+    @FXML
+    public void initialize() {
+        iceCreamLabel.setText(String.format("%06d", iceCreamNum));
+    }
+
+    public void marketToMap() throws IOException {
         ViewController.toMap();
         MusicPlayController.checkNowStage();
         ButtonSoundPlayController.buttonSoundPlay();
     }
-
-    public void addMaxM() {
-        LevelController.changeMaxM(200);
+    public void marketToRice() throws IOException {
+        ViewController.toRice();
+        MusicPlayController.checkNowStage();
+        ButtonSoundPlayController.buttonSoundPlay();
     }
 
-    public void addMaxR() {
-        LevelController.changeRateM(1);
+    public void marketToCoffee() throws IOException {
+        ViewController.toCoffee();
+        MusicPlayController.checkNowStage();
+        ButtonSoundPlayController.buttonSoundPlay();
     }
 
-    public void addTowerHealth() {
-        GrandpaTower.chHealth(1);
+    public void marketToHam() throws IOException {
+        ViewController.toHam();
+        MusicPlayController.checkNowStage();
+        ButtonSoundPlayController.buttonSoundPlay();
     }
-
 }

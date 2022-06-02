@@ -39,6 +39,4 @@ public class CSIETower extends Role {
 
         timeline.play();
     }
-
-
 }

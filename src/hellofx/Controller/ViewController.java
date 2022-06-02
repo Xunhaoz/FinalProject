@@ -13,12 +13,15 @@ public class ViewController {
     public static Stage nowStage;
     public static String nowStageStr ;
 
+    public static String lastStageStr;
+
     public static void toSetting() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/settings/settingPage.fxml")));
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 選項");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "setting" ;
     }
 
@@ -28,6 +31,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "start" ;
     }
 
@@ -37,6 +41,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 歡迎來到資工大戰爭");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "start" ;
     }
 
@@ -46,6 +51,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 信箱");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "mailbox" ;
     }
 
@@ -55,6 +61,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 工程五館: 關卡選擇");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "level" ;
     }
 
@@ -64,6 +71,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 市集: 購買道具");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "market" ;
     }
 
@@ -73,6 +81,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 垃圾場: 隱藏功能");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "trash" ;
     }
 
@@ -82,6 +91,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍: 我方圖鑑");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "HeroIntro" ;
     }
 
@@ -91,6 +101,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓: 敵方圖鑑");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "EnemyIntro" ;
     }
 
@@ -100,6 +111,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 選項 - 音量控制");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "setting" ;
     }
 
@@ -109,6 +121,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 選項 - 開發人員");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "setting" ;
     }
 
@@ -118,6 +131,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 工程五館 - 第一關");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "firstLevel" ;
     }
     public static void toSlideDragonInfoPage() throws IOException {
@@ -126,6 +140,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 敵方圖鑑 - 滑龍爺爺");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "EnemyIntro" ;
     }
 
@@ -135,6 +150,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 敵方圖鑑 - 二胡伯伯");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "EnemyIntro" ;
     }
 
@@ -144,6 +160,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 敵方圖鑑 - 助教ABC");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "EnemyIntro" ;
     }
 
@@ -153,6 +170,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 敵方圖鑑 - 王家慶記");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "EnemyIntro" ;
     }
 
@@ -162,6 +180,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 行政大樓 - 敵方圖鑑 - 夢蜂");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "EnemyIntro" ;
     }
 
@@ -171,6 +190,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍 - 我方圖鑑 - 大一菜雞");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "HeroIntro" ;
     }
 
@@ -180,6 +200,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍 - 我方圖鑑 - 紫薯");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "HeroIntro" ;
     }
 
@@ -189,6 +210,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍 - 我方圖鑑 - 鮭魚排");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "HeroIntro" ;
     }
 
@@ -198,6 +220,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍 - 我方圖鑑 - 電神");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "HeroIntro" ;
     }
 
@@ -207,6 +230,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍 - 我方圖鑑 - 外星「投手」");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "HeroIntro" ;
     }
 
@@ -216,6 +240,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍 - 我方圖鑑 - 勛皓列車");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "HeroIntro" ;
     }
 
@@ -225,6 +250,7 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 工程五館 - 第二關");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "SecondLevel" ;
     }
 
@@ -234,6 +260,57 @@ public class ViewController {
         scene.getRoot().requestFocus();
         nowStage.setTitle("資工系大戰爭 - 地圖 - 工程五館 - 第三關");
         nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
         nowStageStr = "ThirdLevel" ;
+    }
+
+    public static void toCoffee() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/market/coffee.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 市集 - 淦家咖啡");
+        nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
+        nowStageStr = "Market";
+    }
+
+    public static void toHam() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/market/ham.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 市集 - BAKAYAROU BUGER 套餐");
+        nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
+        nowStageStr = "Market" ;
+    }
+
+    public static void toRice() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/market/rice.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 市集 - 全家咖啡");
+        nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
+        nowStageStr = "Market" ;
+    }
+
+    public static void toWin() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/games/winPage.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("勝利畫面");
+        nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
+        nowStageStr = "Win" ;
+    }
+
+    public static void toLose() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/games/losePage.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("失敗畫面");
+        nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
+        nowStageStr = "Lose" ;
     }
 }

@@ -10,15 +10,16 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class FreshChick extends Role {
-    static private int level = 0;
-    static public void chLevel(int a){
-        level += a;
-    }
 
+    public static int level = 0;
+    public static void Levelup() {
+        if (level <= 10)
+            level++;
+    }
     public FreshChick(int x, int y) {
         super(x, y);
-        this.health = 100 + level*5;
-        this.attack = 10;
+        this.health = 720 + level*30;
+        this.attack = 34;
         this.CD = 1;
         this.speed = 10;
         this.cost = 50;
@@ -33,9 +34,9 @@ public class FreshChick extends Role {
         imageView = new ImageView(walkImagesArray.get(0));
         imageView.setX(this.x);
         imageView.setY(this.y);
-        imageView.setFitWidth(68);
-        imageView.setFitHeight(76.7);
     }
+
+
 
     private void move() {
         if (this.preStatus == 1) return;
@@ -58,7 +59,7 @@ public class FreshChick extends Role {
         if (this.preStatus == 2) return;
         timeline.stop();
         AtomicInteger count = new AtomicInteger(1);
-        timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(110), e -> {
             if(count.get()%4 == 0) canAttack = true;
             imageView.setImage(attackImagesArray.get((count.getAndIncrement()) % 4));
         }));

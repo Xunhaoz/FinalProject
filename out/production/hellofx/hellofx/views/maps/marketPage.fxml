@@ -4,54 +4,100 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" spacing="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellofx.Controller.MarketController">
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<AnchorPane maxHeight="Infinity" maxWidth="Infinity"
+            minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="720.0" prefWidth="1280.0"
+            xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="hellofx.Controller.MarketController">
     <AnchorPane prefHeight="720.0" prefWidth="1280.0">
-        <ImageView fitHeight="720.0" fitWidth="1380.0">
-            <Image url="@../../resource/regularBackground.png" />
+        <ImageView fitHeight="720.0" fitWidth="1280.0">
+            <Image url="@../../resource/market/marketBackground.png"/>
         </ImageView>
-        <Button fx:id="backButton" layoutX="64.0" layoutY="14.0" mnemonicParsing="false" onAction="#dormToMap" stylesheets="@../../styles/buttons.css" />
-        <ImageView fitHeight="323.0" fitWidth="583.0" layoutX="-1.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
-            <image>
-                <Image url="@../../resource/regularBackground.png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="277.0" fitWidth="148.0" layoutX="210.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../resource/role/Enemy/ciseTowers/csieFish.png" />
-            </image>
-        </ImageView>
-        <Button fx:id="moneyrate" layoutX="259.0" layoutY="586.0" mnemonicParsing="false" onAction="#addMaxM" prefHeight="34.0" prefWidth="54.0" text="購買" />
-        <ImageView fitHeight="330.0" fitWidth="577.0" layoutX="376.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
-            <image>
-                <Image url="@../../resource/regularBackground.png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="277.0" fitWidth="148.0" layoutX="584.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../resource/role/Enemy/ciseTowers/csieFish.png" />
-            </image>
-        </ImageView>
-        <Button fx:id="MaxR" layoutX="640.0" layoutY="586.0" mnemonicParsing="false" onAction="#addMaxR" prefHeight="34.0" prefWidth="54.0" text="購買" />
-        <ImageView fitHeight="336.0" fitWidth="589.0" layoutX="752.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
-            <image>
-                <Image url="@../../resource/regularBackground.png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="277.0" fitWidth="148.0" layoutX="969.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../resource/role/Enemy/ciseTowers/csieFish.png" />
-            </image>
-        </ImageView>
-        <Button fx:id="addTowerHealth" layoutX="1033.0" layoutY="586.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="54.0" onAction="#addTowerHealth" text="購買" />
-        <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="1060.0" layoutY="13.0">
-            <Image url="@../../resource/fastfood.png" />
-        </ImageView>
-      <Label layoutX="160.0" layoutY="488.0" prefHeight="97.0" prefWidth="265.0" />
-      <Label layoutX="160.0" layoutY="119.0" prefHeight="42.0" prefWidth="252.0" text="名子" />
-      <Label layoutX="545.0" layoutY="119.0" prefHeight="42.0" prefWidth="252.0" text="名子" />
-      <Label layoutX="934.0" layoutY="119.0" prefHeight="42.0" prefWidth="252.0" text="名子" />
-      <Label layoutX="532.0" layoutY="488.0" prefHeight="97.0" prefWidth="265.0" text="金幣速度" />
-      <Label layoutX="927.0" layoutY="488.0" prefHeight="97.0" prefWidth="265.0" text="提升主塔生命值" />
-      <Label layoutX="146.0" layoutY="488.0" prefHeight="97.0" prefWidth="265.0" text="金幣上限" />
+        <Button fx:id="backButton"
+                layoutX="30.0" layoutY="30.0"
+                mnemonicParsing="false"
+                onAction="#marketToMap"
+                stylesheets="@../../styles/buttons.css" />
+        <HBox alignment="CENTER_RIGHT" layoutX="980.0" layoutY="30.0"
+              spacing="10.0" prefWidth="300.0" prefHeight="55.0">
+            <padding>
+                <Insets right="30.0"/>
+            </padding>
+            <ImageView fitHeight="55.0" fitWidth="55.0">
+                <Image url="@../../resource/icecream.png" />
+            </ImageView>
+            <Label fx:id="iceCreamLabel" text="000000">
+                <font>
+                    <Font size="36.0" />
+                </font>
+            </Label>
+        </HBox>
+        <HBox layoutY="290.0" alignment="BOTTOM_CENTER"
+              prefWidth="1240.0" prefHeight="250" spacing="25.0">
+            <Button stylesheets="@../../styles/buttons.css"
+                    styleClass="foodButton" onAction="#marketToRice"
+                    fx:id="rice" mnemonicParsing="false">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../resource/market/rice.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button stylesheets="@../../styles/buttons.css"
+                    styleClass="foodButton" onAction="#marketToHam"
+                    fx:id="ham" mnemonicParsing="false">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../resource/market/ham.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button stylesheets="@../../styles/buttons.css"
+                    styleClass="foodButton" onAction="#marketToCoffee"
+                    fx:id="coffee" mnemonicParsing="false">
+                <graphic>
+                    <ImageView>
+                        <Image url="@../../resource/market/coffee.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+
+        <HBox layoutY="510.0" alignment="BOTTOM_CENTER"
+              prefHeight="38.0" prefWidth="1180.0" spacing="210.0">
+            <Label prefWidth="102.0" prefHeight="38.0"
+                   styleClass="label" stylesheets="@../../styles/label.css"
+                   text="🍦 160">
+                <padding>
+                    <Insets left="15.0"/>
+                </padding>
+                <font>
+                    <Font size="20.0"/>
+                </font>
+            </Label>
+            <Label prefWidth="102.0" prefHeight="38.0"
+                   styleClass="label" stylesheets="@../../styles/label.css"
+                   text="🍦 285">
+                <padding>
+                    <Insets left="15.0"/>
+                </padding>
+                <font>
+                    <Font size="20.0"/>
+                </font>
+            </Label>
+            <Label prefWidth="102.0" prefHeight="38.0"
+                   styleClass="label" stylesheets="@../../styles/label.css"
+                   text="🍦 95">
+                <padding>
+                    <Insets left="25.0"/>
+                </padding>
+                <font>
+                    <Font size="20.0"/>
+                </font>
+            </Label>
+        </HBox>
     </AnchorPane>
-</VBox>
+</AnchorPane>

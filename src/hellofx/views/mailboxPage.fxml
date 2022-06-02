@@ -4,23 +4,92 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" spacing="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellofx.Controller.MailController">
-    <AnchorPane>
-        <ImageView fitHeight="739.0" fitWidth="1299.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="720.0" prefWidth="1280.0" spacing="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellofx.Controller.MailController">
+    <AnchorPane prefHeight="720.0" prefWidth="1280.0">
+        <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../resource/regularBackground.png" />
         </ImageView>
+        <ImageView fitWidth="1280.0" fitHeight="720.0">
+            <Image url="@../resource/mailBG2.png"/>
+        </ImageView>
+        <VBox alignment="CENTER" prefWidth=" 1280.0" prefHeight="720.0" spacing="20.0">
+            <padding>
+                <Insets top="120.0" right="100.0" left="100.0" bottom="50.0"/>
+            </padding>
+            <HBox alignment="CENTER_LEFT" prefWidth="1080.0" prefHeight="100.0" spacing="50.0" >
+                <TextField fx:id="textField" prefHeight="30.0" prefWidth="500.0" promptText="信件主旨: 我要拿密碼卡"
+                           style="-fx-background-color: rgba(219,237,237,0.5); -fx-background-radius: 10.0;">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </TextField>
+                <HBox alignment="CENTER_RIGHT" spacing="30.0" prefHeight="100.0" prefWidth="530">
+                    <Label text="選擇敵人:" prefWidth="120" textFill="azure">
+                        <font>
+                            <Font size="24.0"/>
+                        </font>
+                    </Label>
+                    <RadioButton mnemonicParsing="false" userData="0" prefWidth="50.0" prefHeight="50.0">
+                        <graphic>
+                            <ImageView fitHeight="31.8" fitWidth="45.0" >
+                                <Image url="@../resource/roleInfo/slideDragonInfo.png" />
+                            </ImageView>
+                        </graphic>
+                        <toggleGroup>
+                            <ToggleGroup fx:id="emailSelect" />
+                        </toggleGroup>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" toggleGroup="$emailSelect" userData="1" prefWidth="50.0" prefHeight="50.0">
+                        <graphic>
+                            <ImageView fitHeight="45.0" fitWidth="43.1" >
+                                <Image url="@../resource/roleInfo/dreamBeeInfo.png" />
+                            </ImageView>
+                        </graphic>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" toggleGroup="$emailSelect" userData="2" prefWidth="50.0" prefHeight="50.0">
+                        <graphic>
+                            <ImageView fitHeight="45.0" fitWidth="40.0" >
+                                <Image url="@../resource/roleInfo/erhuInfo.png" />
+                            </ImageView>
+                        </graphic>
+                    </RadioButton>
+                    <RadioButton mnemonicParsing="false" toggleGroup="$emailSelect" userData="3" prefWidth="50.0" prefHeight="50.0">
+                        <graphic>
+                            <ImageView fitHeight="45.0" fitWidth="43.6" >
+                                <Image url="@../resource/roleInfo/tasInfo.png" />
+                            </ImageView>
+                        </graphic>
+                    </RadioButton>
+                </HBox>
+            </HBox>
+            <TextArea fx:id="textArea" prefHeight="400.0" prefWidth="1080.0" promptText="在這裡向敵人們索取密碼卡，以獲得「休克」的機會！"
+                      style="-fx-background-color: rgba(219,237,237,0.5); -fx-background-radius: 10.0;">
+                <font>
+                    <Font size="24.0" />
+                </font>
+            </TextArea>
+            <HBox alignment="BOTTOM_LEFT" prefWidth="1080.0" prefHeight="50.0">
+                <HBox alignment="BOTTOM_LEFT" prefWidth="540.0">
+                    <Label fx:id="label" prefWidth="540.0" textFill="azure">
+                        <font>
+                            <Font size="18.0" />
+                        </font>
+                    </Label>
+                </HBox>
+                <HBox alignment="BOTTOM_RIGHT" prefWidth="540.0">
+                    <Button styleClass="button" stylesheets="@../styles/buttons.css"
+                            style="-fx-background-color: #ffcc00; -fx-background-radius: 20.0;"
+                            mnemonicParsing="false" onAction="#sendMail" text="確認寄出">
+                        <font>
+                            <Font size="24.0"/>
+                        </font>
+                    </Button>
+                </HBox>
+            </HBox>
+        </VBox>
         <Button fx:id="backButton" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#mailboxToStart" stylesheets="@../styles/buttons.css" />
-        <RadioButton layoutX="717.0" layoutY="121.0" mnemonicParsing="false" text="滑龍" userData="0">
-            <toggleGroup>
-                <ToggleGroup fx:id="emailSelect" />
-            </toggleGroup>
-        </RadioButton>
-        <RadioButton layoutX="800.0" layoutY="121.0" mnemonicParsing="false" text="夢蜂" toggleGroup="$emailSelect" userData="1" />
-        <RadioButton layoutX="880.0" layoutY="121.0" mnemonicParsing="false" text="二胡怪" toggleGroup="$emailSelect" userData="2" />
-        <RadioButton layoutX="965.0" layoutY="121.0" mnemonicParsing="false" text="電皓" toggleGroup="$emailSelect" userData="3" />
-        <TextField fx:id="textField" layoutX="248.0" layoutY="99.0" prefHeight="44.0" prefWidth="387.0" promptText="標題" />
-        <TextArea fx:id="textArea" layoutX="248.0" layoutY="176.0" prefHeight="377.0" prefWidth="783.0" promptText="內文" />
-        <Button layoutX="616.0" layoutY="583.0" mnemonicParsing="false" onAction="#sendMail" text="Send" />
-        <Label fx:id="label" layoutX="30.0" layoutY="444.0" prefHeight="15.0" prefWidth="225.0" />
     </AnchorPane>
 </VBox>

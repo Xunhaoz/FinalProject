@@ -12,10 +12,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class TaA extends Role{
     public TaA(int x, int y) {
         super(x, y);
-        this.health = 100;
-        this.attack = 10;
+        this.health = 180;
+        this.attack = 15;
         this.CD = 1;
-        this.speed = 5;
+        this.speed = 8;
         this.cost = 50;
         walkImagesArray = new ArrayList<>();
         attackImagesArray = new ArrayList<>();
@@ -23,13 +23,11 @@ public class TaA extends Role{
             walkImagesArray.add(new Image("hellofx\\resource\\role\\Enemy\\taA\\newWalk\\taAWalk" + Integer.toString(i) + ".png"));
         }
         for (int i = 1; i < 4; i++) {
-            attackImagesArray.add(new Image("C:\\Users\\leo20\\Desktop\\FinalProject\\src\\hellofx\\resource\\role\\Enemy\\taA\\newAttack\\taAAtk" + Integer.toString(i) + ".png"));
+            attackImagesArray.add(new Image("hellofx\\resource\\role\\Enemy\\taA\\newAttack\\taAAtk" + Integer.toString(i) + ".png"));
         }
         imageView = new ImageView(walkImagesArray.get(0));
         imageView.setX(this.x);
         imageView.setY(this.y);
-        imageView.setFitWidth(68);
-        imageView.setFitHeight(76.7);
     }
 
     private void move() {
@@ -51,7 +49,7 @@ public class TaA extends Role{
         if (this.preStatus == 2) return;
         timeline.stop();
         AtomicInteger count = new AtomicInteger(1);
-        timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(150), e -> {
             if(count.get()%3 == 0) canAttack = true;
             imageView.setImage(attackImagesArray.get((count.getAndIncrement()) % attackImagesArray.size()));
         }));
