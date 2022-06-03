@@ -7,6 +7,7 @@ import hellofx.Controller.MusicControllers.MusicPlayController;
 import hellofx.Controller.ViewController;
 import hellofx.models.*;
 import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 
@@ -14,11 +15,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class FirstLevelController extends LevelController {
@@ -27,6 +31,10 @@ public class FirstLevelController extends LevelController {
     public ProgressBar grandpaTowerHP;
     public Label csieHealthLable;
     public Label grandpaHealthLable;
+    public ImageView economicImg;
+    public ImageView fastFoodImg;
+    public ImageView yamsImg;
+
     @FXML
     Label iceCreamLabel;
     @FXML
@@ -35,8 +43,6 @@ public class FirstLevelController extends LevelController {
     AnchorPane anchorPane;
     @FXML
     Label label;
-    @FXML
-    Button levelButton;
 
     private int money = 500; // need to be modified to 0
     private CSIETower csieTower;
@@ -49,15 +55,24 @@ public class FirstLevelController extends LevelController {
     final private ArrayList<TaC> taCAL = new ArrayList<>();
     final private ArrayList<Erhu> erhuAL = new ArrayList<>();
     final private Random randomInt = new Random();
-    private int csieTowerHealt;
-    private int grandpaTowerHealt;
+    private int csieTowerHealth;
+    private int grandpaTowerHealth;
     private int enemyCreateRate = 0;
-    private int iceCream = 0;
+    private int iceCream;
+    private boolean hasBoss = false;
+    private int fastFoodShoot = 0;
+    private AtomicInteger countUp = new AtomicInteger(0);
+
 
     private final Timeline levelOneTimeline = new Timeline(new KeyFrame(Duration.millis(200), e -> {
         this.enemyCreateRate++;
         this.money += moneyRate;
         iceCreamLabel.setText(String.format("%05d", iceCream));
+
+        if (this.countUp.incrementAndGet() % 10 == 0 && fastFoodShoot < 10) {
+            fastFoodShoot += 1;
+            fastFoodImg.setImage(new Image("hellofx\\resource\\gameButton\\boom\\boom" + fastFoodShoot + ".png"));
+        }
 
         if (money < moneyMax) {
             label.setText(String.format("%04d", money));
@@ -65,38 +80,35 @@ public class FirstLevelController extends LevelController {
             label.setText(String.format("%04d", moneyMax));
             money = moneyMax;
         }
-        csieHealthLable.setText(csieTower.getHealth() + " / " + csieTowerHealt);
-        grandpaHealthLable.setText(grandpaTower.getHealth() + " / " + grandpaTowerHealt);
-        csieTowerHP.setProgress((double) csieTower.getHealth() / csieTowerHealt);
-        grandpaTowerHP.setProgress((double) grandpaTower.getHealth() / grandpaTowerHealt);
+        csieHealthLable.setText(csieTower.getHealth() + " / " + csieTowerHealth);
+        grandpaHealthLable.setText(grandpaTower.getHealth() + " / " + grandpaTowerHealth);
+        csieTowerHP.setProgress((double) csieTower.getHealth() / csieTowerHealth);
+        grandpaTowerHP.setProgress((double) grandpaTower.getHealth() / grandpaTowerHealth);
         statusDetector();
 
         int ranInt = randomInt.nextInt(1000);
         if (ranInt % 25 == 0 && enemyCreateRate % 11 != 0) {
             createTaA();
-        }
-        else if (ranInt % 267 == 0 && enemyCreateRate % 13 != 0 && enemyCreateRate > 50){
+        } else if (ranInt % 267 == 0 && enemyCreateRate % 13 != 0 && enemyCreateRate > 50) {
             createTaB();
-        }
-        else if (ranInt % 401 == 0 && enemyCreateRate % 17 != 0 && enemyCreateRate > 500) {
+        } else if (ranInt % 401 == 0 && enemyCreateRate % 17 != 0 && enemyCreateRate > 500) {
             createTaC();
         }
 
-        if (csieTower.getHealth() <= (csieTowerHealt - 1) && enemyCreateRate % 500 == 0) {
+        if (csieTower.getHealth() <= (csieTowerHealth - 1) && enemyCreateRate % 500 == 0) {
             createErhu();
         }
 
-        if (enemyCreateRate % 50 == 0) {
+        if (enemyCreateRate % 100 == 0) {
             createTaA();
-        }
-        else if (enemyCreateRate % 120 == 0) {
+        } else if (enemyCreateRate % 100 == 20) {
             createTaB();
-        }
-        else if (enemyCreateRate % 250 == 0) {
+        } else if (enemyCreateRate % 100 == 30) {
             createTaC();
-        }
-        else if (enemyCreateRate % 500 == 0) {
+        } else if (csieTower.getHealth() <= 5000 && !hasBoss) {
+            hasBoss = true;
             createErhu();
+            for (FreshChick freshChick : freshChickAL) freshChick.lag();
         }
 
         if (csieTower.getHealth() <= 0) {
@@ -105,8 +117,7 @@ public class FirstLevelController extends LevelController {
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
-        }
-        else if (grandpaTower.getHealth() <= 0) {
+        } else if (grandpaTower.getHealth() <= 0) {
             try {
                 this.lose();
             } catch (IOException ex) {
@@ -117,7 +128,7 @@ public class FirstLevelController extends LevelController {
 
     public void win() throws IOException {
         WinPageController.winIceCream = iceCream;
-        MarketController.iceCreamNum += iceCream;
+        MarketController.iceCreamNum = iceCream;
         levelOneTimeline.stop();
         ViewController.toWin();
         MusicPlayController.checkNowStage();
@@ -139,8 +150,8 @@ public class FirstLevelController extends LevelController {
         csieTower.setBounds();
         grandpaTower.setBounds();
 
-        csieTowerHealt = csieTower.getHealth();
-        grandpaTowerHealt = grandpaTower.getHealth();
+        csieTowerHealth = csieTower.getHealth();
+        grandpaTowerHealth = grandpaTower.getHealth();
 
         csieTower.move();
         grandpaTower.move();
@@ -149,6 +160,8 @@ public class FirstLevelController extends LevelController {
 
         moneyLevel = 1;
         labelMax.setText(Integer.toString(moneyMax));
+
+        iceCream = MarketController.iceCreamNum;
 
         levelOneTimeline.setCycleCount(Timeline.INDEFINITE);
         levelOneTimeline.play();
@@ -187,7 +200,7 @@ public class FirstLevelController extends LevelController {
     @FXML
     public void createErhu() {
         int ranInt = (randomInt.nextInt(4) - 2) * 5;
-        Erhu erhu = new Erhu(140, 300 + ranInt);
+        Erhu erhu = new Erhu(40, 300 + ranInt);
         erhuAL.add(erhu);
         erhu.portal(1);
         anchorPane.getChildren().add(erhu.getImageview());
@@ -198,8 +211,25 @@ public class FirstLevelController extends LevelController {
     public void createYams() {
         if (Integer.parseInt(label.getText()) < 200) return;
         money -= 200;
-        int ranInt = (randomInt.nextInt(4) - 2) * 10;
-        Yams yams = new Yams(1100, 355 + ranInt, randomInt.nextInt(100) % 3);
+
+        int ranCharacter = randomInt.nextInt(100) % 3;
+        Yams yams = new Yams(1100, 355 + (randomInt.nextInt(4) - 2) * 10, ranCharacter);
+        String[] yamsName = {"badRoll", "excellentRoll", "regularRoll", "yamsRoll"};
+        Timeline yamsTimeline = new Timeline();
+        for (int i = 1; i < 12; i++) {
+            if (i < 7) {
+                KeyFrame keyFrame = new KeyFrame(new Duration(i * 200), new KeyValue(yamsImg.imageProperty(), new Image("hellofx\\resource\\gameButton\\YamsButtons\\yamsRoll" + i + ".png")));
+                yamsTimeline.getKeyFrames().add(keyFrame);
+            } else if (i < 11) {
+                KeyFrame keyFrame = new KeyFrame(new Duration(i * 200), new KeyValue(yamsImg.imageProperty(), new Image("hellofx\\resource\\gameButton\\YamsButtons\\" + yamsName[ranCharacter] + (i - 6) + ".png")));
+                yamsTimeline.getKeyFrames().add(keyFrame);
+            } else {
+                KeyFrame keyFrame = new KeyFrame(new Duration(i * 200), new KeyValue(yamsImg.imageProperty(), new Image("hellofx\\resource\\role\\Hero\\yams\\miniYams.png")));
+                yamsTimeline.getKeyFrames().add(keyFrame);
+            }
+        }
+        yamsTimeline.play();
+
         yamsAL.add(yams);
         yams.portal(1);
         anchorPane.getChildren().add(yams.getImageview());
@@ -718,13 +748,43 @@ public class FirstLevelController extends LevelController {
     }
 
     public void economic() {
-        if (moneyLevel > 7 || money < (moneyMax / 2)) return;
+        if (moneyLevel > 10 || money < (moneyMax / 2)) return;
         money -= (moneyMax / 2);
         moneyRate++;
         moneyMax += 200;
         moneyLevel++;
+        economicImg.setImage(new Image("hellofx\\resource\\gameButton\\economy\\economy" + moneyLevel + ".png"));
         labelMax.setText(Integer.toString(moneyMax));
-        levelButton.setText("經濟 Level " + Integer.toString(moneyLevel));
     }
 
+    @FXML
+    public void shootBoom() {
+        if (fastFoodShoot != 10) return;
+
+        ImageView fastFood = new ImageView(new Image("hellofx\\resource\\role\\Hero\\frenchFries.png"));
+        long duration = 600;
+        int minusHealth = 1000;
+        KeyFrame startKey = new KeyFrame(Duration.ZERO, new KeyValue(fastFood.xProperty(), 320), new KeyValue(fastFood.yProperty(), 0));
+        KeyFrame endKey = new KeyFrame(new Duration(duration), new KeyValue(fastFood.xProperty(), 320), new KeyValue(fastFood.yProperty(), 400));
+        KeyFrame actKey = new KeyFrame(new Duration(800), e -> {
+            anchorPane.getChildren().remove(fastFood);
+            for (TaA taA : taAAL) {
+                taA.minusHealth(minusHealth);
+            }
+            for (TaB taB : taBAL) {
+                taB.minusHealth(minusHealth);
+            }
+            for (TaC taC : taCAL) {
+                taC.minusHealth(minusHealth);
+            }
+            for (Erhu erhu : erhuAL) {
+                erhu.minusHealth(minusHealth);
+            }
+        });
+        Timeline fastFoodTimeline = new Timeline();
+        fastFoodTimeline.getKeyFrames().addAll(startKey, endKey, actKey);
+        fastFoodTimeline.play();
+        anchorPane.getChildren().add(fastFood);
+        fastFoodShoot = 0;
+    }
 }

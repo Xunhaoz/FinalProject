@@ -65,19 +65,19 @@ public class Yams extends Role {
         this.characteristic = characteristic;
         this.imageView = new ImageView(allWalkImagesArray.get(this.characteristic).get(0));
         if (this.characteristic == 0) {
-            this.x = 947;
+            this.x = x;
             this.health = 400;
             this.attack = 3;
             this.speed = 20;
         }
         else if (this.characteristic == 1) {
-            this.x = 763;
+            this.x = x-184;
             this.health = 1600;
             this.attack = 120;
             this.speed = 5;
         }
         else if (this.characteristic == 2) {
-            this.x = 830;
+            this.x = x-120;
             this.health = 2000;
             this.attack = 25;
             this.speed = 10;

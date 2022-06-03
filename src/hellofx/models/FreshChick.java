@@ -12,13 +12,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class FreshChick extends Role {
 
     public static int level = 0;
+
     public static void Levelup() {
         if (level <= 10)
             level++;
     }
+
     public FreshChick(int x, int y) {
         super(x, y);
-        this.health = 720 + level*30;
+        this.health = 200 + level*20;
         this.attack = 34;
         this.CD = 1;
         this.speed = 10;
@@ -35,7 +37,6 @@ public class FreshChick extends Role {
         imageView.setX(this.x);
         imageView.setY(this.y);
     }
-
 
 
     private void move() {
@@ -60,7 +61,7 @@ public class FreshChick extends Role {
         timeline.stop();
         AtomicInteger count = new AtomicInteger(1);
         timeline = new Timeline(new KeyFrame(Duration.millis(110), e -> {
-            if(count.get()%4 == 0) canAttack = true;
+            if (count.get() % 4 == 0) canAttack = true;
             imageView.setImage(attackImagesArray.get((count.getAndIncrement()) % 4));
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -71,9 +72,9 @@ public class FreshChick extends Role {
     public void portal(int status) {
         preStatus = this.status;
         this.status = status;
-        if (this.status == 1) {
+        if (this.status == 1 && canControll) {
             move();
-        } else if (this.status == 2) {
+        } else if (this.status == 2 && canControll) {
             attack();
         } else if (this.status == 3) {
             die();

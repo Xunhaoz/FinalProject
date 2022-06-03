@@ -11,7 +11,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/.idea/libraries/activation.jar!/" />
+          <root url="jar://$MODULE_DIR$/../activation.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -20,12 +20,11 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/.idea/libraries/mail.jar!/" />
+          <root url="jar://$MODULE_DIR$/../mail.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" exported="" name="javax.mail-1.6.2" level="project" />
   </component>
 </module>

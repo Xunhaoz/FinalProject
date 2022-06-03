@@ -31,6 +31,7 @@ public abstract class Role {
     protected ArrayList<Image> attackImagesArray;
     protected Random randomInt = new Random();
     protected Bounds bounds;
+    protected boolean canControll = true;
 
     public Role(int x, int y) {
         this.x = x;
@@ -95,6 +96,22 @@ public abstract class Role {
 
     public int getStatus() {
         return status;
+    }
+
+    public void lag(){
+        timeline.stop();
+        canControll = false;
+        AtomicInteger count = new AtomicInteger();
+        timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
+            count.getAndIncrement();
+            if(count.get() == 50){
+                canControll = true;
+            }
+            this.x += 5;
+            this.x -= 5;
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 
 }
