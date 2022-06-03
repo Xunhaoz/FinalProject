@@ -185,7 +185,7 @@ public class ThirdLevelController extends LevelController {
     @FXML
     public void createSlideDragon() {
         int ranInt = (randomInt.nextInt(4) - 2) * 5;
-        SlideDragon slideDragon = new SlideDragon(40, 100 + ranInt);
+        SlideDragon slideDragon = new SlideDragon(40, 200 + ranInt);
         slideDragonAL.add(slideDragon);
         slideDragon.portal(1);
         anchorPane.getChildren().add(slideDragon.getImageview());

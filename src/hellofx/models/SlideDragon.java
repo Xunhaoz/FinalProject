@@ -20,7 +20,7 @@ public class SlideDragon extends Role {
         walkImagesArray = new ArrayList<>();
         attackImagesArray = new ArrayList<>();
         for (int i = 1; i < 7; i++) {
-            walkImagesArray.add(new Image("hellofx\\resource\\role\\Enemy\\slideDragon\\newWalk\\slideDragonWalking" + 7 + ".png"));
+            walkImagesArray.add(new Image("hellofx\\resource\\role\\Enemy\\slideDragon\\newWalk\\slideDragonWalking" + i + ".png"));
         }
         for (int i = 1; i < 24; i++) {
             attackImagesArray.add(new Image("hellofx\\resource\\role\\Enemy\\slideDragon\\attack\\slideDragonAtk" + i + ".png"));
