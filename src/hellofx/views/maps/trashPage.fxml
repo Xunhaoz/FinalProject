@@ -12,7 +12,7 @@
 <?import javafx.geometry.Insets?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellofx.Controller.RouteController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellofx.Controller.BlowUpJVM">
     <ImageView fitHeight="720.0" fitWidth="1280.0">
         <Image url="@../../resource/trash.png"/>
     </ImageView>
@@ -29,28 +29,28 @@
             </font>
         </Label>
         <HBox alignment="TOP_CENTER" prefWidth="1280.0" spacing="50.0">
-            <Button text="是的沒錯" textFill="#070726" alignment="CENTER"
+            <Button onAction="#outOfHeapMemory" text="是的沒錯" textFill="#070726" alignment="CENTER"
                     styleClass="button" stylesheets="@../../styles/buttons.css"
                     style="-fx-background-color: rgb(249,193,0); -fx-background-radius: 90.0;">
                 <font>
                     <Font size="36.0"/>
                 </font>
             </Button>
-            <Button text="當然要啊" textFill="#070726" alignment="CENTER"
+            <Button onAction="#outOfMemory" text="當然要啊" textFill="#070726" alignment="CENTER"
                     styleClass="button" stylesheets="@../../styles/buttons.css"
                     style="-fx-background-color: rgb(249,193,0); -fx-background-radius: 90.0;">
                 <font>
                     <Font size="36.0"/>
                 </font>
             </Button>
-            <Button text="哪次不要" textFill="#070726" alignment="CENTER"
+            <Button onAction="#pergemOutOfMemory" text="哪次不要" textFill="#070726" alignment="CENTER"
                     styleClass="button" stylesheets="@../../styles/buttons.css"
                     style="-fx-background-color: rgb(249,193,0); -fx-background-radius: 90.0;">
                 <font>
                     <Font size="36.0"/>
                 </font>
             </Button>
-            <Button text="一定要吧" textFill="#070726" alignment="CENTER"
+            <Button onAction="#stackOverFlow" text="一定要吧" textFill="#070726" alignment="CENTER"
                     styleClass="button" stylesheets="@../../styles/buttons.css"
                     style="-fx-background-color: rgb(249,193,0); -fx-background-radius: 90.0;">
                 <font>

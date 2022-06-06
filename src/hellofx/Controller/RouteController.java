@@ -94,12 +94,7 @@ public class RouteController {
         ButtonSoundPlayController.buttonSoundPlay();
     }
 
-    @FXML
-    public void trashToMap() throws IOException {
-        ViewController.toMap();
-        MusicPlayController.checkNowStage();
-        ButtonSoundPlayController.buttonSoundPlay();
-    }
+
 
     @FXML
     public void mapToDorm() throws IOException {
