@@ -1,8 +1,10 @@
 package hellofx.Controller.MarketControllers;
 
 import hellofx.Controller.MarketController;
+import hellofx.Controller.MusicControllers.BruhController;
 import hellofx.Controller.MusicControllers.ButtonSoundPlayController;
 import hellofx.Controller.MusicControllers.MusicPlayController;
+import hellofx.Controller.MusicControllers.CoinSoundController;
 import hellofx.Controller.ViewController;
 import hellofx.models.GrandpaTower;
 import javafx.fxml.FXML;
@@ -36,7 +38,8 @@ public class HamController {
     }
 
     public void addTowerHealth() {
-        if (total <= MarketController.iceCreamNum){
+        if (total <= MarketController.iceCreamNum && amount > 0){
+            CoinSoundController.soundPlay();
             GrandpaTower.chHealth(amount);
             MarketController.iceCreamNum -= total;
             hamAmount += amount;
@@ -49,6 +52,11 @@ public class HamController {
             hint.setVisible(true);
             hint.setText("購買成功");
         }
+        else if (amount == 0) {
+            hint.setVisible(true);
+            hint.setText("請選擇購買數量");
+            BruhController.bruhPlay();
+        }
         else {
             amount = 0;
             total = 0;
@@ -56,18 +64,29 @@ public class HamController {
             totalLabel.setText(String.format("%06d", total));
             hint.setVisible(true);
             hint.setText("冰淇淋不足");
+            BruhController.bruhPlay();
         }
     }
 
     public void hamPlus1() {
-        amount++;
+        if (amount >= 10) {
+            hint.setVisible(true);
+            hint.setText("一次最多購買10個");
+            BruhController.bruhPlay();
+        }
+        else amount++;
         total = hamPrice * amount;
         amountLabel.setText(String.format("%04d", amount));
         totalLabel.setText(String.format("%06d", total));
     }
 
     public void hamMinus1() {
-        amount--;
+        if (amount <= 0) {
+            hint.setVisible(true);
+            hint.setText("數量不能為負");
+            BruhController.bruhPlay();
+        }
+        else amount--;
         total = hamPrice * amount;
         amountLabel.setText(String.format("%04d", amount));
         totalLabel.setText(String.format("%06d", total));

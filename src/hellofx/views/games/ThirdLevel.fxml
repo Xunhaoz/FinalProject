@@ -23,8 +23,8 @@
         </AnchorPane>
     </ScrollPane>
     <Button fx:id="backButton" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#levelThreeToLevel" stylesheets="@../../styles/buttons.css" />
-    <HBox alignment="BOTTOM_CENTER" layoutY="545.0" prefHeight="175.0" prefWidth="1280.0" spacing="65.0">
-        <Button mnemonicParsing="false" onAction="#economic" prefHeight="175.0">
+    <HBox alignment="BOTTOM_CENTER" layoutY="545.0" prefHeight="175.0" prefWidth="1280.0" spacing="130.0">
+        <Button styleClass="button" stylesheets="@../../styles/buttons.css" mnemonicParsing="false" onAction="#economic" prefHeight="175.0">
             <font>
                 <Font size="24.0" />
             </font>
@@ -65,15 +65,6 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#createAlienThrowingHand">
-                    <graphic>
-                        <ImageView fitHeight="75.0" fitWidth="100.0">
-                            <image>
-                                <Image url="@../../resource/role/Hero/alienThrowingHand/miniAlien.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
                 <Button onAction="#creatXunhaoz" mnemonicParsing="false">
                     <graphic>
                         <ImageView fitHeight="75.0" fitWidth="100.0">
@@ -83,18 +74,18 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#creatXunhaoz">
+                <Button mnemonicParsing="false" onAction="#createAlienThrowingHand">
                     <graphic>
                         <ImageView fitHeight="75.0" fitWidth="100.0">
                             <image>
-                                <Image url="@../../resource/role/Hero/Xunhoaz/miniXunhaoz.png" />
+                                <Image url="@../../resource/role/Hero/alienThrowingHand/miniAlien.png" />
                             </image>
                         </ImageView>
                     </graphic>
                 </Button>
             </children>
         </HBox>
-        <Button mnemonicParsing="false" onAction="#shootBoom" prefHeight="175.0">
+        <Button styleClass="button" stylesheets="@../../styles/buttons.css" mnemonicParsing="false" onAction="#shootBoom" prefHeight="175.0">
             <font>
                 <Font size="24.0" />
             </font>

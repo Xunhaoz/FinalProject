@@ -3,6 +3,7 @@ package hellofx.Controller.gameControllers;
 import hellofx.Controller.MarketController;
 import hellofx.Controller.MusicControllers.ButtonSoundPlayController;
 import hellofx.Controller.MusicControllers.MusicPlayController;
+import hellofx.Controller.MusicControllers.CoinSoundController;
 import hellofx.Controller.ViewController;
 import hellofx.models.*;
 import javafx.animation.KeyFrame;
@@ -52,6 +53,7 @@ public class ThirdLevelController extends LevelController {
     private boolean hasBoss = false;
     private int fastFoodShoot = 0;
     private AtomicInteger countUp = new AtomicInteger(0);
+    public static boolean allTimelineStop;
 
 
     @FXML
@@ -96,6 +98,10 @@ public class ThirdLevelController extends LevelController {
             createTaC();
         }
 
+        if (enemyCreateRate == 5) {
+            createSlideDragon();
+        }
+
         if (csieTower.getHealth() <= (csieTowerHealth - 1) && enemyCreateRate % 500 == 0) {
             createSlideDragon();
         }
@@ -113,12 +119,16 @@ public class ThirdLevelController extends LevelController {
         }
 
         if (csieTower.getHealth() <= 0) {
+            allTimelineStop = true;
+            statusDetector();
             try {
                 this.win();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         } else if (grandpaTower.getHealth() <= 0) {
+            allTimelineStop = true;
+            statusDetector();
             try {
                 this.lose();
             } catch (IOException ex) {
@@ -129,6 +139,9 @@ public class ThirdLevelController extends LevelController {
 
     @FXML
     public void initialize() throws IOException {
+        allTimelineStop = false;
+        iceCream = 0;
+
         csieTower = new CSIETower(0, 180);
         grandpaTower = new GrandpaTower(3600, 180);
 
@@ -184,8 +197,7 @@ public class ThirdLevelController extends LevelController {
 
     @FXML
     public void createSlideDragon() {
-        int ranInt = (randomInt.nextInt(4) - 2) * 5;
-        SlideDragon slideDragon = new SlideDragon(40, 200 + ranInt);
+        SlideDragon slideDragon = new SlideDragon(40, 120);
         slideDragonAL.add(slideDragon);
         slideDragon.portal(1);
         anchorPane.getChildren().add(slideDragon.getImageview());
@@ -255,7 +267,7 @@ public class ThirdLevelController extends LevelController {
         }
         money -= 300;
         int ranInt = (randomInt.nextInt(4) - 2) * 5;
-        AlienThrowingHand alienThrowingHand = new AlienThrowingHand(3600, 200 + ranInt);
+        AlienThrowingHand alienThrowingHand = new AlienThrowingHand(3300, 60 + ranInt);
         alienThrowingHand.portal(1);
         alienAL.add(alienThrowingHand);
         anchorPane.getChildren().add(alienThrowingHand.getImageview());
@@ -278,7 +290,7 @@ public class ThirdLevelController extends LevelController {
 
     public void win() throws IOException {
         WinPageController.winIceCream = iceCream;
-        MarketController.iceCreamNum = iceCream;
+        MarketController.iceCreamNum += iceCream;
         levelOneTimeline.stop();
         ViewController.toWin();
         MusicPlayController.checkNowStage();
@@ -297,7 +309,7 @@ public class ThirdLevelController extends LevelController {
         for (int i = 0; i < freshChickAL.size(); i++) {
             FreshChick freshChick = freshChickAL.get(i);
 
-            if (freshChick.getHealth() < 0) {
+            if (freshChick.getHealth() < 0 || allTimelineStop) {
 
                 freshChick.portal(3);
 
@@ -331,7 +343,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < taBAL.size(); j++) {
                     TaB taB = taBAL.get(j);
-                    if (freshChick.getBounds().intersects(taB.getBounds()) && taB.getStatus() != 3) {
+                    int distance = freshChick.getX() - taB.getX();
+                    if (distance > 0 && distance < 164 && taB.getStatus() != 3) {
                         isDetect = true;
                         freshChick.portal(2);
                         if (freshChick.getCanAttack()) {
@@ -343,7 +356,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < taCAL.size(); j++) {
                     TaC taC = taCAL.get(j);
-                    if (freshChick.getBounds().intersects(taC.getBounds()) && taC.getStatus() != 3) {
+                    int distance = freshChick.getX() - taC.getX();
+                    if (distance > 0 && distance < 180 && taC.getStatus() != 3) {
                         isDetect = true;
                         freshChick.portal(2);
                         if (freshChick.getCanAttack()) {
@@ -355,7 +369,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < slideDragonAL.size(); j++) {
                     SlideDragon slideDragon = slideDragonAL.get(j);
-                    if (freshChick.getBounds().intersects(slideDragon.getBounds()) && slideDragon.getStatus() != 3) {
+                    int distance = freshChick.getX() - slideDragon.getX();
+                    if (distance > 0 && distance < 430 && slideDragon.getStatus() != 3) {
                         isDetect = true;
                         freshChick.portal(2);
                         if (freshChick.getCanAttack()) {
@@ -373,7 +388,7 @@ public class ThirdLevelController extends LevelController {
         for (int i = 0; i < alienAL.size(); i++) {
             AlienThrowingHand alienThrowingHand = alienAL.get(i);
 
-            if (alienThrowingHand.getHealth() < 0) {
+            if (alienThrowingHand.getHealth() < 0 || allTimelineStop) {
 
                 alienThrowingHand.portal(3);
 
@@ -407,7 +422,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < taBAL.size(); j++) {
                     TaB taB = taBAL.get(j);
-                    if (alienThrowingHand.getBounds().intersects(taB.getBounds()) && taB.getStatus() != 3) {
+                    int distance = alienThrowingHand.getX() - taB.getX();
+                    if (distance > 0 && distance < 164 && taB.getStatus() != 3) {
                         isDetect = true;
                         alienThrowingHand.portal(2);
                         if (alienThrowingHand.getCanAttack()) {
@@ -419,7 +435,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < taCAL.size(); j++) {
                     TaC taC = taCAL.get(j);
-                    if (alienThrowingHand.getBounds().intersects(taC.getBounds()) && taC.getStatus() != 3) {
+                    int distance = alienThrowingHand.getX() - taC.getX();
+                    if (distance > 0 && distance < 180 && taC.getStatus() != 3) {
                         isDetect = true;
                         alienThrowingHand.portal(2);
                         if (alienThrowingHand.getCanAttack()) {
@@ -431,7 +448,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < slideDragonAL.size(); j++) {
                     SlideDragon slideDragon = slideDragonAL.get(j);
-                    if (alienThrowingHand.getBounds().intersects(slideDragon.getBounds()) && slideDragon.getStatus() != 3) {
+                    int distance = alienThrowingHand.getX() - slideDragon.getX();
+                    if (distance > 0 && distance < 430 && slideDragon.getStatus() != 3) {
                         isDetect = true;
                         alienThrowingHand.portal(2);
                         if (alienThrowingHand.getCanAttack()) {
@@ -446,9 +464,36 @@ public class ThirdLevelController extends LevelController {
             }
         }
 
+        for (int i = 0; i < xunhaozAL.size(); i++) {
+            Xunhaoz xunhaoz = xunhaozAL.get(i);
+
+            if (xunhaoz.getHealth() < 0 || allTimelineStop) {
+
+                xunhaoz.portal(3);
+
+                if (xunhaoz.getCanDie()) {
+                    anchorPane.getChildren().remove(xunhaoz.getImageview());
+                    xunhaoz.stopTimeline();
+                    alienAL.remove(i);
+                }
+            } else if (xunhaoz.getBounds().intersects(csieTower.getBounds())) {
+
+                if (randomInt.nextInt(3) % 3 != 0) xunhaoz.portal(2);
+                else xunhaoz.portal(1);
+
+                if (xunhaoz.getCanAttack()) {
+                    csieTower.minusHealth(xunhaoz.getATK() * (randomInt.nextInt(10) + 1));
+                    xunhaoz.initCanAttack();
+                }
+            } else {
+                boolean isDetect = false;
+                xunhaoz.portal(1);
+            }
+        }
+
         for (int i = 0; i < salmonSteaksAL.size(); i++) {
             SalmonSteak salmonSteak = salmonSteaksAL.get(i);
-            if (salmonSteak.getHealth() < 0) {
+            if (salmonSteak.getHealth() < 0 || allTimelineStop) {
                 salmonSteak.portal(3);
 
                 if (salmonSteak.getCanDie()) {
@@ -492,7 +537,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < taCAL.size(); j++) {
                     TaC taC = taCAL.get(j);
-                    if (salmonSteak.getBounds().intersects(taC.getBounds()) && taC.getStatus() != 3) {
+                    int distance = salmonSteak.getX() - taC.getX();
+                    if (distance > 0 && distance < 180 && taC.getStatus() != 3) {
                         isDetect = true;
                         salmonSteak.portal(2);
                         if (salmonSteak.getCanAttack()) {
@@ -504,7 +550,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < slideDragonAL.size(); j++) {
                     SlideDragon slideDragon = slideDragonAL.get(j);
-                    if (salmonSteak.getBounds().intersects(slideDragon.getBounds()) && slideDragon.getStatus() != 3) {
+                    int distance = salmonSteak.getX() - slideDragon.getX();
+                    if (distance > 0 && distance < 430 && slideDragon.getStatus() != 3) {
                         isDetect = true;
                         salmonSteak.portal(2);
                         if (salmonSteak.getCanAttack()) {
@@ -521,7 +568,7 @@ public class ThirdLevelController extends LevelController {
 
         for (int i = 0; i < yamsAL.size(); i++) {
             Yams yams = yamsAL.get(i);
-            if (yams.getHealth() < 0) {
+            if (yams.getHealth() < 0 || allTimelineStop) {
                 yams.portal(3);
 
                 if (yams.getCanDie()) {
@@ -553,7 +600,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < taBAL.size(); j++) {
                     TaB taB = taBAL.get(j);
-                    if (yams.getBounds().intersects(taB.getBounds()) && taB.getStatus() != 3) {
+                    int distance = yams.getX() - taB.getX();
+                    if (distance > 0 && distance < 164 && taB.getStatus() != 3) {
                         isDetect = true;
                         yams.portal(2);
                         if (yams.getCanAttack()) {
@@ -565,7 +613,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < taCAL.size(); j++) {
                     TaC taC = taCAL.get(j);
-                    if (yams.getBounds().intersects(taC.getBounds()) && taC.getStatus() != 3) {
+                    int distance = yams.getX() - taC.getX();
+                    if (distance > 0 && distance < 180 && taC.getStatus() != 3) {
                         isDetect = true;
                         yams.portal(2);
                         if (yams.getCanAttack()) {
@@ -577,7 +626,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < slideDragonAL.size(); j++) {
                     SlideDragon slideDragon = slideDragonAL.get(j);
-                    if (yams.getBounds().intersects(slideDragon.getBounds()) && slideDragon.getStatus() != 3) {
+                    int distance = yams.getX() - slideDragon.getX();
+                    if (distance > 0 && distance < 430 && slideDragon.getStatus() != 3) {
                         isDetect = true;
                         yams.portal(2);
                         if (yams.getCanAttack()) {
@@ -594,7 +644,7 @@ public class ThirdLevelController extends LevelController {
 
         for (int i = 0; i < taAAL.size(); i++) {
             TaA taA = taAAL.get(i);
-            if (taA.getHealth() < 0) {
+            if (taA.getHealth() < 0 || allTimelineStop) {
                 taA.portal(3);
                 if (taA.getCanDie()) {
                     anchorPane.getChildren().remove(taA.getImageview());
@@ -637,7 +687,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < yamsAL.size(); j++) {
                     Yams yams = yamsAL.get(j);
-                    if (taA.getBounds().intersects(yams.getBounds()) && yams.getStatus() != 3) {
+                    int distance = yams.getX() + 2 - taA.getX();
+                    if (distance > -150 && distance < 0 && yams.getStatus() != 3) {
                         isDetect = true;
                         taA.portal(2);
                         if (taA.getCanAttack()) {
@@ -649,7 +700,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < alienAL.size(); j++) {
                     AlienThrowingHand alienThrowingHand = alienAL.get(j);
-                    if (taA.getBounds().intersects(alienThrowingHand.getBounds()) && alienThrowingHand.getStatus() != 3) {
+                    int distance = alienThrowingHand.getX() + 49 - taA.getX();
+                    if (distance > -209 && distance < 0 && alienThrowingHand.getStatus() != 3) {
                         isDetect = true;
                         taA.portal(2);
                         if (taA.getCanAttack()) {
@@ -666,7 +718,7 @@ public class ThirdLevelController extends LevelController {
 
         for (int i = 0; i < taBAL.size(); i++) {
             TaB taB = taBAL.get(i);
-            if (taB.getHealth() < 0) {
+            if (taB.getHealth() < 0 || allTimelineStop) {
                 taB.portal(3);
                 if (taB.getCanDie()) {
                     anchorPane.getChildren().remove(taB.getImageview());
@@ -709,7 +761,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < yamsAL.size(); j++) {
                     Yams yams = yamsAL.get(j);
-                    if (taB.getBounds().intersects(yams.getBounds()) && yams.getStatus() != 3) {
+                    int distance = yams.getX() - 184 - taB.getX();
+                    if (distance > -90 && distance < 0 && yams.getStatus() != 3) {
                         isDetect = true;
                         taB.portal(2);
                         if (taB.getCanAttack()) {
@@ -721,7 +774,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < alienAL.size(); j++) {
                     AlienThrowingHand alienThrowingHand = alienAL.get(j);
-                    if (taB.getBounds().intersects(alienThrowingHand.getBounds()) && alienThrowingHand.getStatus() != 3) {
+                    int distance = alienThrowingHand.getX() - 85 - taB.getX();
+                    if (distance > -90 && distance < 0 && alienThrowingHand.getStatus() != 3) {
                         isDetect = true;
                         taB.portal(2);
                         if (taB.getCanAttack()) {
@@ -739,7 +793,7 @@ public class ThirdLevelController extends LevelController {
 
         for (int i = 0; i < taCAL.size(); i++) {
             TaC taC = taCAL.get(i);
-            if (taC.getHealth() < 0) {
+            if (taC.getHealth() < 0 || allTimelineStop) {
                 taC.portal(3);
                 if (taC.getCanDie()) {
                     anchorPane.getChildren().remove(taC.getImageview());
@@ -782,7 +836,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < yamsAL.size(); j++) {
                     Yams yams = yamsAL.get(j);
-                    if (taC.getBounds().intersects(yams.getBounds()) && yams.getStatus() != 3) {
+                    int distance = yams.getX() - taC.getX() - 276;
+                    if (distance > -200 && distance < 0 && yams.getStatus() != 3) {
                         isDetect = true;
                         taC.portal(2);
                         if (taC.getCanAttack()) {
@@ -794,7 +849,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < alienAL.size(); j++) {
                     AlienThrowingHand alienThrowingHand = alienAL.get(j);
-                    if (taC.getBounds().intersects(alienThrowingHand.getBounds()) && alienThrowingHand.getStatus() != 3) {
+                    int distance = alienThrowingHand.getX() - 177 - taC.getX();
+                    if (distance > -353 && distance < 0 && alienThrowingHand.getStatus() != 3) {
                         isDetect = true;
                         taC.portal(2);
                         if (taC.getCanAttack()) {
@@ -812,7 +868,7 @@ public class ThirdLevelController extends LevelController {
 
         for (int i = 0; i < slideDragonAL.size(); i++) {
             SlideDragon slideDragon = slideDragonAL.get(i);
-            if (slideDragon.getHealth() < 0) {
+            if (slideDragon.getHealth() < 0 || allTimelineStop) {
                 slideDragon.portal(3);
                 if (slideDragon.getCanDie()) {
                     anchorPane.getChildren().remove(slideDragon.getImageview());
@@ -861,7 +917,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < yamsAL.size(); j++) {
                     Yams yams = yamsAL.get(j);
-                    if (slideDragon.getBounds().intersects(yams.getBounds()) && yams.getStatus() != 3) {
+                    int distance = yams.getX() - slideDragon.getX() - 900;
+                    if (distance > -500 && distance < 0 && yams.getStatus() != 3) {
                         isDetect = true;
                         slideDragon.portal(2);
                         if (slideDragon.getCanAttack()) {
@@ -876,7 +933,8 @@ public class ThirdLevelController extends LevelController {
 
                 for (int j = 0; j < alienAL.size(); j++) {
                     AlienThrowingHand alienThrowingHand = alienAL.get(j);
-                    if (slideDragon.getBounds().intersects(alienThrowingHand.getBounds()) && alienThrowingHand.getStatus() != 3) {
+                    int distance = alienThrowingHand.getX() - slideDragon.getX() - 851;
+                    if (distance > -500 && distance < 0 && alienThrowingHand.getStatus() != 3) {
                         isDetect = true;
                         slideDragon.portal(2);
                         if (slideDragon.getCanAttack()) {
@@ -898,11 +956,13 @@ public class ThirdLevelController extends LevelController {
         if (fastFoodShoot != 10) return;
 
         ImageView fastFood = new ImageView(new Image("hellofx\\resource\\role\\Hero\\frenchFries.png"));
-        long duration = 600;
+        fastFood.setFitWidth(350.0);
+        fastFood.setFitHeight(75.0);
+        long duration = 1600;
         int minusHealth = 1000;
-        KeyFrame startKey = new KeyFrame(Duration.ZERO, new KeyValue(fastFood.xProperty(), 320), new KeyValue(fastFood.yProperty(), 0));
-        KeyFrame endKey = new KeyFrame(new Duration(duration), new KeyValue(fastFood.xProperty(), 320), new KeyValue(fastFood.yProperty(), 400));
-        KeyFrame actKey = new KeyFrame(new Duration(800), e -> {
+        KeyFrame startKey = new KeyFrame(Duration.ZERO, new KeyValue(fastFood.xProperty(), 3490), new KeyValue(fastFood.yProperty(), 250));
+        KeyFrame endKey = new KeyFrame(new Duration(duration), new KeyValue(fastFood.xProperty(), -350), new KeyValue(fastFood.yProperty(), 420));
+        KeyFrame actKey = new KeyFrame(new Duration(1800), e -> {
             anchorPane.getChildren().remove(fastFood);
             for (TaA taA : taAAL) {
                 taA.minusHealth(minusHealth);
@@ -935,6 +995,9 @@ public class ThirdLevelController extends LevelController {
     }
 
     public void levelThreeToLevel() throws IOException {
+        allTimelineStop = true;
+        statusDetector();
+        levelOneTimeline.stop();
         ViewController.toLevel();
         MusicPlayController.checkNowStage();
         ButtonSoundPlayController.buttonSoundPlay();

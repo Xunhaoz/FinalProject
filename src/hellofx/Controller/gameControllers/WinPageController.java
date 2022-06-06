@@ -20,6 +20,7 @@ public class WinPageController {
     @FXML
     public void initialize() throws IOException {
         iceCreamLabel.setText(String.format("%05d", winIceCream));
+        winIceCream = 0;
     }
 
     public void gameToLevel() throws IOException {

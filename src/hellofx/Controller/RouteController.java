@@ -218,12 +218,6 @@ public class RouteController {
         ButtonSoundPlayController.buttonSoundPlay();
     }
 
-    public void dormToElecGodInfoPage() throws IOException {
-        ViewController.toElecGodInfoPage();
-        MusicPlayController.checkNowStage();
-        ButtonSoundPlayController.buttonSoundPlay();
-    }
-
     public void dormToXunhoazBuBuInfoPage() throws IOException {
         ViewController.toXunhaozBuBuInfoPage();
         MusicPlayController.checkNowStage();

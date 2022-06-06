@@ -138,7 +138,7 @@
                             <Font size="20.0"/>
                         </font>
                     </Label>
-                    <Button text='確定購買' onAction="#addTowerHealth" textFill="azure" style="-fx-background-color: rgb(249,193,0); -fx-background-radius: 90.0">
+                    <Button text='確定購買' onAction="#addTowerHealth" textFill="#070726" style="-fx-background-color: rgb(249,193,0); -fx-background-radius: 90.0">
                         <font>
                             <Font size="32.0"/>
                         </font>

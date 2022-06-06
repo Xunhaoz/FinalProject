@@ -15,7 +15,7 @@ public class Xunhaoz extends Role {
     public static int level = 0;
 
     public static void Levelup() {
-        if (level <= 10) level++;
+        if (level < 10) level++;
     }
 
     public Xunhaoz(int x, int y) {
@@ -23,7 +23,7 @@ public class Xunhaoz extends Role {
         this.health = 200;
         this.attack = 34;
         this.CD = 1;
-        this.speed = 10;
+        this.speed = 50;
         this.cost = 50;
         walkImagesArray = new ArrayList<>();
         attackImagesArray = new ArrayList<>();
@@ -35,8 +35,6 @@ public class Xunhaoz extends Role {
         imageView = new ImageView(walkImagesArray.get(0));
         imageView.setX(this.x);
         imageView.setY(this.y);
-        imageView.setFitHeight(82);
-        imageView.setFitWidth(183);
     }
 
 
@@ -45,7 +43,7 @@ public class Xunhaoz extends Role {
         timeline.stop();
 
         AtomicInteger count = new AtomicInteger(randomInt.nextInt(11));
-        timeline = new Timeline(new KeyFrame(Duration.millis(300), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(80), e -> {
             imageView.setImage(walkImagesArray.get((count.getAndIncrement()) % walkImagesArray.size()));
             this.imageView.setY(this.y);
             this.imageView.setX(this.x);
@@ -59,10 +57,15 @@ public class Xunhaoz extends Role {
     private void attack() {
         if (this.preStatus == 2) return;
         timeline.stop();
+        int preX = this.x;
+        if (this.x < 150) portal(1);
         AtomicInteger count = new AtomicInteger(1);
         timeline = new Timeline(new KeyFrame(Duration.millis(110), e -> {
-            if (count.get() % attackImagesArray.size() == 0) canAttack = true;
+            if (this.x == preX) canAttack = true;
             imageView.setImage(attackImagesArray.get((count.getAndIncrement()) % attackImagesArray.size()));
+            if (this.x >= preX && this.x < (preX + 200)) this.x += 20;
+            else if (this.x == (preX + 200)) this.x = preX;
+            this.imageView.setX(this.x);
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();

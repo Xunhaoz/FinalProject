@@ -10,6 +10,12 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class SalmonSteak extends Role {
+    public static int level = 0;
+
+    public static void Levelup() {
+        if (level < 10) level++;
+    }
+
     public SalmonSteak(int x, int y) {
         super(x, y);
         this.health = 1500;

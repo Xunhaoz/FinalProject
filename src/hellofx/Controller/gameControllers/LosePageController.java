@@ -15,7 +15,6 @@ public class LosePageController {
 
     @FXML
     public void initialize() throws IOException {
-
     }
 
     public void gameToLevel() throws IOException {

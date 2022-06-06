@@ -46,6 +46,24 @@ public class MusicPlayController {
         else if (ViewController.nowStageStr.equals("firstLevel")) {
             file = new File("src\\hellofx\\music\\firstLevelMusic.mp3") ;
         }
+        else if (ViewController.nowStageStr.equals("SecondLevel")) {
+            file = new File("src\\hellofx\\music\\FinalProjectmusic\\stage2.mp3") ;
+        }
+        else if (ViewController.nowStageStr.equals("ThirdLevel")) {
+            file = new File("src\\hellofx\\music\\FinalProjectmusic\\stage3.mp3") ;
+        }
+        else if (ViewController.nowStageStr.equals("market")) {
+            file = new File("src\\hellofx\\music\\FinalProjectmusic\\shop.mp3") ;
+        }
+        else if (ViewController.nowStageStr.equals("trash")) {
+            file = new File("src\\hellofx\\music\\FinalProjectmusic\\垃圾場.mp3") ;
+        }
+        else if (ViewController.nowStageStr.equals("Win")) {
+            file = new File("src\\hellofx\\music\\FinalProjectmusic\\過關音效.mp3") ;
+        }
+        else if (ViewController.nowStageStr.equals("Lose")) {
+            file = new File("src\\hellofx\\music\\FinalProjectmusic\\失敗音樂.mp3") ;
+        }
         // else if ()
         else {
             mp3.stop();

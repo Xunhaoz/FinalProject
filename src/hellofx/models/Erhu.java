@@ -13,7 +13,7 @@ public class Erhu extends Role {
     public Erhu(int x, int y) {
         super(x, y);
         this.health = 4000;
-        this.attack = 42;
+        this.attack = 82;
         this.CD = 1;
         this.speed = 2;
         this.cost = 50;
@@ -28,8 +28,6 @@ public class Erhu extends Role {
         imageView = new ImageView(walkImagesArray.get(0));
         imageView.setX(this.x);
         imageView.setY(this.y);
-        imageView.setFitWidth(270.0);
-        imageView.setFitHeight(224.7);
     }
 
     private void move() {

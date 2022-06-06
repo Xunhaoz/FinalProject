@@ -1,11 +1,12 @@
 package hellofx.Controller.MarketControllers;
 
 import hellofx.Controller.MarketController;
+import hellofx.Controller.MusicControllers.BruhController;
 import hellofx.Controller.MusicControllers.ButtonSoundPlayController;
 import hellofx.Controller.MusicControllers.MusicPlayController;
+import hellofx.Controller.MusicControllers.CoinSoundController;
 import hellofx.Controller.ViewController;
 import hellofx.models.LevelController;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -35,7 +36,8 @@ public class CoffeeController {
     }
 
     public void addMaxR() {
-        if (total <= MarketController.iceCreamNum){
+        if (total <= MarketController.iceCreamNum && amount > 0){
+            CoinSoundController.soundPlay();
             LevelController.changeRateM(amount);
             MarketController.iceCreamNum -= total;
             coffeeAmount += amount;
@@ -48,6 +50,11 @@ public class CoffeeController {
             hint.setVisible(true);
             hint.setText("購買成功");
         }
+        else if (amount == 0) {
+            hint.setVisible(true);
+            hint.setText("請選擇購買數量");
+            BruhController.bruhPlay();
+        }
         else {
             amount = 0;
             total = 0;
@@ -55,18 +62,29 @@ public class CoffeeController {
             totalLabel.setText(String.format("%06d", total));
             hint.setVisible(true);
             hint.setText("冰淇淋不足");
+            BruhController.bruhPlay();
         }
     }
 
     public void coffeePlus1() {
-        amount++;
+        if (amount >= 10) {
+            hint.setVisible(true);
+            hint.setText("一次最多購買10個");
+            BruhController.bruhPlay();
+        }
+        else amount++;
         total = coffeePrice * amount;
         amountLabel.setText(String.format("%04d", amount));
         totalLabel.setText(String.format("%06d", total));
     }
 
     public void coffeeMinus1() {
-        amount--;
+        if (amount <= 0) {
+            hint.setVisible(true);
+            hint.setText("數量不能為負");
+            BruhController.bruhPlay();
+        }
+        else amount--;
         total = coffeePrice * amount;
         amountLabel.setText(String.format("%04d", amount));
         totalLabel.setText(String.format("%06d", total));

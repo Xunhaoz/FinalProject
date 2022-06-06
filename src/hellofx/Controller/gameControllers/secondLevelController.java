@@ -3,6 +3,7 @@ package hellofx.Controller.gameControllers;
 import hellofx.Controller.MarketController;
 import hellofx.Controller.MusicControllers.ButtonSoundPlayController;
 import hellofx.Controller.MusicControllers.MusicPlayController;
+import hellofx.Controller.MusicControllers.CoinSoundController;
 import hellofx.Controller.ViewController;
 import hellofx.models.*;
 import javafx.animation.KeyFrame;
@@ -52,6 +53,7 @@ public class secondLevelController extends LevelController {
     private boolean hasBoss = false;
     private int fastFoodShoot = 0;
     private AtomicInteger countUp = new AtomicInteger(0);
+    private boolean allTimelineStop;
 
     @FXML
     Label iceCreamLabel;
@@ -112,12 +114,16 @@ public class secondLevelController extends LevelController {
         }
 
         if (csieTower.getHealth() <= 0) {
+            allTimelineStop = true;
+            statusDetector();
             try {
                 this.win();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         } else if (grandpaTower.getHealth() <= 0) {
+            allTimelineStop = true;
+            statusDetector();
             try {
                 this.lose();
             } catch (IOException ex) {
@@ -128,6 +134,11 @@ public class secondLevelController extends LevelController {
 
     @FXML
     public void initialize() throws IOException {
+        allTimelineStop = false;
+
+        iceCream = 0;
+        iceCreamLabel.setText(String.format("%05d", iceCream));
+
         csieTower = new CSIETower(0, 180);
         grandpaTower = new GrandpaTower(2300, 180);
 
@@ -184,7 +195,7 @@ public class secondLevelController extends LevelController {
     @FXML
     public void createDreamBee() {
         int ranInt = (randomInt.nextInt(4) - 2) * 5;
-        DreamBee dreamBee = new DreamBee(40, 100 + ranInt);
+        DreamBee dreamBee = new DreamBee(40, 20+ ranInt);
         dreamBeeAL.add(dreamBee);
         dreamBee.portal(1);
         anchorPane.getChildren().add(dreamBee.getImageview());
@@ -254,7 +265,7 @@ public class secondLevelController extends LevelController {
         }
         money -= 300;
         int ranInt = (randomInt.nextInt(4) - 2) * 5;
-        AlienThrowingHand alienThrowingHand = new AlienThrowingHand(2100, 200 + ranInt);
+        AlienThrowingHand alienThrowingHand = new AlienThrowingHand(1900, 60 + ranInt);
         alienThrowingHand.portal(1);
         alienAL.add(alienThrowingHand);
         anchorPane.getChildren().add(alienThrowingHand.getImageview());
@@ -277,7 +288,7 @@ public class secondLevelController extends LevelController {
 
     public void win() throws IOException {
         WinPageController.winIceCream = iceCream;
-        MarketController.iceCreamNum = iceCream;
+        MarketController.iceCreamNum += iceCream;
         levelOneTimeline.stop();
         ViewController.toWin();
         MusicPlayController.checkNowStage();
@@ -292,6 +303,9 @@ public class secondLevelController extends LevelController {
     }
 
     public void levelTwoToLevel() throws IOException {
+        allTimelineStop = true;
+        statusDetector();
+        levelOneTimeline.stop();
         ViewController.toLevel();
         MusicPlayController.checkNowStage();
         ButtonSoundPlayController.buttonSoundPlay();
@@ -301,7 +315,7 @@ public class secondLevelController extends LevelController {
         for (int i = 0; i < freshChickAL.size(); i++) {
             FreshChick freshChick = freshChickAL.get(i);
 
-            if (freshChick.getHealth() < 0) {
+            if (freshChick.getHealth() < 0 || allTimelineStop) {
 
                 freshChick.portal(3);
 
@@ -335,7 +349,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < taBAL.size(); j++) {
                     TaB taB = taBAL.get(j);
-                    if (freshChick.getBounds().intersects(taB.getBounds()) && taB.getStatus() != 3) {
+                    int distance = freshChick.getX() - taB.getX();
+                    if (distance > 0 && distance < 164 && taB.getStatus() != 3) {
                         isDetect = true;
                         freshChick.portal(2);
                         if (freshChick.getCanAttack()) {
@@ -347,7 +362,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < taCAL.size(); j++) {
                     TaC taC = taCAL.get(j);
-                    if (freshChick.getBounds().intersects(taC.getBounds()) && taC.getStatus() != 3) {
+                    int distance = freshChick.getX() - taC.getX();
+                    if (distance > 0 && distance < 180 && taC.getStatus() != 3) {
                         isDetect = true;
                         freshChick.portal(2);
                         if (freshChick.getCanAttack()) {
@@ -359,7 +375,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < dreamBeeAL.size(); j++) {
                     DreamBee dreamBee = dreamBeeAL.get(j);
-                    if (freshChick.getBounds().intersects(dreamBee.getBounds()) && dreamBee.getStatus() != 3) {
+                    int distance = freshChick.getX() - dreamBee.getX();
+                    if (distance > 0 && distance < 293 && dreamBee.getStatus() != 3) {
                         isDetect = true;
                         freshChick.portal(2);
                         if (freshChick.getCanAttack()) {
@@ -374,10 +391,37 @@ public class secondLevelController extends LevelController {
             }
         }
 
+        for (int i = 0; i < xunhaozAL.size(); i++) {
+            Xunhaoz xunhaoz = xunhaozAL.get(i);
+
+            if (xunhaoz.getHealth() < 0 || allTimelineStop) {
+
+                xunhaoz.portal(3);
+
+                if (xunhaoz.getCanDie()) {
+                    anchorPane.getChildren().remove(xunhaoz.getImageview());
+                    xunhaoz.stopTimeline();
+                    alienAL.remove(i);
+                }
+            } else if (xunhaoz.getBounds().intersects(csieTower.getBounds())) {
+
+                if (randomInt.nextInt(3) % 3 != 0) xunhaoz.portal(2);
+                else xunhaoz.portal(1);
+
+                if (xunhaoz.getCanAttack()) {
+                    csieTower.minusHealth(xunhaoz.getATK() * (randomInt.nextInt(10) + 1));
+                    xunhaoz.initCanAttack();
+                }
+            } else {
+                boolean isDetect = false;
+                xunhaoz.portal(1);
+            }
+        }
+
         for (int i = 0; i < alienAL.size(); i++) {
             AlienThrowingHand alienThrowingHand = alienAL.get(i);
 
-            if (alienThrowingHand.getHealth() < 0) {
+            if (alienThrowingHand.getHealth() < 0 || allTimelineStop) {
 
                 alienThrowingHand.portal(3);
 
@@ -411,7 +455,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < taBAL.size(); j++) {
                     TaB taB = taBAL.get(j);
-                    if (alienThrowingHand.getBounds().intersects(taB.getBounds()) && taB.getStatus() != 3) {
+                    int distance = alienThrowingHand.getX() - taB.getX();
+                    if (distance > 0 && distance < 164 && taB.getStatus() != 3) {
                         isDetect = true;
                         alienThrowingHand.portal(2);
                         if (alienThrowingHand.getCanAttack()) {
@@ -423,7 +468,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < taCAL.size(); j++) {
                     TaC taC = taCAL.get(j);
-                    if (alienThrowingHand.getBounds().intersects(taC.getBounds()) && taC.getStatus() != 3) {
+                    int distance = alienThrowingHand.getX() - taC.getX();
+                    if (distance > 0 && distance < 180 && taC.getStatus() != 3) {
                         isDetect = true;
                         alienThrowingHand.portal(2);
                         if (alienThrowingHand.getCanAttack()) {
@@ -435,7 +481,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < dreamBeeAL.size(); j++) {
                     DreamBee dreamBee = dreamBeeAL.get(j);
-                    if (alienThrowingHand.getBounds().intersects(dreamBee.getBounds()) && dreamBee.getStatus() != 3) {
+                    int distance = alienThrowingHand.getX() - dreamBee.getX();
+                    if (distance > 0 && distance < 293 && dreamBee.getStatus() != 3) {
                         isDetect = true;
                         alienThrowingHand.portal(2);
                         if (alienThrowingHand.getCanAttack()) {
@@ -452,7 +499,7 @@ public class secondLevelController extends LevelController {
 
         for (int i = 0; i < salmonSteaksAL.size(); i++) {
             SalmonSteak salmonSteak = salmonSteaksAL.get(i);
-            if (salmonSteak.getHealth() < 0) {
+            if (salmonSteak.getHealth() < 0 || allTimelineStop) {
                 salmonSteak.portal(3);
 
                 if (salmonSteak.getCanDie()) {
@@ -484,7 +531,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < taBAL.size(); j++) {
                     TaB taB = taBAL.get(j);
-                    if (salmonSteak.getBounds().intersects(taB.getBounds()) && taB.getStatus() != 3) {
+                    int distance = salmonSteak.getX() - taB.getX();
+                    if (distance > 0 && distance < 164 && taB.getStatus() != 3) {
                         isDetect = true;
                         salmonSteak.portal(2);
                         if (salmonSteak.getCanAttack()) {
@@ -496,7 +544,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < taCAL.size(); j++) {
                     TaC taC = taCAL.get(j);
-                    if (salmonSteak.getBounds().intersects(taC.getBounds()) && taC.getStatus() != 3) {
+                    int distance = salmonSteak.getX() - taC.getX();
+                    if (distance > 0 && distance < 180 && taC.getStatus() != 3) {
                         isDetect = true;
                         salmonSteak.portal(2);
                         if (salmonSteak.getCanAttack()) {
@@ -508,7 +557,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < dreamBeeAL.size(); j++) {
                     DreamBee dreamBee = dreamBeeAL.get(j);
-                    if (salmonSteak.getBounds().intersects(dreamBee.getBounds()) && dreamBee.getStatus() != 3) {
+                    int distance = salmonSteak.getX() - dreamBee.getX();
+                    if (distance > 0 && distance < 293 && dreamBee.getStatus() != 3) {
                         isDetect = true;
                         salmonSteak.portal(2);
                         if (salmonSteak.getCanAttack()) {
@@ -525,7 +575,7 @@ public class secondLevelController extends LevelController {
 
         for (int i = 0; i < yamsAL.size(); i++) {
             Yams yams = yamsAL.get(i);
-            if (yams.getHealth() < 0) {
+            if (yams.getHealth() < 0 || allTimelineStop) {
                 yams.portal(3);
 
                 if (yams.getCanDie()) {
@@ -557,7 +607,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < taBAL.size(); j++) {
                     TaB taB = taBAL.get(j);
-                    if (yams.getBounds().intersects(taB.getBounds()) && taB.getStatus() != 3) {
+                    int distance = yams.getX() - taB.getX();
+                    if (distance > 0 && distance < 164 && taB.getStatus() != 3) {
                         isDetect = true;
                         yams.portal(2);
                         if (yams.getCanAttack()) {
@@ -569,7 +620,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < taCAL.size(); j++) {
                     TaC taC = taCAL.get(j);
-                    if (yams.getBounds().intersects(taC.getBounds()) && taC.getStatus() != 3) {
+                    int distance = yams.getX() - taC.getX();
+                    if (distance > 0 && distance < 180 && taC.getStatus() != 3) {
                         isDetect = true;
                         yams.portal(2);
                         if (yams.getCanAttack()) {
@@ -581,7 +633,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < dreamBeeAL.size(); j++) {
                     DreamBee dreamBee = dreamBeeAL.get(j);
-                    if (yams.getBounds().intersects(dreamBee.getBounds()) && dreamBee.getStatus() != 3) {
+                    int distance = yams.getX() - dreamBee.getX();
+                    if (distance > 0 && distance < 293 && dreamBee.getStatus() != 3) {
                         isDetect = true;
                         yams.portal(2);
                         if (yams.getCanAttack()) {
@@ -598,7 +651,7 @@ public class secondLevelController extends LevelController {
 
         for (int i = 0; i < taAAL.size(); i++) {
             TaA taA = taAAL.get(i);
-            if (taA.getHealth() < 0) {
+            if (taA.getHealth() < 0 || allTimelineStop) {
                 taA.portal(3);
                 if (taA.getCanDie()) {
                     anchorPane.getChildren().remove(taA.getImageview());
@@ -641,7 +694,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < yamsAL.size(); j++) {
                     Yams yams = yamsAL.get(j);
-                    if (taA.getBounds().intersects(yams.getBounds()) && yams.getStatus() != 3) {
+                    int distance = yams.getX() + 2 - taA.getX();
+                    if (distance > -150 && distance < 0 && yams.getStatus() != 3) {
                         isDetect = true;
                         taA.portal(2);
                         if (taA.getCanAttack()) {
@@ -653,7 +707,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < alienAL.size(); j++) {
                     AlienThrowingHand alienThrowingHand = alienAL.get(j);
-                    if (taA.getBounds().intersects(alienThrowingHand.getBounds()) && alienThrowingHand.getStatus() != 3) {
+                    int distance = alienThrowingHand.getX() + 49 - taA.getX();
+                    if (distance > -209 && distance < 0 && alienThrowingHand.getStatus() != 3) {
                         isDetect = true;
                         taA.portal(2);
                         if (taA.getCanAttack()) {
@@ -670,7 +725,7 @@ public class secondLevelController extends LevelController {
 
         for (int i = 0; i < taBAL.size(); i++) {
             TaB taB = taBAL.get(i);
-            if (taB.getHealth() < 0) {
+            if (taB.getHealth() < 0 || allTimelineStop) {
                 taB.portal(3);
                 if (taB.getCanDie()) {
                     anchorPane.getChildren().remove(taB.getImageview());
@@ -713,7 +768,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < yamsAL.size(); j++) {
                     Yams yams = yamsAL.get(j);
-                    if (taB.getBounds().intersects(yams.getBounds()) && yams.getStatus() != 3) {
+                    int distance = yams.getX() - 184 - taB.getX();
+                    if (distance > -90 && distance < 0 && yams.getStatus() != 3) {
                         isDetect = true;
                         taB.portal(2);
                         if (taB.getCanAttack()) {
@@ -725,7 +781,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < alienAL.size(); j++) {
                     AlienThrowingHand alienThrowingHand = alienAL.get(j);
-                    if (taB.getBounds().intersects(alienThrowingHand.getBounds()) && alienThrowingHand.getStatus() != 3) {
+                    int distance = alienThrowingHand.getX() - 85 - taB.getX();
+                    if (distance > -90 && distance < 0 && alienThrowingHand.getStatus() != 3) {
                         isDetect = true;
                         taB.portal(2);
                         if (taB.getCanAttack()) {
@@ -743,7 +800,7 @@ public class secondLevelController extends LevelController {
 
         for (int i = 0; i < taCAL.size(); i++) {
             TaC taC = taCAL.get(i);
-            if (taC.getHealth() < 0) {
+            if (taC.getHealth() < 0 || allTimelineStop) {
                 taC.portal(3);
                 if (taC.getCanDie()) {
                     anchorPane.getChildren().remove(taC.getImageview());
@@ -786,7 +843,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < yamsAL.size(); j++) {
                     Yams yams = yamsAL.get(j);
-                    if (taC.getBounds().intersects(yams.getBounds()) && yams.getStatus() != 3) {
+                    int distance = yams.getX() - taC.getX() - 276;
+                    if (distance > -200 && distance < 0 && yams.getStatus() != 3) {
                         isDetect = true;
                         taC.portal(2);
                         if (taC.getCanAttack()) {
@@ -798,7 +856,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < alienAL.size(); j++) {
                     AlienThrowingHand alienThrowingHand = alienAL.get(j);
-                    if (taC.getBounds().intersects(alienThrowingHand.getBounds()) && alienThrowingHand.getStatus() != 3) {
+                    int distance = alienThrowingHand.getX() - 177 - taC.getX();
+                    if (distance > -353 && distance < 0 && alienThrowingHand.getStatus() != 3) {
                         isDetect = true;
                         taC.portal(2);
                         if (taC.getCanAttack()) {
@@ -816,7 +875,7 @@ public class secondLevelController extends LevelController {
 
         for (int i = 0; i < dreamBeeAL.size(); i++) {
             DreamBee dreamBee = dreamBeeAL.get(i);
-            if (dreamBee.getHealth() < 0) {
+            if (dreamBee.getHealth() < 0 || allTimelineStop) {
                 dreamBee.portal(3);
                 if (dreamBee.getCanDie()) {
                     anchorPane.getChildren().remove(dreamBee.getImageview());
@@ -865,7 +924,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < yamsAL.size(); j++) {
                     Yams yams = yamsAL.get(j);
-                    if (dreamBee.getBounds().intersects(yams.getBounds()) && yams.getStatus() != 3) {
+                    int distance = yams.getX() - dreamBee.getX() - 422;
+                    if (distance > -327 && distance < 0 && yams.getStatus() != 3) {
                         isDetect = true;
                         dreamBee.portal(2);
                         if (dreamBee.getCanAttack()) {
@@ -880,7 +940,8 @@ public class secondLevelController extends LevelController {
 
                 for (int j = 0; j < alienAL.size(); j++) {
                     AlienThrowingHand alienThrowingHand = alienAL.get(j);
-                    if (dreamBee.getBounds().intersects(alienThrowingHand.getBounds()) && alienThrowingHand.getStatus() != 3) {
+                    int distance = alienThrowingHand.getX() - dreamBee.getX() - 373;
+                    if (distance > -327 && alienThrowingHand.getStatus() != 3) {
                         isDetect = true;
                         dreamBee.portal(2);
                         if (dreamBee.getCanAttack()) {
@@ -902,11 +963,13 @@ public class secondLevelController extends LevelController {
         if (fastFoodShoot != 10) return;
 
         ImageView fastFood = new ImageView(new Image("hellofx\\resource\\role\\Hero\\frenchFries.png"));
-        long duration = 600;
+        fastFood.setFitWidth(350.0);
+        fastFood.setFitHeight(75.0);
+        long duration = 1000;
         int minusHealth = 1000;
-        KeyFrame startKey = new KeyFrame(Duration.ZERO, new KeyValue(fastFood.xProperty(), 320), new KeyValue(fastFood.yProperty(), 0));
-        KeyFrame endKey = new KeyFrame(new Duration(duration), new KeyValue(fastFood.xProperty(), 320), new KeyValue(fastFood.yProperty(), 400));
-        KeyFrame actKey = new KeyFrame(new Duration(800), e -> {
+        KeyFrame startKey = new KeyFrame(Duration.ZERO, new KeyValue(fastFood.xProperty(), 2210), new KeyValue(fastFood.yProperty(), 250));
+        KeyFrame endKey = new KeyFrame(new Duration(duration), new KeyValue(fastFood.xProperty(), -350), new KeyValue(fastFood.yProperty(), 420));
+        KeyFrame actKey = new KeyFrame(new Duration(1200), e -> {
             anchorPane.getChildren().remove(fastFood);
             for (TaA taA : taAAL) {
                 taA.minusHealth(minusHealth);

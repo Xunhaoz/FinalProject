@@ -1,5 +1,7 @@
 package hellofx.models;
 
+import hellofx.Controller.MusicControllers.SlideDragonSoundController;
+import hellofx.Controller.gameControllers.ThirdLevelController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
@@ -12,24 +14,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class SlideDragon extends Role {
     public SlideDragon(int x, int y) {
         super(x, y);
-        this.health = 4000;
-        this.attack = 42;
+        this.health = 400;
+        this.attack = 48;
         this.CD = 1;
-        this.speed = 2;
+        this.speed = 50;
         this.cost = 50;
         walkImagesArray = new ArrayList<>();
         attackImagesArray = new ArrayList<>();
         for (int i = 1; i < 7; i++) {
             walkImagesArray.add(new Image("hellofx\\resource\\role\\Enemy\\slideDragon\\newWalk\\slideDragonWalking" + i + ".png"));
         }
-        for (int i = 1; i < 24; i++) {
+        for (int i = 1; i < 36; i++) {
             attackImagesArray.add(new Image("hellofx\\resource\\role\\Enemy\\slideDragon\\attack\\slideDragonAtk" + i + ".png"));
         }
         imageView = new ImageView(walkImagesArray.get(0));
         imageView.setX(this.x);
         imageView.setY(this.y);
-        imageView.setFitWidth(1523 / 2);
-        imageView.setFitHeight(625 / 2);
     }
 
     private void move() {
@@ -51,8 +51,16 @@ public class SlideDragon extends Role {
         if (this.preStatus == 2) return;
         timeline.stop();
         AtomicInteger count = new AtomicInteger(1);
-        timeline = new Timeline(new KeyFrame(Duration.millis(295), e -> {
-            if (count.get() % 20 == 0) canAttack = true;
+        timeline = new Timeline(new KeyFrame(Duration.millis(400), e -> {
+            if (count.get() > attackImagesArray.size()) {
+                count.set(1);
+            }
+            if (count.get() == 15 && !ThirdLevelController.allTimelineStop) {
+                SlideDragonSoundController.dragonSoundPlay();
+            }
+            if (count.get() > 26 && count.get() < 33) {
+                canAttack = true;
+            }
             imageView.setImage(attackImagesArray.get((count.getAndIncrement()) % attackImagesArray.size()));
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);

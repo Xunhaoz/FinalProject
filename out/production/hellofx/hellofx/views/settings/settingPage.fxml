@@ -6,26 +6,34 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
       prefHeight="720.0" prefWidth="1280.0" spacing="10.0" xmlns="http://javafx.com/javafx/16"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellofx.Controller.RouteController">
     <AnchorPane>
         <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../../resource/regularBackground.png" />
+            <Image url="@../../resource/InfoBG.png" />
         </ImageView>
-        <VBox alignment="CENTER" spacing="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+        <HBox alignment="CENTER" spacing="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
               minWidth="-Infinity" prefWidth="1280.0" prefHeight="720.0">
-            <Button mnemonicParsing="false" text="遊戲音量" onAction="#settingToVoice">
+            <padding>
+                <Insets top="450.0"/>
+            </padding>
+            <Button text="遊戲音量" onAction="#settingToVoice" textFill="#070726" alignment="CENTER"
+                    styleClass="button" stylesheets="@../../styles/buttons.css"
+                    style="-fx-background-color: rgb(249,193,0); -fx-background-radius: 90.0;">
                 <font>
-                    <Font size="36.0" />
+                    <Font size="36.0"/>
                 </font>
             </Button>
-            <Button mnemonicParsing="false" text="開發資訊" onAction="#settingToInfo">
+            <Button text="開發資訊" onAction="#settingToInfo" textFill="#070726" alignment="CENTER"
+                    styleClass="button" stylesheets="@../../styles/buttons.css"
+                    style="-fx-background-color: rgb(249,193,0); -fx-background-radius: 90.0;">
                 <font>
-                    <Font size="36.0" />
+                    <Font size="36.0"/>
                 </font>
             </Button>
-        </VBox>
+        </HBox>
         <Button fx:id="backButton" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#settingToStart" stylesheets="@../../styles/buttons.css" />
     </AnchorPane>
 </VBox>

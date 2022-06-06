@@ -52,7 +52,7 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 信箱");
         nowStage.setScene(scene);
         lastStageStr = nowStageStr;
-        nowStageStr = "mailbox" ;
+        nowStageStr = "setting" ;
     }
 
     public static void toLevel() throws IOException {
@@ -214,16 +214,6 @@ public class ViewController {
         nowStageStr = "HeroIntro" ;
     }
 
-    public static void toElecGodInfoPage() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/heroInfoPage/elecGod.fxml")));
-        Scene scene = new Scene(root);
-        scene.getRoot().requestFocus();
-        nowStage.setTitle("資工系大戰爭 - 地圖 - 宿舍 - 我方圖鑑 - 電神");
-        nowStage.setScene(scene);
-        lastStageStr = nowStageStr;
-        nowStageStr = "HeroIntro" ;
-    }
-
     public static void toAlienThrowingHandInfoPage() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/heroInfoPage/alienThrowingHand.fxml")));
         Scene scene = new Scene(root);
@@ -271,7 +261,7 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 地圖 - 市集 - 淦家咖啡");
         nowStage.setScene(scene);
         lastStageStr = nowStageStr;
-        nowStageStr = "Market";
+        nowStageStr = "market" ;
     }
 
     public static void toHam() throws IOException {
@@ -281,7 +271,7 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 地圖 - 市集 - BAKAYAROU BUGER 套餐");
         nowStage.setScene(scene);
         lastStageStr = nowStageStr;
-        nowStageStr = "Market" ;
+        nowStageStr = "market" ;
     }
 
     public static void toRice() throws IOException {
@@ -291,7 +281,7 @@ public class ViewController {
         nowStage.setTitle("資工系大戰爭 - 地圖 - 市集 - 全家咖啡");
         nowStage.setScene(scene);
         lastStageStr = nowStageStr;
-        nowStageStr = "Market" ;
+        nowStageStr = "market" ;
     }
 
     public static void toWin() throws IOException {

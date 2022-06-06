@@ -11,21 +11,23 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class AlienThrowingHand extends Role {
 
-
     public static int level = 0;
+    public static int thisHp = 20000;
+    public static int thisAtk = 15;
 
     public static void Levelup() {
-        if (level <= 10)
-            level++;
+        if (level < 10) level++;
+        thisHp = thisHp + level * 1500;
+        thisAtk = thisAtk + level * 2;
     }
 
     public AlienThrowingHand(int x, int y) {
         super(x, y);
-        this.health = 200;
-        this.attack = 34;
+        this.health = thisHp;
+        this.attack = 15;
         this.CD = 1;
-        this.speed = 10;
-        this.cost = 50;
+        this.speed = 50;
+        this.cost = 3450;
         walkImagesArray = new ArrayList<>();
         attackImagesArray = new ArrayList<>();
         for (int i = 1; i < 12; i++) {
@@ -37,8 +39,6 @@ public class AlienThrowingHand extends Role {
         imageView = new ImageView(walkImagesArray.get(0));
         imageView.setX(this.x);
         imageView.setY(this.y);
-        imageView.setFitHeight(762/3);
-        imageView.setFitWidth(534/3);
     }
 
 
@@ -63,7 +63,10 @@ public class AlienThrowingHand extends Role {
         timeline.stop();
         AtomicInteger count = new AtomicInteger(1);
         timeline = new Timeline(new KeyFrame(Duration.millis(110), e -> {
-            if (count.get() % attackImagesArray.size() == 0) canAttack = true;
+            if (count.get() > attackImagesArray.size()) {
+                count.set(1);
+            }
+            if (count.get() > 11) canAttack = true;
             imageView.setImage(attackImagesArray.get((count.getAndIncrement()) % attackImagesArray.size()));
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);

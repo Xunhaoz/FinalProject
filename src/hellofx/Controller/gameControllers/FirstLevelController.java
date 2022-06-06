@@ -4,6 +4,7 @@ package hellofx.Controller.gameControllers;
 import hellofx.Controller.MarketController;
 import hellofx.Controller.MusicControllers.ButtonSoundPlayController;
 import hellofx.Controller.MusicControllers.MusicPlayController;
+import hellofx.Controller.MusicControllers.CoinSoundController;
 import hellofx.Controller.ViewController;
 import hellofx.models.*;
 import javafx.animation.KeyFrame;
@@ -58,11 +59,11 @@ public class FirstLevelController extends LevelController {
     private int csieTowerHealth;
     private int grandpaTowerHealth;
     private int enemyCreateRate = 0;
-    private int iceCream;
+    private int iceCream = 0;
     private boolean hasBoss = false;
     private int fastFoodShoot = 0;
     private AtomicInteger countUp = new AtomicInteger(0);
-
+    private boolean allTimelineStop;
 
     private final Timeline levelOneTimeline = new Timeline(new KeyFrame(Duration.millis(200), e -> {
         this.enemyCreateRate++;
@@ -105,19 +106,25 @@ public class FirstLevelController extends LevelController {
             createTaB();
         } else if (enemyCreateRate % 100 == 30) {
             createTaC();
-        } else if (csieTower.getHealth() <= 5000 && !hasBoss) {
+        } else if (csieTower.getHealth() < 9500 && !hasBoss) {
             hasBoss = true;
             createErhu();
-            for (FreshChick freshChick : freshChickAL) freshChick.lag();
+            for (FreshChick freshChick : freshChickAL) {
+                freshChick.lag();
+            }
         }
 
         if (csieTower.getHealth() <= 0) {
+            allTimelineStop = true;
+            statusDetector();
             try {
                 this.win();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         } else if (grandpaTower.getHealth() <= 0) {
+            allTimelineStop = true;
+            statusDetector();
             try {
                 this.lose();
             } catch (IOException ex) {
@@ -128,7 +135,7 @@ public class FirstLevelController extends LevelController {
 
     public void win() throws IOException {
         WinPageController.winIceCream = iceCream;
-        MarketController.iceCreamNum = iceCream;
+        MarketController.iceCreamNum += iceCream;
         levelOneTimeline.stop();
         ViewController.toWin();
         MusicPlayController.checkNowStage();
@@ -144,6 +151,10 @@ public class FirstLevelController extends LevelController {
 
     @FXML
     public void initialize() throws IOException {
+        allTimelineStop = false;
+        iceCream = 0;
+        iceCreamLabel.setText(String.format("%05d", iceCream));
+
         csieTower = new CSIETower(0, 180);
         grandpaTower = new GrandpaTower(1040, 180);
 
@@ -266,6 +277,9 @@ public class FirstLevelController extends LevelController {
 
     @FXML
     public void levelOneToLevel() throws IOException {
+        allTimelineStop = true;
+        statusDetector();
+        levelOneTimeline.stop();
         ViewController.toLevel();
         MusicPlayController.checkNowStage();
         ButtonSoundPlayController.buttonSoundPlay();
@@ -275,7 +289,7 @@ public class FirstLevelController extends LevelController {
         for (int i = 0; i < freshChickAL.size(); i++) {
             FreshChick freshChick = freshChickAL.get(i);
 
-            if (freshChick.getHealth() < 0) {
+            if (freshChick.getHealth() < 0 || allTimelineStop) {
 
                 freshChick.portal(3);
 
@@ -309,7 +323,8 @@ public class FirstLevelController extends LevelController {
 
                 for (int j = 0; j < taBAL.size(); j++) {
                     TaB taB = taBAL.get(j);
-                    if (freshChick.getBounds().intersects(taB.getBounds()) && taB.getStatus() != 3) {
+                    int distance = freshChick.getX() - taB.getX();
+                    if (distance > 0 && distance < 164 && taB.getStatus() != 3) {
                         isDetect = true;
                         freshChick.portal(2);
                         if (freshChick.getCanAttack()) {
@@ -321,7 +336,8 @@ public class FirstLevelController extends LevelController {
 
                 for (int j = 0; j < taCAL.size(); j++) {
                     TaC taC = taCAL.get(j);
-                    if (freshChick.getBounds().intersects(taC.getBounds()) && taC.getStatus() != 3) {
+                    int distance = freshChick.getX() - taC.getX();
+                    if (distance > 0 && distance < 180 && taC.getStatus() != 3) {
                         isDetect = true;
                         freshChick.portal(2);
                         if (freshChick.getCanAttack()) {
@@ -350,7 +366,7 @@ public class FirstLevelController extends LevelController {
 
         for (int i = 0; i < salmonSteaksAL.size(); i++) {
             SalmonSteak salmonSteak = salmonSteaksAL.get(i);
-            if (salmonSteak.getHealth() < 0) {
+            if (salmonSteak.getHealth() < 0 || allTimelineStop) {
                 salmonSteak.portal(3);
 
                 if (salmonSteak.getCanDie()) {
@@ -382,7 +398,8 @@ public class FirstLevelController extends LevelController {
 
                 for (int j = 0; j < taBAL.size(); j++) {
                     TaB taB = taBAL.get(j);
-                    if (salmonSteak.getBounds().intersects(taB.getBounds()) && taB.getStatus() != 3) {
+                    int distance = salmonSteak.getX() - taB.getX();
+                    if (distance > 0 && distance < 164 && taB.getStatus() != 3) {
                         isDetect = true;
                         salmonSteak.portal(2);
                         if (salmonSteak.getCanAttack()) {
@@ -394,7 +411,8 @@ public class FirstLevelController extends LevelController {
 
                 for (int j = 0; j < taCAL.size(); j++) {
                     TaC taC = taCAL.get(j);
-                    if (salmonSteak.getBounds().intersects(taC.getBounds()) && taC.getStatus() != 3) {
+                    int distance = salmonSteak.getX() - taC.getX();
+                    if (distance > 0 && distance < 180 && taC.getStatus() != 3) {
                         isDetect = true;
                         salmonSteak.portal(2);
                         if (salmonSteak.getCanAttack()) {
@@ -423,7 +441,7 @@ public class FirstLevelController extends LevelController {
 
         for (int i = 0; i < yamsAL.size(); i++) {
             Yams yams = yamsAL.get(i);
-            if (yams.getHealth() < 0) {
+            if (yams.getHealth() < 0 || allTimelineStop) {
                 yams.portal(3);
 
                 if (yams.getCanDie()) {
@@ -455,7 +473,8 @@ public class FirstLevelController extends LevelController {
 
                 for (int j = 0; j < taBAL.size(); j++) {
                     TaB taB = taBAL.get(j);
-                    if (yams.getBounds().intersects(taB.getBounds()) && taB.getStatus() != 3) {
+                    int distance = yams.getX() - taB.getX();
+                    if (distance > 0 && distance < 164 && taB.getStatus() != 3) {
                         isDetect = true;
                         yams.portal(2);
                         if (yams.getCanAttack()) {
@@ -467,7 +486,8 @@ public class FirstLevelController extends LevelController {
 
                 for (int j = 0; j < taCAL.size(); j++) {
                     TaC taC = taCAL.get(j);
-                    if (yams.getBounds().intersects(taC.getBounds()) && taC.getStatus() != 3) {
+                    int distance = yams.getX() - taC.getX();
+                    if (distance > 0 && distance < 180 && taC.getStatus() != 3) {
                         isDetect = true;
                         yams.portal(2);
                         if (yams.getCanAttack()) {
@@ -496,7 +516,7 @@ public class FirstLevelController extends LevelController {
 
         for (int i = 0; i < taAAL.size(); i++) {
             TaA taA = taAAL.get(i);
-            if (taA.getHealth() < 0) {
+            if (taA.getHealth() < 0 || allTimelineStop) {
                 taA.portal(3);
                 if (taA.getCanDie()) {
                     anchorPane.getChildren().remove(taA.getImageview());
@@ -539,7 +559,8 @@ public class FirstLevelController extends LevelController {
 
                 for (int j = 0; j < yamsAL.size(); j++) {
                     Yams yams = yamsAL.get(j);
-                    if (taA.getBounds().intersects(yams.getBounds()) && yams.getStatus() != 3) {
+                    int distance = yams.getX() + 2 - taA.getX();
+                    if (distance > -150 && distance < 0 && yams.getStatus() != 3) {
                         isDetect = true;
                         taA.portal(2);
                         if (taA.getCanAttack()) {
@@ -556,7 +577,7 @@ public class FirstLevelController extends LevelController {
 
         for (int i = 0; i < taBAL.size(); i++) {
             TaB taB = taBAL.get(i);
-            if (taB.getHealth() < 0) {
+            if (taB.getHealth() < 0 || allTimelineStop) {
                 taB.portal(3);
                 if (taB.getCanDie()) {
                     anchorPane.getChildren().remove(taB.getImageview());
@@ -599,7 +620,8 @@ public class FirstLevelController extends LevelController {
 
                 for (int j = 0; j < yamsAL.size(); j++) {
                     Yams yams = yamsAL.get(j);
-                    if (taB.getBounds().intersects(yams.getBounds()) && yams.getStatus() != 3) {
+                    int distance = yams.getX() - 184 - taB.getX();
+                    if (distance > -90 && distance < 0 && yams.getStatus() != 3) {
                         isDetect = true;
                         taB.portal(2);
                         if (taB.getCanAttack()) {
@@ -616,7 +638,7 @@ public class FirstLevelController extends LevelController {
 
         for (int i = 0; i < taCAL.size(); i++) {
             TaC taC = taCAL.get(i);
-            if (taC.getHealth() < 0) {
+            if (taC.getHealth() < 0 || allTimelineStop) {
                 taC.portal(3);
                 if (taC.getCanDie()) {
                     anchorPane.getChildren().remove(taC.getImageview());
@@ -659,7 +681,8 @@ public class FirstLevelController extends LevelController {
 
                 for (int j = 0; j < yamsAL.size(); j++) {
                     Yams yams = yamsAL.get(j);
-                    if (taC.getBounds().intersects(yams.getBounds()) && yams.getStatus() != 3) {
+                    int distance = yams.getX() - taC.getX() - 276;
+                    if (distance > -200 && distance < 0 && yams.getStatus() != 3) {
                         isDetect = true;
                         taC.portal(2);
                         if (taC.getCanAttack()) {
@@ -676,7 +699,7 @@ public class FirstLevelController extends LevelController {
 
         for (int i = 0; i < erhuAL.size(); i++) {
             Erhu erhu = erhuAL.get(i);
-            if (erhu.getHealth() < 0) {
+            if (erhu.getHealth() < 0 || allTimelineStop) {
                 erhu.portal(3);
                 if (erhu.getCanDie()) {
                     anchorPane.getChildren().remove(erhu.getImageview());
@@ -702,7 +725,6 @@ public class FirstLevelController extends LevelController {
                             freshChick.minusHealth(erhu.getATK());
                             if (randomInt.nextInt(200) % 95 == 0) {
                                 freshChick.minusHealth(erhu.getATK());
-                                System.out.println("二胡暴擊 " + String.valueOf(erhu.getATK()));
                             }
                             erhu.initCanAttack();
                         }
@@ -718,7 +740,6 @@ public class FirstLevelController extends LevelController {
                             salmonSteak.minusHealth(erhu.getATK());
                             if (randomInt.nextInt(200) % 95 == 0) {
                                 salmonSteak.minusHealth(erhu.getATK());
-                                System.out.println("二胡暴擊 " + String.valueOf(erhu.getATK()));
                             }
                             erhu.initCanAttack();
                         }
@@ -727,14 +748,14 @@ public class FirstLevelController extends LevelController {
 
                 for (int j = 0; j < yamsAL.size(); j++) {
                     Yams yams = yamsAL.get(j);
-                    if (erhu.getBounds().intersects(yams.getBounds()) && yams.getStatus() != 3) {
+                    int distance = yams.getX() - erhu.getX() - 170;
+                    if (distance > -150 && distance < 0 && yams.getStatus() != 3) {
                         isDetect = true;
                         erhu.portal(2);
                         if (erhu.getCanAttack()) {
                             yams.minusHealth(erhu.getATK());
                             if (randomInt.nextInt(200) % 95 == 0) {
                                 yams.minusHealth(erhu.getATK());
-                                System.out.println("二胡暴擊 " + String.valueOf(erhu.getATK()));
                             }
                             erhu.initCanAttack();
                         }
@@ -762,10 +783,12 @@ public class FirstLevelController extends LevelController {
         if (fastFoodShoot != 10) return;
 
         ImageView fastFood = new ImageView(new Image("hellofx\\resource\\role\\Hero\\frenchFries.png"));
+        fastFood.setFitWidth(350.0);
+        fastFood.setFitHeight(75.0);
         long duration = 600;
         int minusHealth = 1000;
-        KeyFrame startKey = new KeyFrame(Duration.ZERO, new KeyValue(fastFood.xProperty(), 320), new KeyValue(fastFood.yProperty(), 0));
-        KeyFrame endKey = new KeyFrame(new Duration(duration), new KeyValue(fastFood.xProperty(), 320), new KeyValue(fastFood.yProperty(), 400));
+        KeyFrame startKey = new KeyFrame(Duration.ZERO, new KeyValue(fastFood.xProperty(), 930), new KeyValue(fastFood.yProperty(), 300));
+        KeyFrame endKey = new KeyFrame(new Duration(duration), new KeyValue(fastFood.xProperty(), -350), new KeyValue(fastFood.yProperty(), 420));
         KeyFrame actKey = new KeyFrame(new Duration(800), e -> {
             anchorPane.getChildren().remove(fastFood);
             for (TaA taA : taAAL) {

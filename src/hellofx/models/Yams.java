@@ -17,6 +17,11 @@ public class Yams extends Role {
     private int characteristic = -1;
     //0 green 1 yellow 2 purple
 
+    public static int level = 0;
+
+    public static void Levelup() {
+        if (level < 10) level++;
+    }
 
     private void getResource() {
         ArrayList<Image> bad_walkImagesArray = new ArrayList<>();

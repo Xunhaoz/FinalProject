@@ -1,8 +1,10 @@
 package hellofx.Controller.MarketControllers;
 
 import hellofx.Controller.MarketController;
+import hellofx.Controller.MusicControllers.BruhController;
 import hellofx.Controller.MusicControllers.ButtonSoundPlayController;
 import hellofx.Controller.MusicControllers.MusicPlayController;
+import hellofx.Controller.MusicControllers.CoinSoundController;
 import hellofx.Controller.ViewController;
 import hellofx.models.LevelController;
 import javafx.fxml.FXML;
@@ -39,7 +41,8 @@ public class RiceController {
     }
 
     public void addMaxM() {
-        if (total <= MarketController.iceCreamNum){
+        if (total <= MarketController.iceCreamNum && amount > 0){
+            CoinSoundController.soundPlay();
             LevelController.changeMaxM(200 * amount);
             MarketController.iceCreamNum -= total;
             riceAmount += amount;
@@ -52,6 +55,11 @@ public class RiceController {
             hint.setVisible(true);
             hint.setText("購買成功");
         }
+        else if (amount == 0) {
+            hint.setVisible(true);
+            hint.setText("請選擇購買數量");
+            BruhController.bruhPlay();
+        }
         else {
             amount = 0;
             total = 0;
@@ -63,14 +71,24 @@ public class RiceController {
     }
 
     public void ricePlus1() {
-        amount++;
+        if (amount >= 10) {
+            hint.setVisible(true);
+            hint.setText("一次最多購買10個");
+            BruhController.bruhPlay();
+        }
+        else amount++;
         total = ricePrice * amount;
         amountLabel.setText(String.format("%04d", amount));
         totalLabel.setText(String.format("%06d", total));
     }
 
     public void riceMinus1() {
-        amount--;
+        if (amount <= 0) {
+            hint.setVisible(true);
+            hint.setText("數量不能為負");
+            BruhController.bruhPlay();
+        }
+        else amount--;
         total = ricePrice * amount;
         amountLabel.setText(String.format("%04d", amount));
         totalLabel.setText(String.format("%06d", total));

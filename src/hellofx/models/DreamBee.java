@@ -28,8 +28,6 @@ public class DreamBee extends Role {
         imageView = new ImageView(walkImagesArray.get(0));
         imageView.setX(this.x);
         imageView.setY(this.y);
-        imageView.setFitWidth(877 / 2);
-        imageView.setFitHeight(784 / 2);
     }
 
     private void move() {

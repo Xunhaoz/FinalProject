@@ -12,16 +12,19 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class FreshChick extends Role {
 
     public static int level = 0;
+    public static int thisHp = 340;
+    public static int thisAtk = 34;
 
     public static void Levelup() {
-        if (level <= 10)
-            level++;
+        if (level < 10) level++;
+        thisHp = thisHp + level * 20;
+        thisAtk = thisAtk + level * 2;
     }
 
     public FreshChick(int x, int y) {
         super(x, y);
-        this.health = 200 + level*20;
-        this.attack = 34;
+        this.health = thisHp;
+        this.attack = thisAtk;
         this.CD = 1;
         this.speed = 10;
         this.cost = 50;

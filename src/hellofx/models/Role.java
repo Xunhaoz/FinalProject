@@ -58,6 +58,8 @@ public abstract class Role {
         return this.health;
     }
 
+    public int getX() {return this.x;}
+
     public void setBounds() {
         this.bounds = imageView.getBoundsInParent();
     }
@@ -68,7 +70,7 @@ public abstract class Role {
         AtomicInteger count = new AtomicInteger();
         timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
             count.getAndIncrement();
-            this.y -= count.get() * 2;
+            this.y -= count.get() * 3;
             imageView.setY(this.y);
             imageView.setOpacity(1 - (count.floatValue() * 0.125));
             if (count.get() == 8) canDie = true;
@@ -98,7 +100,8 @@ public abstract class Role {
         return status;
     }
 
-    public void lag(){
+    public void lag() {
+        this.x += 20;
         timeline.stop();
         canControll = false;
         AtomicInteger count = new AtomicInteger();
@@ -107,8 +110,9 @@ public abstract class Role {
             if(count.get() == 50){
                 canControll = true;
             }
-            this.x += 5;
-            this.x -= 5;
+
+            if (count.get() % 2 == 0) this.x += 5;
+            else this.x -= 5;
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();

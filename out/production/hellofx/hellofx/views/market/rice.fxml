@@ -55,7 +55,7 @@
             <padding>
                 <Insets topRightBottomLeft="20.0"/>
             </padding>
-            <ImageView fitWidth="340.0" fitHeight="286.0">
+            <ImageView fitWidth="300.0" fitHeight="252.3">
                 <Image url="@../../resource/market/rice.png"/>
             </ImageView>
             <HBox spacing="20.0" prefWidth="500" alignment="CENTER">
@@ -139,7 +139,7 @@
                             <Font size="20.0"/>
                         </font>
                     </Label>
-                    <Button text='確定購買' onAction="#addMaxM" textFill="azure" style="-fx-background-color: rgb(249,193,0); -fx-background-radius: 90.0">
+                    <Button text='確定購買' onAction="#addMaxM" textFill="#070726" style="-fx-background-color: rgb(249,193,0); -fx-background-radius: 90.0">
                         <font>
                             <Font size="32.0"/>
                         </font>

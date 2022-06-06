@@ -6,10 +6,172 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="hellofx.Controller.RouteController"
+            fx:controller="hellofx.Controller.HeroInfoControllers.alienInfoController"
             prefHeight="720.0" prefWidth="1280.0">
-    <Button fx:id="backButton" mnemonicParsing="false" layoutX="30.0" layoutY="30.0" onAction="#backToDorm"
-            stylesheets="@../../styles/buttons.css"/>
+    <ImageView fitWidth="1280.0" fitHeight="720.0">
+        <Image url="@../../resource/regularBackground.png"/>
+    </ImageView>
+    <HBox prefHeight="105.0" prefWidth="1280.0" style="-fx-background-color: rgba(10,10,10,0.42)" />
+    <HBox layoutY="30.0" spacing="30.0" prefWidth="1280.0" prefHeight="55.0">
+        <padding>
+            <Insets left="30.0"/>
+        </padding>
+        <Button fx:id="backButton" mnemonicParsing="false" onAction="#backToDorm"
+                stylesheets="@../../styles/buttons.css"/>
+        <Label text="外星「投手」 Alien Throwing Hand" textFill="azure" layoutY="35.0" layoutX="500.0">
+            <font>
+                <Font size="50.0"/>
+            </font>
+        </Label>
+    </HBox>
+    <HBox alignment="CENTER_RIGHT" layoutX="980.0" layoutY="30.0"
+          spacing="10.0" prefWidth="300.0" prefHeight="55.0">
+        <padding>
+            <Insets right="30.0"/>
+        </padding>
+        <ImageView fitHeight="55.0" fitWidth="55.0">
+            <Image url="@../../resource/icecream.png" />
+        </ImageView>
+        <Label fx:id="iceCreamLabel" textFill="azure" text="000000">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+    </HBox>
+
+    <HBox prefHeight="635.0" prefWidth="1280.0" layoutY="85.0" alignment="CENTER_LEFT" spacing="15.0">
+        <padding>
+            <Insets top="40.0" bottom="30.0" right="30.0" left="30.0"/>
+        </padding>
+        <VBox alignment="CENTER" prefWidth="500.0" spacing="20.0" style="-fx-background-color: rgba(49,39,28,0.15); -fx-background-radius: 30.0">
+            <padding>
+                <Insets topRightBottomLeft="20.0"/>
+            </padding>
+            <Label fx:id="levelLabel" text="LEVEL 1" textFill="azure">
+                <font>
+                    <Font size="28.0"/>
+                </font>
+            </Label>
+            <ImageView>
+                <Image url="@../../resource/roleInfo/alienInfo.png"/>
+            </ImageView>
+            <VBox alignment="CENTER_RIGHT" prefWidth="460.0" prefHeight="48.0" spacing="10.0">
+                <HBox alignment="CENTER" spacing="20.0" prefWidth="460.0">
+                    <Label text="升級花費： " textFill="azure">
+                        <font>
+                            <Font size="20.0"/>
+                        </font>
+                    </Label>
+                    <Label fx:id="levelUpCostLabel" text="0000" textFill="azure" prefWidth="100.0">
+                        <font>
+                            <Font size="20.0"/>
+                        </font>
+                    </Label>
+                    <Button fx:id="levelUpButton" onAction="#levelUp" text="升級" textFill="#070726" alignment="CENTER" style="-fx-background-color: rgb(249,193,0); -fx-background-radius: 90.0;">
+                        <font>
+                            <Font size="20.0"/>
+                        </font>
+                    </Button>
+                </HBox>
+                <Label fx:id="hint" text="提示字元" textFill="azure" prefWidth="120.0">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                </Label>
+            </VBox>
+        </VBox>
+        <VBox spacing="20.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: rgba(49,39,28,0.15); -fx-background-radius: 20.0">
+                <padding>
+                    <Insets top="20.0" bottom="20.0" left="50.0" right="50.0"/>
+                </padding>
+                <Label text="角色介紹" textFill="azure">
+                    <font>
+                        <Font size="28.0"/>
+                    </font>
+                </Label>
+                <Label text="令菜雞們聞風喪膽的可怕夢魘。每當有新的一批菜雞們登入央央帝國，他就會設下六次危機，阻礙菜雞們前進的道路。挑戰失敗的菜雞們就必須與滑龍爺爺「重修就好｣，進入無限循環的危機煉獄。" textFill="azure" wrapText="true">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Label>
+            </VBox>
+            <HBox alignment="CENTER" prefWidth="800.0" prefHeight="345.0" spacing="20.0">
+                <VBox spacing="15.0" alignment="TOP_CENTER" prefHeight="345.0" prefWidth="400.0" style="-fx-background-color: rgba(49,39,28,0.15); -fx-background-radius: 15.0">
+                    <padding>
+                        <Insets top="20.0" bottom="20.0" left="10.0" right="10.0"/>
+                    </padding>
+                    <Label text="角色能力值" textFill="azure">
+                        <font>
+                            <Font size="28.0"/>
+                        </font>
+                    </Label>
+                    <HBox prefHeight="20.0" prefWidth="380.0" alignment="CENTER" spacing="10.0">
+                        <Label text="生命值：" textFill="azure" prefWidth="100.0">
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                        </Label>
+                        <ProgressBar fx:id="hpBar" prefWidth="200.0"/>
+                    </HBox>
+                    <HBox prefHeight="20.0" prefWidth="380.0" alignment="CENTER" spacing="10.0">
+                        <Label text="攻擊力：" textFill="azure" prefWidth="100.0">
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                        </Label>
+                        <ProgressBar fx:id="atkBar" prefWidth="200.0"/>
+                    </HBox>
+                    <HBox prefHeight="20.0" prefWidth="380.0" alignment="CENTER" spacing="10.0">
+                        <Label text="移動速度：" textFill="azure" prefWidth="100.0">
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                        </Label>
+                        <ProgressBar fx:id="speedBar" prefWidth="200.0"/>
+                    </HBox>
+                    <HBox prefHeight="20.0" prefWidth="380.0" alignment="CENTER" spacing="10.0">
+                        <Label text="攻擊距離：" textFill="azure" prefWidth="100.0">
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                        </Label>
+                        <ProgressBar fx:id="atkDistance" prefWidth="200.0"/>
+                    </HBox>
+                    <HBox prefHeight="20.0" prefWidth="380.0" alignment="CENTER" spacing="10.0">
+                        <Label text="掉落能量：" textFill="azure" prefWidth="100.0">
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                        </Label>
+                        <ProgressBar fx:id="createEnergy" prefWidth="200.0"/>
+                    </HBox>
+                    <HBox prefHeight="20.0" prefWidth="380.0" alignment="CENTER" spacing="10.0">
+                        <Label text="掉落金錢：" textFill="azure" prefWidth="100.0">
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                        </Label>
+                        <ProgressBar fx:id="cdBar" prefWidth="200.0"/>
+                    </HBox>
+                </VBox>
+                <VBox alignment="TOP_CENTER" prefHeight="345.0" prefWidth="400.0" style="-fx-background-color: rgba(49,39,28,0.15); -fx-background-radius: 15.0">
+                    <padding>
+                        <Insets top="20.0" bottom="20.0" left="10.0" right="10.0"/>
+                    </padding>
+                    <Label text="特殊技能" textFill="azure">
+                        <font>
+                            <Font size="28.0"/>
+                        </font>
+                    </Label>
+                </VBox>
+            </HBox>
+        </VBox>
+    </HBox>
 </AnchorPane>
