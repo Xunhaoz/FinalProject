@@ -22,7 +22,7 @@ public abstract class Role {
     protected ImageView imageView;
     protected int status = -1;
     protected int preStatus;
-    // 1 : move, 2 : attack, 3 : die
+    // 1 : move, 2 : attack, 3 : die, 4 : lag
     protected boolean canAttack;
     protected boolean canDie;
     //0 can't attack 1 can attack
@@ -58,7 +58,9 @@ public abstract class Role {
         return this.health;
     }
 
-    public int getX() {return this.x;}
+    public int getX() {
+        return this.x;
+    }
 
     public void setBounds() {
         this.bounds = imageView.getBoundsInParent();
@@ -100,22 +102,5 @@ public abstract class Role {
         return status;
     }
 
-    public void lag() {
-        this.x += 20;
-        timeline.stop();
-        canControll = false;
-        AtomicInteger count = new AtomicInteger();
-        timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
-            count.getAndIncrement();
-            if(count.get() == 50){
-                canControll = true;
-            }
-
-            if (count.get() % 2 == 0) this.x += 5;
-            else this.x -= 5;
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
-    }
-
+    public int getCD(){return CD;}
 }

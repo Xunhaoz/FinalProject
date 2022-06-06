@@ -54,7 +54,8 @@ public class ThirdLevelController extends LevelController {
     private int fastFoodShoot = 0;
     private AtomicInteger countUp = new AtomicInteger(0);
     public static boolean allTimelineStop;
-
+    private boolean []canCreate = {true, true, true, true, true};
+    //createYams creatXunhaoz createFreshChick createAlienThrowingHand createSalmonSteak
 
     @FXML
     Label iceCreamLabel;
@@ -230,6 +231,12 @@ public class ThirdLevelController extends LevelController {
         yams.portal(1);
         anchorPane.getChildren().add(yams.getImageview());
         yams.setBounds();
+
+        Timeline CDtimeline = new Timeline();
+        KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO, e->{canCreate[0] = false;});
+        KeyFrame endKeyFrame = new KeyFrame(new Duration(yams.getCD()*1000), e->{canCreate[0] = true;});
+        CDtimeline.getKeyFrames().addAll(startKeyFrame, endKeyFrame);
+        CDtimeline.play();
     }
 
     @FXML
@@ -244,6 +251,12 @@ public class ThirdLevelController extends LevelController {
         xunhaoz.portal(1);
         anchorPane.getChildren().add(xunhaoz.getImageview());
         xunhaoz.setBounds();
+
+        Timeline CDtimeline = new Timeline();
+        KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO, e->{canCreate[1] = false;});
+        KeyFrame endKeyFrame = new KeyFrame(new Duration(xunhaoz.getCD()*1000), e->{canCreate[1] = true;});
+        CDtimeline.getKeyFrames().addAll(startKeyFrame, endKeyFrame);
+        CDtimeline.play();
     }
 
     @FXML
@@ -258,6 +271,12 @@ public class ThirdLevelController extends LevelController {
         freshChick.portal(1);
         anchorPane.getChildren().add(freshChick.getImageview());
         freshChick.setBounds();
+
+        Timeline CDtimeline = new Timeline();
+        KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO, e->{canCreate[2] = false;});
+        KeyFrame endKeyFrame = new KeyFrame(new Duration(freshChick.getCD()*1000), e->{canCreate[2] = true;});
+        CDtimeline.getKeyFrames().addAll(startKeyFrame, endKeyFrame);
+        CDtimeline.play();
     }
 
     @FXML
@@ -272,6 +291,12 @@ public class ThirdLevelController extends LevelController {
         alienAL.add(alienThrowingHand);
         anchorPane.getChildren().add(alienThrowingHand.getImageview());
         alienThrowingHand.setBounds();
+
+        Timeline CDtimeline = new Timeline();
+        KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO, e->{canCreate[3] = false;});
+        KeyFrame endKeyFrame = new KeyFrame(new Duration(alienThrowingHand.getCD()*1000), e->{canCreate[3] = true;});
+        CDtimeline.getKeyFrames().addAll(startKeyFrame, endKeyFrame);
+        CDtimeline.play();
     }
 
     @FXML
@@ -286,6 +311,12 @@ public class ThirdLevelController extends LevelController {
         salmonSteak.portal(1);
         anchorPane.getChildren().add(salmonSteak.getImageview());
         salmonSteak.setBounds();
+
+        Timeline CDtimeline = new Timeline();
+        KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO, e->{canCreate[4] = false;});
+        KeyFrame endKeyFrame = new KeyFrame(new Duration(salmonSteak.getCD()*1000), e->{canCreate[4] = true;});
+        CDtimeline.getKeyFrames().addAll(startKeyFrame, endKeyFrame);
+        CDtimeline.play();
     }
 
     public void win() throws IOException {

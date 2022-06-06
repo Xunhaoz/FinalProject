@@ -63,7 +63,9 @@ public class FirstLevelController extends LevelController {
     private boolean hasBoss = false;
     private int fastFoodShoot = 0;
     private AtomicInteger countUp = new AtomicInteger(0);
-    private boolean allTimelineStop;
+    private Boolean allTimelineStop;
+    private boolean []canCreate = {true, true, true};
+    //createYams createFreshChick createSalmonSteak
 
     private final Timeline levelOneTimeline = new Timeline(new KeyFrame(Duration.millis(200), e -> {
         this.enemyCreateRate++;
@@ -109,9 +111,6 @@ public class FirstLevelController extends LevelController {
         } else if (csieTower.getHealth() < 9500 && !hasBoss) {
             hasBoss = true;
             createErhu();
-            for (FreshChick freshChick : freshChickAL) {
-                freshChick.lag();
-            }
         }
 
         if (csieTower.getHealth() <= 0) {
@@ -151,6 +150,7 @@ public class FirstLevelController extends LevelController {
 
     @FXML
     public void initialize() throws IOException {
+        System.out.println(canCreate[0]);
         allTimelineStop = false;
         iceCream = 0;
         iceCreamLabel.setText(String.format("%05d", iceCream));
@@ -216,11 +216,14 @@ public class FirstLevelController extends LevelController {
         erhu.portal(1);
         anchorPane.getChildren().add(erhu.getImageview());
         erhu.setBounds();
+        for (FreshChick freshChick : freshChickAL) {
+            freshChick.lag();
+        }
     }
 
     @FXML
     public void createYams() {
-        if (Integer.parseInt(label.getText()) < 200) return;
+        if (Integer.parseInt(label.getText()) < 200 || !canCreate[0]) return;
         money -= 200;
 
         int ranCharacter = randomInt.nextInt(100) % 3;
@@ -245,11 +248,16 @@ public class FirstLevelController extends LevelController {
         yams.portal(1);
         anchorPane.getChildren().add(yams.getImageview());
         yams.setBounds();
+        Timeline CDtimeline = new Timeline();
+        KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO, e->{canCreate[0] = false;});
+        KeyFrame endKeyFrame = new KeyFrame(new Duration(yams.getCD()*1000), e->{canCreate[0] = true;});
+        CDtimeline.getKeyFrames().addAll(startKeyFrame, endKeyFrame);
+        CDtimeline.play();
     }
 
     @FXML
     public void createFreshChick() {
-        if (Integer.parseInt(label.getText()) < 50) {
+        if (Integer.parseInt(label.getText()) < 50 || !canCreate[1]) {
             return;
         }
         money -= 50;
@@ -259,11 +267,17 @@ public class FirstLevelController extends LevelController {
         freshChick.portal(1);
         anchorPane.getChildren().add(freshChick.getImageview());
         freshChick.setBounds();
+
+        Timeline CDtimeline = new Timeline();
+        KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO, e->{canCreate[1] = false;});
+        KeyFrame endKeyFrame = new KeyFrame(new Duration(freshChick.getCD()*1000), e->{canCreate[1] = true;});
+        CDtimeline.getKeyFrames().addAll(startKeyFrame, endKeyFrame);
+        CDtimeline.play();
     }
 
     @FXML
     public void createSalmonSteak() {
-        if (Integer.parseInt(label.getText()) < 100) {
+        if (Integer.parseInt(label.getText()) < 100 || !canCreate[2]) {
             return;
         }
         money -= 100;
@@ -273,6 +287,13 @@ public class FirstLevelController extends LevelController {
         salmonSteak.portal(1);
         anchorPane.getChildren().add(salmonSteak.getImageview());
         salmonSteak.setBounds();
+
+
+        Timeline CDtimeline = new Timeline();
+        KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO, e->{canCreate[2] = false;});
+        KeyFrame endKeyFrame = new KeyFrame(new Duration(salmonSteak.getCD()*1000), e->{canCreate[2] = true;});
+        CDtimeline.getKeyFrames().addAll(startKeyFrame, endKeyFrame);
+        CDtimeline.play();
     }
 
     @FXML
@@ -359,7 +380,6 @@ public class FirstLevelController extends LevelController {
                     }
                 }
                 if (isDetect) continue;
-
                 freshChick.portal(1);
             }
         }

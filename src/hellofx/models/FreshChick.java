@@ -45,7 +45,6 @@ public class FreshChick extends Role {
     private void move() {
         if (this.preStatus == 1) return;
         timeline.stop();
-
         AtomicInteger count = new AtomicInteger(randomInt.nextInt(4));
         timeline = new Timeline(new KeyFrame(Duration.millis(300), e -> {
 
@@ -82,5 +81,39 @@ public class FreshChick extends Role {
         } else if (this.status == 3) {
             die();
         }
+    }
+
+    public void lag() {
+        this.x += 20;
+        timeline.stop();
+        canControll = false;
+        AtomicInteger count = new AtomicInteger();
+        timeline = new Timeline();
+        for (int i = 0; i < 10; i++) {
+            KeyFrame keyFrame;
+            if (i == 0) {
+                keyFrame = new KeyFrame(new Duration(150 * i), e -> {
+                    canControll = false;
+
+                });
+            } else if (i == 9) {
+                keyFrame = new KeyFrame(new Duration(150 * i), e -> {
+                    canControll = true;
+                    status = 4;
+                });
+            } else if (i % 2 == 0) {
+                keyFrame = new KeyFrame(new Duration(150 * i), e -> {
+                    this.x -= 5;
+                    imageView.setX(this.x);
+                });
+            } else {
+                keyFrame = new KeyFrame(new Duration(150 * i), e -> {
+                    this.x += 5;
+                    imageView.setX(this.x);
+                });
+            }
+            timeline.getKeyFrames().add(keyFrame);
+        }
+        timeline.play();
     }
 }

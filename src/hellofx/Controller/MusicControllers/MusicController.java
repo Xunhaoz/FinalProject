@@ -2,6 +2,7 @@ package hellofx.Controller.MusicControllers;
 
 import hellofx.Controller.ViewController;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 
 import java.io.IOException;
@@ -14,6 +15,11 @@ public class MusicController {
 
     @FXML
     Slider slider;
+    @FXML
+    Label buttonLabel;
+    @FXML
+    Label backgroundLabel;
+
 
     @FXML
     public void initialize() {
@@ -38,6 +44,7 @@ public class MusicController {
     @FXML
     public void setVolume() {
         volume = slider.getValue();
+        backgroundLabel.setText(Math.round(slider.getValue()*100) + "%");
         MusicPlayController.mp3.setVolume(volume);
     }
 
@@ -48,6 +55,7 @@ public class MusicController {
 
     public void setButtonVolume() {
         buttonVolume = buttonSlider.getValue();
+        buttonLabel.setText(Math.round(buttonSlider.getValue()*100) + "%");
         ButtonSoundPlayController.mp3.setVolume(buttonVolume);
     }
 

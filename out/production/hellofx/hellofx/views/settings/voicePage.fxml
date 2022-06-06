@@ -37,7 +37,7 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <Label text="50%" prefWidth="145.0" textFill="azure">
+                <Label fx:id="backgroundLabel" text="50%" prefWidth="145.0" textFill="azure">
                     <font>
                         <Font size="36.0" />
                     </font>
@@ -61,7 +61,7 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <Label text="50%" prefWidth="145.0" textFill="azure">
+                <Label fx:id="buttonLabel" text="50%" prefWidth="145.0" textFill="azure">
                     <font>
                         <Font size="36.0" />
                     </font>
