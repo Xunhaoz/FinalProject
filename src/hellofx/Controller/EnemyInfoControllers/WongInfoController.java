@@ -18,12 +18,7 @@ public class WongInfoController {
 
     @FXML
     public void initialize() throws IOException {
-        hpBar.setProgress(1.0);
-        atkBar.setProgress(0.2);
-        speedBar.setProgress(0.2);
-        atkDistance.setProgress(0.2);
-        dropEnergy.setProgress(0.5);
-        dropMoney.setProgress(0.2);
+
     }
 
     public void backToAd()  throws IOException {

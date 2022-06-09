@@ -37,18 +37,18 @@ public class alienInfoController {
         levelLabel.setText("LEVEL " + String.format("%02d", AlienThrowingHand.level + 1));
         levelUpCostLabel.setText(String.format("%04d", levelUpCost));
         iceCreamLabel.setText(String.format("%06d", MarketController.iceCreamNum));
-        hpBar.setProgress(1.0);
-        atkBar.setProgress(0.2);
-        speedBar.setProgress(0.2);
-        atkDistance.setProgress(0.2);
-        createEnergy.setProgress(0.5);
-        cdBar.setProgress(0.2);
+        hpBar.setProgress(0.57);
+        atkBar.setProgress(1.0);
+        speedBar.setProgress(0.14);
+        atkDistance.setProgress(0.85);
+        createEnergy.setProgress(1.0);
+        cdBar.setProgress(1.0);
     }
 
     public void levelUp() {
         if (AlienThrowingHand.level < 9) {
-            CoinSoundController.soundPlay();
             if (MarketController.iceCreamNum >= levelUpCost && MarketController.iceCreamNum > 0){
+                CoinSoundController.soundPlay();
                 AlienThrowingHand.Levelup();
                 MarketController.iceCreamNum -= levelUpCost;
                 levelUpCost += 205;

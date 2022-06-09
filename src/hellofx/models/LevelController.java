@@ -13,6 +13,4 @@ public class LevelController {
         moneyRate += setM;
     }
 
-
-
 }

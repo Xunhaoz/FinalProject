@@ -5,24 +5,66 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER"
+<?import javafx.geometry.Insets?>
+<AnchorPane
       maxHeight="-Infinity" maxWidth="-Infinity"
       minHeight="-Infinity" minWidth="-Infinity"
       prefHeight="720.0" prefWidth="1280.0"
-      spacing="10.0"
       xmlns="http://javafx.com/javafx/16"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="hellofx.Controller.RouteController">
-    <AnchorPane prefHeight="720.0" prefWidth="1280.0">
-        <HBox prefWidth="1280.0" prefHeight="300.0"
-              alignment="CENTER" spacing="20.0">
-            <Button styleClass="button" stylesheets="@../../styles/buttons.css" mnemonicParsing="false" onAction="#dormToFreshChickInfoPage" text="f"/>
-            <Button styleClass="button" stylesheets="@../../styles/buttons.css" mnemonicParsing="false" onAction="#dormToSalmonSteakInfoPage" text="s"/>
-            <Button styleClass="button" stylesheets="@../../styles/buttons.css" mnemonicParsing="false" onAction="#dormToYamsInfoPage" text="y"/>
-            <Button styleClass="button" stylesheets="@../../styles/buttons.css" mnemonicParsing="false" onAction="#dormToXunhoazBuBuInfoPage" text="x"/>
-            <Button styleClass="button" stylesheets="@../../styles/buttons.css" mnemonicParsing="false" onAction="#dormToAlienThrowingHandInfoPage" text="a"/>
-        </HBox>
-        <Button fx:id="backButton" layoutX="30.0" layoutY="30.0"
-                mnemonicParsing="false" onAction="#levelToMap" stylesheets="@../../styles/buttons.css" />
-    </AnchorPane>
-</VBox>
+      fx:controller="hellofx.Controller.DormPageController">
+    <ImageView fitHeight="720.0" fitWidth="1280.0">
+        <Image url="@../../resource/dorm/dormBG.png"/>
+    </ImageView>
+    <Button layoutY="520" layoutX="92" styleClass="button" stylesheets="@../../styles/buttons.css" mnemonicParsing="false" onAction="#dormToFreshChickInfoPage">
+        <graphic>
+            <ImageView fitWidth="157.0" fitHeight="157.0">
+                <Image url="@../../resource/dorm/cp.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button layoutY="480" layoutX="456" styleClass="button" stylesheets="@../../styles/buttons.css" mnemonicParsing="false" onAction="#dormToSalmonSteakInfoPage">
+        <graphic>
+            <ImageView fitWidth="140.0" fitHeight="81.0">
+                <Image url="@../../resource/dorm/sp.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button layoutY="164" layoutX="110" styleClass="button" stylesheets="@../../styles/buttons.css" mnemonicParsing="false" onAction="#dormToYamsInfoPage">
+        <graphic>
+            <ImageView fitWidth="286.0" fitHeight="246.0">
+                <Image url="@../../resource/dorm/yamsP.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button layoutY="248" layoutX="510" styleClass="button" stylesheets="@../../styles/buttons.css" mnemonicParsing="false" onAction="#dormToXunhoazBuBuInfoPage">
+        <graphic>
+            <ImageView fitWidth="364.0" fitHeight="153.0">
+                <Image url="@../../resource/dorm/xp.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button layoutY="90" layoutX="940" styleClass="button" stylesheets="@../../styles/buttons.css" mnemonicParsing="false" onAction="#dormToAlienThrowingHandInfoPage">
+        <graphic>
+            <ImageView fitWidth="265.0" fitHeight="325.0">
+                <Image url="@../../resource/dorm/ap.png"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button fx:id="backButton" layoutX="30.0" layoutY="30.0"
+            mnemonicParsing="false" onAction="#dormToMap" stylesheets="@../../styles/buttons.css" />
+    <HBox alignment="CENTER_RIGHT" layoutX="980.0" layoutY="30.0"
+          spacing="10.0" prefWidth="300.0" prefHeight="55.0">
+        <padding>
+            <Insets right="30.0"/>
+        </padding>
+        <ImageView fitHeight="55.0" fitWidth="55.0">
+            <Image url="@../../resource/icecream.png" />
+        </ImageView>
+        <Label fx:id="iceCreamLabel" text="000000" textFill="azure">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+    </HBox>
+</AnchorPane>

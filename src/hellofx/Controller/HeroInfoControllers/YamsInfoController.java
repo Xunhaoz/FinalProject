@@ -56,8 +56,8 @@ public class YamsInfoController {
 
     public void levelUp() {
         if (Yams.level < 9) {
-            CoinSoundController.soundPlay();
             if (MarketController.iceCreamNum >= levelUpCost && MarketController.iceCreamNum > 0){
+                CoinSoundController.soundPlay();
                 Yams.Levelup();
                 MarketController.iceCreamNum -= levelUpCost;
                 levelUpCost += 105;
@@ -92,7 +92,7 @@ public class YamsInfoController {
     public void turnRight() {
         yamsInfo ++;
 
-        if (yamsInfo % 4 == 0) {
+        if (abs(yamsInfo) % 4 == 0) {
             pic.setImage(new Image("hellofx\\resource\\roleInfo\\yamsInfo.png"));
             hpBar.setProgress(0.5);
             atkBar.setProgress(0.5);
@@ -100,33 +100,37 @@ public class YamsInfoController {
             atkDistance.setProgress(0.5);
             createEnergy.setProgress(0.5);
             cdBar.setProgress(0.5);
+            yamStory.setText("Hint: 點擊角色左右的箭頭，查看每隻紫薯的介紹！");
         }
         else if (abs(yamsInfo) % 4 == 1) {
             pic.setImage(new Image("hellofx\\resource\\roleInfo\\excellentYamInfo.png"));
-            hpBar.setProgress(0.5);
-            atkBar.setProgress(0.2);
-            speedBar.setProgress(0.2);
-            atkDistance.setProgress(0.2);
-            createEnergy.setProgress(0.5);
-            cdBar.setProgress(0.5);
+            hpBar.setProgress(0.42);
+            atkBar.setProgress(0.7);
+            speedBar.setProgress(0.42);
+            atkDistance.setProgress(1.0);
+            createEnergy.setProgress(0.57);
+            cdBar.setProgress(0.42);
+            yamStory.setText("高級紫薯：神獸珍貴般的存在，讓天選之雞們打遍天下無敵手。");
         }
         else if (abs(yamsInfo) % 4 == 2) {
             pic.setImage(new Image("hellofx\\resource\\roleInfo\\regularYamInfo.png"));
-            hpBar.setProgress(0.4);
-            atkBar.setProgress(0.5);
-            speedBar.setProgress(0.5);
-            atkDistance.setProgress(0.5);
-            createEnergy.setProgress(0.5);
-            cdBar.setProgress(0.5);
+            hpBar.setProgress(0.7);
+            atkBar.setProgress(0.57);
+            speedBar.setProgress(0.7);
+            atkDistance.setProgress(0.85);
+            createEnergy.setProgress(0.57);
+            cdBar.setProgress(0.42);
+            yamStory.setText("普通紫薯：菜雞雞品尚可，期中期末給菜雞們補補雞血。");
         }
         else if (abs(yamsInfo) % 4 == 3) {
             pic.setImage(new Image("hellofx\\resource\\roleInfo\\badYamInfo.png"));
-            hpBar.setProgress(0.5);
-            atkBar.setProgress(0.5);
-            speedBar.setProgress(0.5);
-            atkDistance.setProgress(0.6);
-            createEnergy.setProgress(0.5);
-            cdBar.setProgress(0.5);
+            hpBar.setProgress(0.28);
+            atkBar.setProgress(0.14);
+            speedBar.setProgress(0.85);
+            atkDistance.setProgress(0.42);
+            createEnergy.setProgress(0.57);
+            cdBar.setProgress(0.42);
+            yamStory.setText("混混紫薯：擁有此紫薯乃小菜雞之人生大不幸，哀哉哀哉。");
         }
     }
 
@@ -145,32 +149,32 @@ public class YamsInfoController {
         }
         else if (abs(yamsInfo) % 4 == 1) {
             pic.setImage(new Image("hellofx\\resource\\roleInfo\\excellentYamInfo.png"));
-            hpBar.setProgress(0.5);
-            atkBar.setProgress(0.2);
-            speedBar.setProgress(0.2);
-            atkDistance.setProgress(0.2);
-            createEnergy.setProgress(0.5);
-            cdBar.setProgress(0.5);
+            hpBar.setProgress(0.42);
+            atkBar.setProgress(0.7);
+            speedBar.setProgress(0.42);
+            atkDistance.setProgress(1.0);
+            createEnergy.setProgress(0.57);
+            cdBar.setProgress(0.42);
             yamStory.setText("高級紫薯：神獸珍貴般的存在，讓天選之雞們打遍天下無敵手。");
         }
         else if (abs(yamsInfo) % 4 == 2) {
             pic.setImage(new Image("hellofx\\resource\\roleInfo\\regularYamInfo.png"));
-            hpBar.setProgress(0.4);
-            atkBar.setProgress(0.5);
-            speedBar.setProgress(0.5);
-            atkDistance.setProgress(0.5);
-            createEnergy.setProgress(0.5);
-            cdBar.setProgress(0.5);
+            hpBar.setProgress(0.7);
+            atkBar.setProgress(0.57);
+            speedBar.setProgress(0.7);
+            atkDistance.setProgress(0.85);
+            createEnergy.setProgress(0.57);
+            cdBar.setProgress(0.42);
             yamStory.setText("普通紫薯：菜雞雞品尚可，期中期末給菜雞們補補雞血。");
         }
         else if (abs(yamsInfo) % 4 == 3) {
             pic.setImage(new Image("hellofx\\resource\\roleInfo\\badYamInfo.png"));
-            hpBar.setProgress(0.5);
-            atkBar.setProgress(0.5);
-            speedBar.setProgress(0.5);
-            atkDistance.setProgress(0.6);
-            createEnergy.setProgress(0.5);
-            cdBar.setProgress(0.5);
+            hpBar.setProgress(0.28);
+            atkBar.setProgress(0.14);
+            speedBar.setProgress(0.85);
+            atkDistance.setProgress(0.42);
+            createEnergy.setProgress(0.57);
+            cdBar.setProgress(0.42);
             yamStory.setText("混混紫薯：擁有此紫薯乃小菜雞之人生大不幸，哀哉哀哉。");
         }
     }

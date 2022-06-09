@@ -12,6 +12,7 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
       prefHeight="720.0" prefWidth="1280.0" spacing="10.0" xmlns="http://javafx.com/javafx/16"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellofx.Controller.RouteController">
@@ -19,12 +20,68 @@
         <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../../resource/regularBackground.png" />
         </ImageView>
-        <Label text="這裡是開發資訊">
-            <font>
-                <Font size="36.0" />
-            </font>
-        </Label>
-        <Button fx:id="backButton" layoutX="30.0" layoutY="630.0" mnemonicParsing="false" onAction="#infoToSetting"
+        <HBox alignment="TOP_CENTER" prefWidth="1280.0" prefHeight="720.0">
+            <padding>
+                <Insets top="90.0" bottom="575"/>
+            </padding>
+            <HBox alignment="CENTER" prefHeight="55.0" prefWidth="500" style="-fx-background-radius: 30.0; -fx-background-color: rgba(3,3,3,0.36);">
+                <Label textFill="azure" text="開發資訊" alignment="CENTER" >
+                    <font>
+                        <Font size="36.0"/>
+                    </font>
+                </Label>
+            </HBox>
+        </HBox>
+        <VBox alignment="CENTER" prefWidth="1280.0" prefHeight="720.0" spacing="20.0">
+            <ImageView>
+                <Image url="@../../resource/punkin.png"/>
+            </ImageView>
+            <HBox alignment="CENTER" prefWidth="1280.0" spacing="155.0">
+                <Label text="許弘奕" alignment="CENTER">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+                <Label text="陳俊宇" alignment="CENTER">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+                <Label text="張勛皓" alignment="CENTER">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+                <Label text="吳珮宜" alignment="CENTER">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+            </HBox>
+            <HBox alignment="CENTER" prefWidth="1280.0" spacing="105.0">
+                <Label text="110502009" alignment="CENTER">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+                <Label text="110502534" alignment="CENTER">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+                <Label text="110502528" alignment="CENTER">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+                <Label text="109102516" alignment="CENTER">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+            </HBox>
+        </VBox>
+        <Button fx:id="backButton" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#infoToSetting"
                 stylesheets="@../../styles/buttons.css" />
     </AnchorPane>
 </VBox>

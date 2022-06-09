@@ -12,10 +12,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class TaB extends Role{
     public TaB(int x, int y) {
         super(x, y);
-        this.health = 580;
+        this.health = 420;
         this.attack = 8;
         this.CD = 1;
-        this.speed = 10;
+        this.speed = 27;
         this.cost = 50;
         walkImagesArray = new ArrayList<>();
         attackImagesArray = new ArrayList<>();
@@ -34,7 +34,7 @@ public class TaB extends Role{
         if (this.preStatus == 1) return;
         timeline.stop();
         AtomicInteger count = new AtomicInteger(randomInt.nextInt(3));
-        timeline = new Timeline(new KeyFrame(Duration.millis(150), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(125), e -> {
             imageView.setImage(walkImagesArray.get((count.getAndIncrement()) % walkImagesArray.size()));
             this.imageView.setY(this.y);
             this.imageView.setX(this.x);
@@ -49,7 +49,7 @@ public class TaB extends Role{
         if (this.preStatus == 2) return;
         timeline.stop();
         AtomicInteger count = new AtomicInteger(1);
-        timeline = new Timeline(new KeyFrame(Duration.millis(95), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(90), e -> {
             if(count.get()%3 == 0) canAttack = true;
             imageView.setImage(attackImagesArray.get((count.getAndIncrement()) % attackImagesArray.size()));
         }));

@@ -18,12 +18,12 @@ public class ErhuInfoController {
 
     @FXML
     public void initialize() throws IOException {
-        hpBar.setProgress(1.0);
-        atkBar.setProgress(0.2);
-        speedBar.setProgress(0.2);
-        atkDistance.setProgress(0.2);
-        dropEnergy.setProgress(0.5);
-        dropMoney.setProgress(0.2);
+        hpBar.setProgress(0.67);
+        atkBar.setProgress(0.83);
+        speedBar.setProgress(0.67);
+        atkDistance.setProgress(0.14);
+        dropEnergy.setProgress(0.67);
+        dropMoney.setProgress(0.67);
     }
 
     public void backToAd()  throws IOException {

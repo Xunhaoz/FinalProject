@@ -128,6 +128,13 @@
                             <Font size="28.0"/>
                         </font>
                     </Label>
+                    <VBox alignment="CENTER" prefWidth="380" prefHeight="300">
+                        <Label text="未知，可能是造原子彈" textFill="azure">
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                        </Label>
+                    </VBox>
                 </VBox>
             </HBox>
         </VBox>

@@ -63,29 +63,29 @@ public class Yams extends Role {
 
     public Yams(int x, int y, int characteristic) {
         super(x, y);
-        this.CD = 1;
+        this.CD = 8;
 
-        this.cost = 200;
+        this.cost = 225;
         getResource();
         this.characteristic = characteristic;
         this.imageView = new ImageView(allWalkImagesArray.get(this.characteristic).get(0));
         if (this.characteristic == 0) {
             this.x = x;
-            this.health = 400;
-            this.attack = 3;
-            this.speed = 20;
+            this.health = 50 + level;
+            this.attack = 2 + level;
+            this.speed = 18;
         }
         else if (this.characteristic == 1) {
             this.x = x-184;
-            this.health = 1600;
-            this.attack = 120;
-            this.speed = 5;
+            this.health = 148 + level * 19;
+            this.attack = 26 + level * 5;
+            this.speed = 12;
         }
         else if (this.characteristic == 2) {
             this.x = x-120;
-            this.health = 2000;
-            this.attack = 25;
-            this.speed = 10;
+            this.health = 360 + level * 12;
+            this.attack = 15 + level * 3;
+            this.speed = 14;
         }
         imageView.setX(this.x);
         imageView.setY(this.y);
@@ -131,5 +131,72 @@ public class Yams extends Role {
         } else if (this.status == 3) {
             die();
         }
+    }
+
+    public void lag() {
+        this.x += 20;
+        timeline.stop();
+        canControll = false;
+        timeline = new Timeline();
+        for (int i = 0; i < 25; i++) {
+            KeyFrame keyFrame;
+            if (i == 0) {
+                keyFrame = new KeyFrame(new Duration(1800), e -> {
+                    canControll = false;
+                });
+            } else if (i == 24) {
+                keyFrame = new KeyFrame(new Duration(150 * i), e -> {
+                    canControll = true;
+                    status = 4;
+                });
+            } else if (i % 2 == 0) {
+                keyFrame = new KeyFrame(new Duration(150 * i), e -> {
+                    this.x -= 5;
+                    imageView.setX(this.x);
+                });
+            } else {
+                keyFrame = new KeyFrame(new Duration(150 * i), e -> {
+                    this.x += 5;
+                    imageView.setX(this.x);
+                });
+            }
+            timeline.getKeyFrames().add(keyFrame);
+        }
+        timeline.play();
+    }
+
+    public void knockBack() {
+        timeline.stop();
+        canControll = false;
+        timeline = new Timeline();
+        for (int i = 0; i < 25; i++) {
+            KeyFrame keyFrame;
+            if (i == 0) {
+                keyFrame = new KeyFrame(new Duration(25), e -> {
+                    canControll = false;
+                });
+            } else if (i == 24) {
+                keyFrame = new KeyFrame(new Duration(25 * i), e -> {
+                    canControll = true;
+                    status = 4;
+                });
+            } else if (i < 12) {
+                keyFrame = new KeyFrame(new Duration(25 * i), e -> {
+                    this.x += 5;
+                    this.y -= 6;
+                    imageView.setX(this.x);
+                    imageView.setY(this.y);
+                });
+            } else {
+                keyFrame = new KeyFrame(new Duration(25 * i), e -> {
+                    this.x += 5;
+                    this.y +=6;
+                    imageView.setX(this.x);
+                    imageView.setY(this.y);
+                });
+            }
+            timeline.getKeyFrames().add(keyFrame);
+        }
+        timeline.play();
     }
 }

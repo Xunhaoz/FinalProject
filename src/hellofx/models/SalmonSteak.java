@@ -18,10 +18,10 @@ public class SalmonSteak extends Role {
 
     public SalmonSteak(int x, int y) {
         super(x, y);
-        this.health = 1500;
-        this.attack = 20;
-        this.CD = 1;
-        this.speed = 5;
+        this.health = 540 + level * 55;
+        this.attack = 5 + level;
+        this.CD = 6;
+        this.speed = 13;
         this.cost = 100;
         walkImagesArray = new ArrayList<>();
         attackImagesArray = new ArrayList<>();
@@ -52,7 +52,7 @@ public class SalmonSteak extends Role {
         if (this.preStatus == 1) return;
         timeline.stop();
         AtomicInteger count = new AtomicInteger(randomInt.nextInt(5));
-        timeline = new Timeline(new KeyFrame(Duration.millis(300), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(200), e -> {
             int jheight = (count.getAndIncrement()) % walkImagesArray.size();
             imageView.setImage(walkImagesArray.get(jheight));
             this.imageView.setY(this.y + jheight * 5);
@@ -76,5 +76,70 @@ public class SalmonSteak extends Role {
         timeline.play();
     }
 
+    public void lag() {
+        this.x += 20;
+        timeline.stop();
+        canControll = false;
+        timeline = new Timeline();
+        for (int i = 0; i < 25; i++) {
+            KeyFrame keyFrame;
+            if (i == 0) {
+                keyFrame = new KeyFrame(new Duration(1800), e -> {
+                    canControll = false;
+                });
+            } else if (i == 24) {
+                keyFrame = new KeyFrame(new Duration(150 * i), e -> {
+                    canControll = true;
+                    status = 4;
+                });
+            } else if (i % 2 == 0) {
+                keyFrame = new KeyFrame(new Duration(150 * i), e -> {
+                    this.x -= 5;
+                    imageView.setX(this.x);
+                });
+            } else {
+                keyFrame = new KeyFrame(new Duration(150 * i), e -> {
+                    this.x += 5;
+                    imageView.setX(this.x);
+                });
+            }
+            timeline.getKeyFrames().add(keyFrame);
+        }
+        timeline.play();
+    }
 
+    public void knockBack() {
+        timeline.stop();
+        canControll = false;
+        timeline = new Timeline();
+        for (int i = 0; i < 25; i++) {
+            KeyFrame keyFrame;
+            if (i == 0) {
+                keyFrame = new KeyFrame(new Duration(25), e -> {
+                    canControll = false;
+                });
+            } else if (i == 24) {
+                keyFrame = new KeyFrame(new Duration(25 * i), e -> {
+                    canControll = true;
+                    status = 4;
+                });
+            } else if (i < 12) {
+                keyFrame = new KeyFrame(new Duration(25 * i), e -> {
+                    this.x += 5;
+                    this.y -= 6;
+                    imageView.setX(this.x);
+                    imageView.setY(this.y);
+                });
+            } else {
+                keyFrame = new KeyFrame(new Duration(25 * i), e -> {
+                    this.x += 5;
+                    this.y +=6;
+                    imageView.setX(this.x);
+                    imageView.setY(this.y);
+                });
+            }
+            timeline.getKeyFrames().add(keyFrame);
+        }
+        timeline.play();
+    }
 }

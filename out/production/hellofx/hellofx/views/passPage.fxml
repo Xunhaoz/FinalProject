@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="hellofx.Controller.passPageController"
+            prefHeight="720.0" prefWidth="1280.0">
+    <ImageView fitHeight="720.0" fitWidth="1280.0">
+        <Image url="@../resource/pass.png"/>
+    </ImageView>
+    <VBox alignment="CENTER" prefHeight="720.0" prefWidth="1280.0" spacing="20.0">
+        <padding>
+            <Insets top="150.0" left="350.0" right="350.0"/>
+        </padding>
+        <Label fx:id="label" visible="false">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="textField" prefHeight="30.0" prefWidth="100.0" promptText="在這裡輸入導師密碼卡">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </TextField>
+        <HBox spacing="320.0">
+            <Button fx:id="button" text="開始選課" onAction="#passToLevel" visible="false" mnemonicParsing="false"
+                    style="-fx-background-color: #e1f8ff; -fx-border-color: #8bb9ff; -fx-border-radius: 10; -fx-background-radius: 10;
+                    -fx-effect: dropshadow( three-pass-box , rgba(26,23,23,0.32) , 2, 5, 2 , 3);">
+                <font>
+                    <Font size="24.0"/>
+                </font>
+            </Button>
+            <Button text="確認送出" onAction="#submitPassword" mnemonicParsing="false"
+                    style="-fx-background-color: #e1f8ff; -fx-border-color: #8bb9ff; -fx-border-radius: 10; -fx-background-radius: 10;
+                    -fx-effect: dropshadow( three-pass-box , rgba(26,23,23,0.32) , 2, 5, 2 , 3);">
+                <font>
+                    <Font size="24.0"/>
+                </font>
+            </Button>
+        </HBox>
+    </VBox>
+    <Button fx:id="backButton" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#passToMap" stylesheets="@../styles/buttons.css" />
+</AnchorPane>

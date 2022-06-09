@@ -31,6 +31,26 @@
                     <Insets top="3.0" />
                 </VBox.margin>
             </ProgressBar>
+            <HBox layoutY="560" alignment="BOTTOM_CENTER" prefHeight="160.0" prefWidth="1280.0" spacing="25.0">
+                <padding>
+                    <Insets bottom="10.0"/>
+                </padding>
+                <Label text="50" textFill="azure" prefWidth="120.0" alignment="CENTER">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Label>
+                <Label text="100" textFill="azure" prefWidth="120.0" alignment="CENTER">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Label>
+                <Label text="225" textFill="azure" prefWidth="120.0" alignment="CENTER">
+                    <font>
+                        <Font size="20.0"/>
+                    </font>
+                </Label>
+            </HBox>
             <HBox alignment="BOTTOM_CENTER" layoutY="545.0" prefHeight="175.0" prefWidth="1280.0" spacing="250">
                 <Button styleClass="button" stylesheets="@../../styles/buttons.css"
                         mnemonicParsing="false" onAction="#economic" prefHeight="175.0">
@@ -90,6 +110,25 @@
                     </graphic>
                 </Button>
             </HBox>
+            <HBox layoutY="670" alignment="BOTTOM_LEFT" prefHeight="40.0" prefWidth="200.0">
+                <padding>
+                    <Insets left="20.0" bottom="5.0"/>
+                </padding>
+                <HBox style="-fx-background-color: rgba(3,3,3,0.2); -fx-background-radius: 0.0 0.0 90.0 90.0;">
+                    <Label fx:id="ecoLvpNeed" text="000" textFill="azure" prefWidth="155.0" alignment="CENTER">
+                        <font>
+                            <Font size="28.0"/>
+                        </font>
+                    </Label>
+                </HBox>
+            </HBox>
+            <HBox layoutY="30.0" alignment="CENTER" prefHeight="55" prefWidth="1280.0">
+                <Label fx:id="hint" text="HINT" visible="false">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+            </HBox>
             <Button fx:id="backButton" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#levelOneToLevel" stylesheets="@../../styles/buttons.css" />
             <HBox alignment="CENTER" layoutX="980.0" layoutY="30.0" spacing="10.0">
                 <ImageView fitHeight="55.0" fitWidth="55.0">
@@ -123,5 +162,4 @@
             </HBox>
         </children>
     </AnchorPane>
-
 </VBox>

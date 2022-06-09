@@ -12,10 +12,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class TaA extends Role{
     public TaA(int x, int y) {
         super(x, y);
-        this.health = 180;
-        this.attack = 15;
+        this.health = 310;
+        this.attack = 22;
         this.CD = 1;
-        this.speed = 8;
+        this.speed = 14;
         this.cost = 50;
         walkImagesArray = new ArrayList<>();
         attackImagesArray = new ArrayList<>();

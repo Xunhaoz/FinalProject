@@ -96,7 +96,7 @@
                         <Font size="28.0"/>
                     </font>
                 </Label>
-                <Label text="令菜雞們聞風喪膽的可怕夢魘。每當有新的一批菜雞們登入央央帝國，他就會設下六次危機，阻礙菜雞們前進的道路。挑戰失敗的菜雞們就必須與滑龍爺爺「重修就好｣，進入無限循環的危機煉獄。" textFill="azure" wrapText="true">
+                <Label text="原本是居住在「歡樂爺爺星」上的外星人，是棒球的瘋狂愛好者。所以他以製作火箭的技術和一龍馬交換了一套棒球教學影片，將自己的身體改造成一個棒球投手。但始終學不會投球的技巧，腦羞成怒之下把自己的手臂跟球一起丟出去，造成毀天滅地的傷害。" textFill="azure" wrapText="true">
                     <font>
                         <Font size="20.0"/>
                     </font>
@@ -145,7 +145,7 @@
                         <ProgressBar fx:id="atkDistance" prefWidth="200.0"/>
                     </HBox>
                     <HBox prefHeight="20.0" prefWidth="380.0" alignment="CENTER" spacing="10.0">
-                        <Label text="掉落能量：" textFill="azure" prefWidth="100.0">
+                        <Label text="召喚花費：" textFill="azure" prefWidth="100.0">
                             <font>
                                 <Font size="20.0"/>
                             </font>
@@ -153,7 +153,7 @@
                         <ProgressBar fx:id="createEnergy" prefWidth="200.0"/>
                     </HBox>
                     <HBox prefHeight="20.0" prefWidth="380.0" alignment="CENTER" spacing="10.0">
-                        <Label text="掉落金錢：" textFill="azure" prefWidth="100.0">
+                        <Label text="冷卻時間：" textFill="azure" prefWidth="100.0">
                             <font>
                                 <Font size="20.0"/>
                             </font>
@@ -161,7 +161,7 @@
                         <ProgressBar fx:id="cdBar" prefWidth="200.0"/>
                     </HBox>
                 </VBox>
-                <VBox alignment="TOP_CENTER" prefHeight="345.0" prefWidth="400.0" style="-fx-background-color: rgba(49,39,28,0.15); -fx-background-radius: 15.0">
+                <VBox alignment="TOP_CENTER" spacing="10.0" prefHeight="345.0" prefWidth="400.0" style="-fx-background-color: rgba(49,39,28,0.15); -fx-background-radius: 15.0">
                     <padding>
                         <Insets top="20.0" bottom="20.0" left="10.0" right="10.0"/>
                     </padding>
@@ -170,6 +170,16 @@
                             <Font size="28.0"/>
                         </font>
                     </Label>
+                    <VBox alignment="CENTER" prefWidth="380" prefHeight="300">
+                        <padding>
+                            <Insets left="20.0" right="20.0"/>
+                        </padding>
+                        <Label text="身體改造：在攻擊狀態愈久自身攻擊力越高，每次攻擊結束會幫自己回復 12 點的生命值。當離開攻擊狀態後，攻擊力加成將重新計算。" textFill="azure" wrapText="true">
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                        </Label>
+                    </VBox>
                 </VBox>
             </HBox>
         </VBox>

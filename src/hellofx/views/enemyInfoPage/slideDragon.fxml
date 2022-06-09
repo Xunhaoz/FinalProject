@@ -42,11 +42,6 @@
             <ImageView fitWidth="400.0" fitHeight="374.5">
                 <Image url="@../../resource/roleInfo/slideDragonWalking6.png"/>
             </ImageView>
-            <Label text="LEVEL 3" textFill="azure">
-                <font>
-                    <Font size="28.0"/>
-                </font>
-            </Label>
         </VBox>
         <VBox spacing="20.0">
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: rgba(49,39,28,0.15); -fx-background-radius: 20.0">
@@ -123,7 +118,7 @@
                         <ProgressBar fx:id="dropMoney" prefWidth="200.0"/>
                     </HBox>
                 </VBox>
-                <VBox alignment="TOP_CENTER" prefHeight="345.0" prefWidth="400.0" style="-fx-background-color: rgba(49,39,28,0.15); -fx-background-radius: 15.0">
+                <VBox alignment="TOP_CENTER" spacing="10.0" prefHeight="345.0" prefWidth="400.0" style="-fx-background-color: rgba(49,39,28,0.15); -fx-background-radius: 15.0">
                     <padding>
                         <Insets top="20.0" bottom="20.0" left="10.0" right="10.0"/>
                     </padding>
@@ -132,6 +127,21 @@
                             <Font size="28.0"/>
                         </font>
                     </Label>
+                    <VBox alignment="CENTER" prefHeight="265" prefWidth="200.0" spacing="10.0">
+                        <padding>
+                            <Insets left="20.0" right="20.0"/>
+                        </padding>
+                        <Label text="六連擊：一次攻擊會造成6段傷害，每段傷害分別為自身攻擊力的1～6倍。" textFill="azure" wrapText="true">
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                        </Label>
+                        <Label text="越戰越強：生命值扣到自身最大生命值的 1/5 以下時，攻擊力大幅提升。副作用是每次攻擊結束，扣除自身 66 點生命值。" textFill="azure" wrapText="true">
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                        </Label>
+                    </VBox>
                 </VBox>
             </HBox>
         </VBox>

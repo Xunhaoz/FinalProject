@@ -2,6 +2,7 @@ package hellofx.Controller.gameControllers;
 
 import hellofx.Controller.MarketController;
 import hellofx.Controller.MusicControllers.ButtonSoundPlayController;
+import hellofx.Controller.MusicControllers.LANLANRUController;
 import hellofx.Controller.MusicControllers.MusicPlayController;
 import hellofx.Controller.MusicControllers.CoinSoundController;
 import hellofx.Controller.ViewController;
@@ -24,6 +25,9 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class secondLevelController extends LevelController {
+    private boolean working = false;
+    private int ranWork;
+    private int workTime;
     public Button backButton;
     public ProgressBar csieTowerHP;
     public ProgressBar grandpaTowerHP;
@@ -32,6 +36,8 @@ public class secondLevelController extends LevelController {
     public ImageView economicImg;
     public ImageView fastFoodImg;
     public ImageView yamsImg;
+    public Label ecoLvpNeed;
+    public Label hint;
 
     private int money = 500; // need to be modified to 0
     private CSIETower csieTower;
@@ -99,20 +105,19 @@ public class secondLevelController extends LevelController {
             createTaC();
         }
 
-        if (csieTower.getHealth() <= (csieTowerHealth - 1) && enemyCreateRate % 500 == 0) {
-            createDreamBee();
-        }
-
         if (enemyCreateRate % 100 == 0) {
             createTaA();
         } else if (enemyCreateRate % 100 == 20) {
             createTaB();
         } else if (enemyCreateRate % 100 == 30) {
             createTaC();
-        } else if (csieTower.getHealth() <= 5000 && !hasBoss) {
+        } else if (csieTower.getHealth() <= csieTowerHealth * 2 / 3 && !hasBoss) {
             hasBoss = true;
             createDreamBee();
             for (FreshChick freshChick : freshChickAL) freshChick.lag();
+            for (SalmonSteak salmonSteak : salmonSteaksAL) salmonSteak.lag();
+            hint.setText("夢蜂華麗登場，施展催眠鱗粉，讓所有小菜雞和鮭魚排進入睡眠狀態！！！");
+            hint.setVisible(true);
         }
 
         if (csieTower.getHealth() <= 0) {
@@ -137,9 +142,12 @@ public class secondLevelController extends LevelController {
     @FXML
     public void initialize() throws IOException {
         allTimelineStop = false;
+        working = false;
 
         iceCream = 0;
         iceCreamLabel.setText(String.format("%05d", iceCream));
+
+        ecoLvpNeed.setText(String.valueOf(moneyMax / 2));
 
         csieTower = new CSIETower(0, 180);
         grandpaTower = new GrandpaTower(2300, 180);
@@ -147,6 +155,7 @@ public class secondLevelController extends LevelController {
         csieTower.setBounds();
         grandpaTower.setBounds();
 
+        csieTower.chHealth(40000);
         csieTowerHealth = csieTower.getHealth();
         grandpaTowerHealth = grandpaTower.getHealth();
 
@@ -158,15 +167,13 @@ public class secondLevelController extends LevelController {
         moneyLevel = 1;
         labelMax.setText(Integer.toString(moneyMax));
 
-        iceCream = MarketController.iceCreamNum;
-
         levelOneTimeline.setCycleCount(Timeline.INDEFINITE);
         levelOneTimeline.play();
     }
 
     @FXML
     public void createTaA() {
-        int ranInt = (randomInt.nextInt(4) - 2) * 20;
+        int ranInt = (randomInt.nextInt(4) - 2) * 5;
         TaA taA = new TaA(140, 420 + ranInt);
         taAAL.add(taA);
         taA.portal(1);
@@ -176,7 +183,7 @@ public class secondLevelController extends LevelController {
 
     @FXML
     public void createTaB() {
-        int ranInt = (randomInt.nextInt(4) - 2) * 20;
+        int ranInt = (randomInt.nextInt(4) - 2) * 5;
         TaB taB = new TaB(140, 360 + ranInt);
         taBAL.add(taB);
         taB.portal(1);
@@ -186,8 +193,8 @@ public class secondLevelController extends LevelController {
 
     @FXML
     public void createTaC() {
-        int ranInt = (randomInt.nextInt(4) - 2) * 20;
-        TaC taC = new TaC(140, 300 + ranInt);
+        int ranInt = (randomInt.nextInt(4) - 2) * 5;
+        TaC taC = new TaC(140, 290 + ranInt);
         taCAL.add(taC);
         taC.portal(1);
         anchorPane.getChildren().add(taC.getImageview());
@@ -206,10 +213,31 @@ public class secondLevelController extends LevelController {
 
     @FXML
     public void createYams() {
-        if (Integer.parseInt(label.getText()) < 200) return;
-        money -= 200;
+        if (Integer.parseInt(label.getText()) < 225 || !canCreate[0]){
+            if (Integer.parseInt(label.getText()) < 225 && canCreate[0]) hint.setText("能量不足，無法召喚紫薯家族");
+            else hint.setText("紫薯家族冷卻中");
+            hint.setVisible(true);
+            return;
+        }
+        hint.setVisible(false);
+        money -= 225;
         int ranCharacter = randomInt.nextInt(100) % 3;
         Yams yams = new Yams(2300, 355 + (randomInt.nextInt(4) - 2) * 10, ranCharacter);
+        if (ranCharacter == 0) {
+            hint.setText("場上的小菜雞被混混紫薯帶壞，生命值和攻擊力大幅減少");
+            hint.setVisible(true);
+            for (FreshChick freshChick : freshChickAL) freshChick.addBuff(-50, -10);
+        }
+        else if (ranCharacter == 1) {
+            hint.setText("九天玄女唯一指定高級紫薯降肉，小菜雞生命值和攻擊力大幅增加");
+            hint.setVisible(true);
+            for (FreshChick freshChick : freshChickAL) freshChick.addBuff(200, 10);
+        }
+        else {
+            hint.setText("場上的小菜雞收到普通紫薯的歐趴糖，生命值和攻擊力小幅增加");
+            hint.setVisible(true);
+            for (FreshChick freshChick : freshChickAL) freshChick.addBuff(100, 8);
+        }
         String[] yamsName = {"badRoll", "excellentRoll", "regularRoll", "yamsRoll"};
         Timeline yamsTimeline = new Timeline();
         for (int i = 1; i < 12; i++) {
@@ -232,55 +260,67 @@ public class secondLevelController extends LevelController {
         yams.setBounds();
         Timeline CDtimeline = new Timeline();
         KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO, e->{canCreate[0] = false;});
-        KeyFrame endKeyFrame = new KeyFrame(new Duration(yams.getCD()*1000), e->{canCreate[0] = true;});
+        KeyFrame endKeyFrame = new KeyFrame(new Duration(yams.getCD()*200), e->{canCreate[0] = true;});
         CDtimeline.getKeyFrames().addAll(startKeyFrame, endKeyFrame);
         CDtimeline.play();
     }
 
     @FXML
     public void creatXunhaoz() {
-        if (Integer.parseInt(label.getText()) < 125) {
+        if (Integer.parseInt(label.getText()) < 275 || !canCreate[1]) {
+            if (Integer.parseInt(label.getText()) < 275 && canCreate[1]) hint.setText("能量不足，無法召喚勛號列車");
+            else hint.setText("勛號列車冷卻中");
+            hint.setVisible(true);
             return;
         }
-        money -= 125;
-        int ranInt = (randomInt.nextInt(4) - 2) * 20;
-        Xunhaoz xunhaoz = new Xunhaoz(2300, 415 + ranInt);
+        hint.setVisible(false);
+        money -= 275;
+        int ranInt = (randomInt.nextInt(4) - 2) * 5;
+        Xunhaoz xunhaoz = new Xunhaoz(2300, 420 + ranInt);
         xunhaozAL.add(xunhaoz);
         xunhaoz.portal(1);
         anchorPane.getChildren().add(xunhaoz.getImageview());
         xunhaoz.setBounds();
         Timeline CDtimeline = new Timeline();
         KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO, e->{canCreate[1] = false;});
-        KeyFrame endKeyFrame = new KeyFrame(new Duration(xunhaoz.getCD()*1000), e->{canCreate[1] = true;});
+        KeyFrame endKeyFrame = new KeyFrame(new Duration(xunhaoz.getCD()*200), e->{canCreate[1] = true;});
         CDtimeline.getKeyFrames().addAll(startKeyFrame, endKeyFrame);
         CDtimeline.play();
     }
 
     @FXML
     public void createFreshChick() {
-        if (Integer.parseInt(label.getText()) < 50) {
+        if (Integer.parseInt(label.getText()) < 50 || !canCreate[2]) {
+            if (Integer.parseInt(label.getText()) < 50 && canCreate[2]) hint.setText("能量不足，無法召喚小菜雞");
+            else hint.setText("小菜雞冷卻中");
+            hint.setVisible(true);
             return;
         }
+        hint.setVisible(false);
         money -= 50;
-        int ranInt = (randomInt.nextInt(4) - 2) * 20;
-        FreshChick freshChick = new FreshChick(2300, 415 + ranInt);
+        int ranInt = (randomInt.nextInt(4) - 2) * 5;
+        FreshChick freshChick = new FreshChick(2300, 420 + ranInt);
         freshChickAL.add(freshChick);
         freshChick.portal(1);
         anchorPane.getChildren().add(freshChick.getImageview());
         freshChick.setBounds();
         Timeline CDtimeline = new Timeline();
         KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO, e->{canCreate[2] = false;});
-        KeyFrame endKeyFrame = new KeyFrame(new Duration(freshChick.getCD()*1000), e->{canCreate[2] = true;});
+        KeyFrame endKeyFrame = new KeyFrame(new Duration(freshChick.getCD()*200), e->{canCreate[2] = true;});
         CDtimeline.getKeyFrames().addAll(startKeyFrame, endKeyFrame);
         CDtimeline.play();
     }
 
     @FXML
     public void createAlienThrowingHand() {
-        if (Integer.parseInt(label.getText()) < 300) {
+        if (Integer.parseInt(label.getText()) < 425 || !canCreate[3]) {
+            if (Integer.parseInt(label.getText()) < 425 && canCreate[3]) hint.setText("能量不足，無法召喚外星「投手」");
+            else hint.setText("外星「投手」冷卻中");
+            hint.setVisible(true);
             return;
         }
-        money -= 300;
+        hint.setVisible(false);
+        money -= 425;
         int ranInt = (randomInt.nextInt(4) - 2) * 5;
         AlienThrowingHand alienThrowingHand = new AlienThrowingHand(1900, 60 + ranInt);
         alienThrowingHand.portal(1);
@@ -290,26 +330,30 @@ public class secondLevelController extends LevelController {
 
         Timeline CDtimeline = new Timeline();
         KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO, e->{canCreate[3] = false;});
-        KeyFrame endKeyFrame = new KeyFrame(new Duration(alienThrowingHand.getCD()*1000), e->{canCreate[3] = true;});
+        KeyFrame endKeyFrame = new KeyFrame(new Duration(alienThrowingHand.getCD()*200), e->{canCreate[3] = true;});
         CDtimeline.getKeyFrames().addAll(startKeyFrame, endKeyFrame);
         CDtimeline.play();
     }
 
     @FXML
     public void createSalmonSteak() {
-        if (Integer.parseInt(label.getText()) < 100) {
+        if (Integer.parseInt(label.getText()) < 100 || !canCreate[4]) {
+            if (Integer.parseInt(label.getText()) < 100 && canCreate[4]) hint.setText("能量不足，無法召喚鮭魚排");
+            else hint.setText("鮭魚排冷卻中");
+            hint.setVisible(true);
             return;
         }
+        hint.setVisible(false);
         money -= 100;
         int ranInt = (randomInt.nextInt(4) - 2) * 5;
-        SalmonSteak salmonSteak = new SalmonSteak(2300, 320 + ranInt);
+        SalmonSteak salmonSteak = new SalmonSteak(2300, 340 + ranInt);
         salmonSteaksAL.add(salmonSteak);
         salmonSteak.portal(1);
         anchorPane.getChildren().add(salmonSteak.getImageview());
         salmonSteak.setBounds();
         Timeline CDtimeline = new Timeline();
         KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO, e->{canCreate[4] = false;});
-        KeyFrame endKeyFrame = new KeyFrame(new Duration(salmonSteak.getCD()*1000), e->{canCreate[4] = true;});
+        KeyFrame endKeyFrame = new KeyFrame(new Duration(salmonSteak.getCD()*200), e->{canCreate[4] = true;});
         CDtimeline.getKeyFrames().addAll(startKeyFrame, endKeyFrame);
         CDtimeline.play();
     }
@@ -422,7 +466,7 @@ public class secondLevelController extends LevelController {
         for (int i = 0; i < xunhaozAL.size(); i++) {
             Xunhaoz xunhaoz = xunhaozAL.get(i);
 
-            if (xunhaoz.getHealth() < 0 || allTimelineStop) {
+            if (xunhaoz.getHealth() < 0 || allTimelineStop || xunhaoz.getX() == -200) {
 
                 xunhaoz.portal(3);
 
@@ -432,12 +476,29 @@ public class secondLevelController extends LevelController {
                     alienAL.remove(i);
                 }
             } else if (xunhaoz.getBounds().intersects(csieTower.getBounds())) {
+                if (working && enemyCreateRate > workTime + 20) ranWork = randomInt.nextInt(100) % 3;
+                if (enemyCreateRate > workTime + 24) working = false;
 
-                if (randomInt.nextInt(3) % 3 != 0) xunhaoz.portal(2);
-                else xunhaoz.portal(1);
+                if (ranWork == 0) {
+                    if(!working) workTime = enemyCreateRate;
+                    working = true;
+                }
+                else {
+                    working = false;
+                }
+
+                if (working) xunhaoz.portal(2);
+                else {
+                    hint.setText("勛號列車什麼都沒做，恭喜你浪費了 275 點「歡樂爺爺速食能量」");
+                    hint.setVisible(true);
+                    xunhaoz.portal(1);
+                }
 
                 if (xunhaoz.getCanAttack()) {
-                    csieTower.minusHealth(xunhaoz.getATK() * (randomInt.nextInt(10) + 1));
+                    int buff = randomInt.nextInt(3) + 1;
+                    csieTower.minusHealth(xunhaoz.getATK() * buff);
+                    hint.setText("勛號列車做事了，對「CSIE喵喵塔」造成 " + String.valueOf(xunhaoz.getATK() * buff) + " 點傷害");
+                    hint.setVisible(true);
                     xunhaoz.initCanAttack();
                 }
             } else {
@@ -685,8 +746,8 @@ public class secondLevelController extends LevelController {
                     anchorPane.getChildren().remove(taA.getImageview());
                     taA.stopTimeline();
                     taAAL.remove(i);
-                    iceCream += 25;
-                    money += 20;
+                    iceCream += 50;
+                    money += 50;
                 }
             } else if (taA.getBounds().intersects(grandpaTower.getBounds())) {
                 taA.portal(2);
@@ -760,7 +821,7 @@ public class secondLevelController extends LevelController {
                     taB.stopTimeline();
                     taBAL.remove(i);
                     iceCream += 125;
-                    money += 100;
+                    money += 150;
                 }
             } else if (taB.getBounds().intersects(grandpaTower.getBounds())) {
                 taB.portal(2);
@@ -834,8 +895,8 @@ public class secondLevelController extends LevelController {
                     anchorPane.getChildren().remove(taC.getImageview());
                     taC.stopTimeline();
                     taCAL.remove(i);
-                    iceCream += 250;
-                    money += 400;
+                    iceCream += 555;
+                    money += 500;
                 }
             } else if (taC.getBounds().intersects(grandpaTower.getBounds())) {
                 taC.portal(2);
@@ -909,7 +970,7 @@ public class secondLevelController extends LevelController {
                     anchorPane.getChildren().remove(dreamBee.getImageview());
                     dreamBee.stopTimeline();
                     dreamBeeAL.remove(i);
-                    iceCream += 500;
+                    iceCream += 12700;
                     money += 1000;
                 }
             } else if (dreamBee.getBounds().intersects(grandpaTower.getBounds())) {
@@ -927,10 +988,12 @@ public class secondLevelController extends LevelController {
                         dreamBee.portal(2);
                         if (dreamBee.getCanAttack()) {
                             freshChick.minusHealth(dreamBee.getATK());
-                            if (randomInt.nextInt(200) % 95 == 0) {
-                                freshChick.minusHealth(dreamBee.getATK());
-                            }
                             dreamBee.initCanAttack();
+                            if (randomInt.nextInt(200) % 97 == 0) {
+                                freshChick.lag();
+                                hint.setText("夢蜂施展催眠鱗粉，讓小菜雞進入睡眠狀態！");
+                                hint.setVisible(true);
+                            }
                         }
                     }
                 }
@@ -942,10 +1005,12 @@ public class secondLevelController extends LevelController {
                         dreamBee.portal(2);
                         if (dreamBee.getCanAttack()) {
                             salmonSteak.minusHealth(dreamBee.getATK());
-                            if (randomInt.nextInt(200) % 95 == 0) {
-                                salmonSteak.minusHealth(dreamBee.getATK());
-                            }
                             dreamBee.initCanAttack();
+                            if (randomInt.nextInt(200) % 95 == 0) {
+                                salmonSteak.lag();
+                                hint.setText("夢蜂施展催眠鱗粉，讓鮭魚排進入睡眠狀態！");
+                                hint.setVisible(true);
+                            }
                         }
                     }
                 }
@@ -958,10 +1023,15 @@ public class secondLevelController extends LevelController {
                         dreamBee.portal(2);
                         if (dreamBee.getCanAttack()) {
                             yams.minusHealth(dreamBee.getATK());
+                            dreamBee.initCanAttack();
                             if (randomInt.nextInt(200) % 95 == 0) {
                                 yams.minusHealth(dreamBee.getATK());
+                                if (randomInt.nextInt(200) % 97 == 0) {
+                                    yams.lag();
+                                    hint.setText("夢蜂施展催眠鱗粉，讓紫薯進入睡眠狀態！");
+                                    hint.setVisible(true);
+                                }
                             }
-                            dreamBee.initCanAttack();
                         }
                     }
                 }
@@ -975,6 +1045,11 @@ public class secondLevelController extends LevelController {
                         if (dreamBee.getCanAttack()) {
                             alienThrowingHand.minusHealth(dreamBee.getATK());
                             dreamBee.initCanAttack();
+                            if (randomInt.nextInt(200) % 97 == 0) {
+                                alienThrowingHand.lag();
+                                hint.setText("夢蜂施展催眠鱗粉，讓外星投手進入睡眠狀態！");
+                                hint.setVisible(true);
+                            }
                         }
                     }
                 }
@@ -988,16 +1063,25 @@ public class secondLevelController extends LevelController {
 
     @FXML
     public void shootBoom() {
-        if (fastFoodShoot != 10) return;
+        if (fastFoodShoot != 10) {
+            hint.setText("歡樂薯條飛彈冷卻中");
+            hint.setVisible(true);
+            return;
+        }
 
+        hint.setText("歡樂薯條飛彈發射，為你帶來歡樂無限！");
+        hint.setVisible(true);
         ImageView fastFood = new ImageView(new Image("hellofx\\resource\\role\\Hero\\frenchFries.png"));
         fastFood.setFitWidth(350.0);
         fastFood.setFitHeight(75.0);
         long duration = 1000;
-        int minusHealth = 1000;
+        int minusHealth = 800;
         KeyFrame startKey = new KeyFrame(Duration.ZERO, new KeyValue(fastFood.xProperty(), 2210), new KeyValue(fastFood.yProperty(), 250));
         KeyFrame endKey = new KeyFrame(new Duration(duration), new KeyValue(fastFood.xProperty(), -350), new KeyValue(fastFood.yProperty(), 420));
         KeyFrame actKey = new KeyFrame(new Duration(1200), e -> {
+            hint.setText("吃我的大薯條吧！ 藍藍路 ~");
+            hint.setVisible(true);
+            LANLANRUController.LanLanRuPlay();
             anchorPane.getChildren().remove(fastFood);
             for (TaA taA : taAAL) {
                 taA.minusHealth(minusHealth);
@@ -1020,10 +1104,18 @@ public class secondLevelController extends LevelController {
     }
 
     public void economic() {
-        if (moneyLevel > 10 || money < (moneyMax / 2)) return;
+        if (moneyLevel > 10 || money < (moneyMax / 2)) {
+            if (moneyLevel > 10) hint.setText("已達最大等級");
+            else hint.setText("升級所需能量不足");
+            hint.setVisible(true);
+            return;
+        }
+        hint.setText("升級成功");
+        hint.setVisible(true);
         money -= (moneyMax / 2);
         moneyRate++;
         moneyMax += 200;
+        ecoLvpNeed.setText(String.valueOf(moneyMax / 2));
         moneyLevel++;
         economicImg.setImage(new Image("hellofx\\resource\\gameButton\\economy\\economy" + moneyLevel + ".png"));
         labelMax.setText(Integer.toString(moneyMax));

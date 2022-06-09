@@ -65,6 +65,16 @@ public class ViewController {
         nowStageStr = "level" ;
     }
 
+    public static void toPass() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/passPage.fxml")));
+        Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
+        nowStage.setTitle("資工系大戰爭 - 地圖 - 工程五館 - 請輸入導師密碼卡");
+        nowStage.setScene(scene);
+        lastStageStr = nowStageStr;
+        nowStageStr = "level" ;
+    }
+
     public static void toMarket() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(ViewController.class.getResource("../views/maps/marketPage.fxml")));
         Scene scene = new Scene(root);

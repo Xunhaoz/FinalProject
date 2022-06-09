@@ -20,11 +20,11 @@ public class Xunhaoz extends Role {
 
     public Xunhaoz(int x, int y) {
         super(x, y);
-        this.health = 200;
-        this.attack = 34;
-        this.CD = 1;
-        this.speed = 50;
-        this.cost = 50;
+        this.health = 1 + level;
+        this.attack = 125 + level * 6;
+        this.CD = 16;
+        this.speed = 36;
+        this.cost = 250;
         walkImagesArray = new ArrayList<>();
         attackImagesArray = new ArrayList<>();
 

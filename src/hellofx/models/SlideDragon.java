@@ -12,12 +12,13 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class SlideDragon extends Role {
+    private final int atkBase = 110;
     public SlideDragon(int x, int y) {
         super(x, y);
-        this.health = 400;
-        this.attack = 48;
+        this.health = 22610;
+        this.attack = atkBase;
         this.CD = 1;
-        this.speed = 50;
+        this.speed = 7;
         this.cost = 50;
         walkImagesArray = new ArrayList<>();
         attackImagesArray = new ArrayList<>();
@@ -53,13 +54,23 @@ public class SlideDragon extends Role {
         AtomicInteger count = new AtomicInteger(1);
         timeline = new Timeline(new KeyFrame(Duration.millis(400), e -> {
             if (count.get() > attackImagesArray.size()) {
+                if (this.health < 4432) minusHealth(66);
                 count.set(1);
             }
             if (count.get() == 15 && !ThirdLevelController.allTimelineStop) {
                 SlideDragonSoundController.dragonSoundPlay();
             }
-            if (count.get() > 26 && count.get() < 33) {
-                canAttack = true;
+            if (this.health < 4432) {
+                if (count.get() > 26 && count.get() < 33) {
+                    this.attack = atkBase * (count.get() - 22);
+                    canAttack = true;
+                }
+            }
+            else {
+                if (count.get() > 26 && count.get() < 33) {
+                    this.attack = atkBase * (count.get() - 26);
+                    canAttack = true;
+                }
             }
             imageView.setImage(attackImagesArray.get((count.getAndIncrement()) % attackImagesArray.size()));
         }));

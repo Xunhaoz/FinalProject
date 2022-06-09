@@ -3,6 +3,7 @@ package hellofx.Controller.gameControllers;
 
 import hellofx.Controller.MarketController;
 import hellofx.Controller.MusicControllers.ButtonSoundPlayController;
+import hellofx.Controller.MusicControllers.LANLANRUController;
 import hellofx.Controller.MusicControllers.MusicPlayController;
 import hellofx.Controller.MusicControllers.CoinSoundController;
 import hellofx.Controller.ViewController;
@@ -35,6 +36,8 @@ public class FirstLevelController extends LevelController {
     public ImageView economicImg;
     public ImageView fastFoodImg;
     public ImageView yamsImg;
+    public Label ecoLvpNeed;
+    public Label hint;
 
     @FXML
     Label iceCreamLabel;
@@ -102,15 +105,26 @@ public class FirstLevelController extends LevelController {
             createErhu();
         }
 
-        if (enemyCreateRate % 100 == 0) {
+        if (enemyCreateRate % 75 == 0) {
             createTaA();
         } else if (enemyCreateRate % 100 == 20) {
             createTaB();
-        } else if (enemyCreateRate % 100 == 30) {
+        } else if (enemyCreateRate % 200 == 0) {
             createTaC();
         } else if (csieTower.getHealth() < 9500 && !hasBoss) {
             hasBoss = true;
             createErhu();
+            for (SalmonSteak salmonSteak:salmonSteaksAL) {
+                salmonSteak.knockBack();
+            }
+            for (Yams yams:yamsAL) {
+                yams.knockBack();
+            }
+            for (FreshChick freshChick:freshChickAL) {
+                freshChick.knockBack();
+                hint.setText("二胡北北登場，我方所有角色被二胡北北的氣場擊退！");
+                hint.setVisible(true);
+            }
         }
 
         if (csieTower.getHealth() <= 0) {
@@ -155,6 +169,8 @@ public class FirstLevelController extends LevelController {
         iceCream = 0;
         iceCreamLabel.setText(String.format("%05d", iceCream));
 
+        ecoLvpNeed.setText(String.valueOf(moneyMax / 2));
+
         csieTower = new CSIETower(0, 180);
         grandpaTower = new GrandpaTower(1040, 180);
 
@@ -171,8 +187,6 @@ public class FirstLevelController extends LevelController {
 
         moneyLevel = 1;
         labelMax.setText(Integer.toString(moneyMax));
-
-        iceCream = MarketController.iceCreamNum;
 
         levelOneTimeline.setCycleCount(Timeline.INDEFINITE);
         levelOneTimeline.play();
@@ -200,8 +214,8 @@ public class FirstLevelController extends LevelController {
 
     @FXML
     public void createTaC() {
-        int ranInt = (randomInt.nextInt(4) - 2) * 20;
-        TaC taC = new TaC(140, 300 + ranInt);
+        int ranInt = (randomInt.nextInt(4) - 2) * 5;
+        TaC taC = new TaC(140, 290 + ranInt);
         taCAL.add(taC);
         taC.portal(1);
         anchorPane.getChildren().add(taC.getImageview());
@@ -216,18 +230,36 @@ public class FirstLevelController extends LevelController {
         erhu.portal(1);
         anchorPane.getChildren().add(erhu.getImageview());
         erhu.setBounds();
-        for (FreshChick freshChick : freshChickAL) {
-            freshChick.lag();
-        }
     }
 
     @FXML
     public void createYams() {
-        if (Integer.parseInt(label.getText()) < 200 || !canCreate[0]) return;
-        money -= 200;
+        if (Integer.parseInt(label.getText()) < 225 || !canCreate[0]) {
+            if (Integer.parseInt(label.getText()) < 225 && canCreate[2]) hint.setText("能量不足，無法召喚紫薯家族");
+            else hint.setText("紫薯家族冷卻中");
+            hint.setVisible(true);
+            return;
+        }
+        hint.setVisible(false);
+        money -= 225;
 
         int ranCharacter = randomInt.nextInt(100) % 3;
         Yams yams = new Yams(1100, 355 + (randomInt.nextInt(4) - 2) * 10, ranCharacter);
+        if (ranCharacter == 0) {
+            hint.setText("場上的小菜雞被混混紫薯帶壞，生命值和攻擊力大幅減少");
+            hint.setVisible(true);
+            for (FreshChick freshChick : freshChickAL) freshChick.addBuff(-50, -10);
+        }
+        else if (ranCharacter == 1) {
+            hint.setText("九天玄女唯一指定高級紫薯降肉，小菜雞生命值和攻擊力大幅增加");
+            hint.setVisible(true);
+            for (FreshChick freshChick : freshChickAL) freshChick.addBuff(200, 10);
+        }
+        else {
+            hint.setText("場上的小菜雞收到普通紫薯的歐趴糖，生命值和攻擊力小幅增加");
+            hint.setVisible(true);
+            for (FreshChick freshChick : freshChickAL) freshChick.addBuff(100, 8);
+        }
         String[] yamsName = {"badRoll", "excellentRoll", "regularRoll", "yamsRoll"};
         Timeline yamsTimeline = new Timeline();
         for (int i = 1; i < 12; i++) {
@@ -250,7 +282,7 @@ public class FirstLevelController extends LevelController {
         yams.setBounds();
         Timeline CDtimeline = new Timeline();
         KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO, e->{canCreate[0] = false;});
-        KeyFrame endKeyFrame = new KeyFrame(new Duration(yams.getCD()*1000), e->{canCreate[0] = true;});
+        KeyFrame endKeyFrame = new KeyFrame(new Duration(yams.getCD()*200), e->{canCreate[0] = true;});
         CDtimeline.getKeyFrames().addAll(startKeyFrame, endKeyFrame);
         CDtimeline.play();
     }
@@ -258,11 +290,15 @@ public class FirstLevelController extends LevelController {
     @FXML
     public void createFreshChick() {
         if (Integer.parseInt(label.getText()) < 50 || !canCreate[1]) {
+            if (Integer.parseInt(label.getText()) < 50 && canCreate[2]) hint.setText("能量不足，無法召喚小菜雞");
+            else hint.setText("小菜雞冷卻中");
+            hint.setVisible(true);
             return;
         }
+        hint.setVisible(false);
         money -= 50;
-        int ranInt = (randomInt.nextInt(4) - 2) * 20;
-        FreshChick freshChick = new FreshChick(1100, 415 + ranInt);
+        int ranInt = (randomInt.nextInt(4) - 2) * 5;
+        FreshChick freshChick = new FreshChick(1100, 420 + ranInt);
         freshChickAL.add(freshChick);
         freshChick.portal(1);
         anchorPane.getChildren().add(freshChick.getImageview());
@@ -270,7 +306,7 @@ public class FirstLevelController extends LevelController {
 
         Timeline CDtimeline = new Timeline();
         KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO, e->{canCreate[1] = false;});
-        KeyFrame endKeyFrame = new KeyFrame(new Duration(freshChick.getCD()*1000), e->{canCreate[1] = true;});
+        KeyFrame endKeyFrame = new KeyFrame(new Duration(freshChick.getCD()*200), e->{canCreate[1] = true;});
         CDtimeline.getKeyFrames().addAll(startKeyFrame, endKeyFrame);
         CDtimeline.play();
     }
@@ -278,11 +314,15 @@ public class FirstLevelController extends LevelController {
     @FXML
     public void createSalmonSteak() {
         if (Integer.parseInt(label.getText()) < 100 || !canCreate[2]) {
+            if (Integer.parseInt(label.getText()) < 100 &&  canCreate[2]) hint.setText("能量不足，無法召喚鮭魚排");
+            else hint.setText("鮭魚排冷卻中");
+            hint.setVisible(true);
             return;
         }
+        hint.setVisible(false);
         money -= 100;
         int ranInt = (randomInt.nextInt(4) - 2) * 5;
-        SalmonSteak salmonSteak = new SalmonSteak(1100, 320 + ranInt);
+        SalmonSteak salmonSteak = new SalmonSteak(1100, 340 + ranInt);
         salmonSteaksAL.add(salmonSteak);
         salmonSteak.portal(1);
         anchorPane.getChildren().add(salmonSteak.getImageview());
@@ -291,7 +331,7 @@ public class FirstLevelController extends LevelController {
 
         Timeline CDtimeline = new Timeline();
         KeyFrame startKeyFrame = new KeyFrame(Duration.ZERO, e->{canCreate[2] = false;});
-        KeyFrame endKeyFrame = new KeyFrame(new Duration(salmonSteak.getCD()*1000), e->{canCreate[2] = true;});
+        KeyFrame endKeyFrame = new KeyFrame(new Duration(salmonSteak.getCD()*200), e->{canCreate[2] = true;});
         CDtimeline.getKeyFrames().addAll(startKeyFrame, endKeyFrame);
         CDtimeline.play();
     }
@@ -309,7 +349,6 @@ public class FirstLevelController extends LevelController {
     public void statusDetector() {
         for (int i = 0; i < freshChickAL.size(); i++) {
             FreshChick freshChick = freshChickAL.get(i);
-
             if (freshChick.getHealth() < 0 || allTimelineStop) {
 
                 freshChick.portal(3);
@@ -542,8 +581,8 @@ public class FirstLevelController extends LevelController {
                     anchorPane.getChildren().remove(taA.getImageview());
                     taA.stopTimeline();
                     taAAL.remove(i);
-                    iceCream += 25;
-                    money += 20;
+                    iceCream += 50;
+                    money += 50;
                 }
             } else if (taA.getBounds().intersects(grandpaTower.getBounds())) {
                 taA.portal(2);
@@ -604,7 +643,7 @@ public class FirstLevelController extends LevelController {
                     taB.stopTimeline();
                     taBAL.remove(i);
                     iceCream += 125;
-                    money += 100;
+                    money += 150;
                 }
             } else if (taB.getBounds().intersects(grandpaTower.getBounds())) {
                 taB.portal(2);
@@ -664,8 +703,8 @@ public class FirstLevelController extends LevelController {
                     anchorPane.getChildren().remove(taC.getImageview());
                     taC.stopTimeline();
                     taCAL.remove(i);
-                    iceCream += 250;
-                    money += 400;
+                    iceCream += 555;
+                    money += 500;
                 }
             } else if (taC.getBounds().intersects(grandpaTower.getBounds())) {
                 taC.portal(2);
@@ -725,13 +764,13 @@ public class FirstLevelController extends LevelController {
                     anchorPane.getChildren().remove(erhu.getImageview());
                     erhu.stopTimeline();
                     erhuAL.remove(i);
-                    iceCream += 500;
+                    iceCream += 2070;
                     money += 1000;
                 }
             } else if (erhu.getBounds().intersects(grandpaTower.getBounds())) {
                 erhu.portal(2);
                 if (erhu.getCanAttack()) {
-                    grandpaTower.minusHealth(erhu.getATK());
+                    grandpaTower.minusHealth(erhu.getATK() * 2);
                     erhu.initCanAttack();
                 }
             } else {
@@ -743,8 +782,11 @@ public class FirstLevelController extends LevelController {
                         erhu.portal(2);
                         if (erhu.getCanAttack()) {
                             freshChick.minusHealth(erhu.getATK());
-                            if (randomInt.nextInt(200) % 95 == 0) {
-                                freshChick.minusHealth(erhu.getATK());
+                            if (randomInt.nextInt(100) % 17 == 0) {
+                                freshChick.minusHealth(erhu.getATK() * 3);
+                                hint.setText("二胡北北的音樂太美妙，讓小菜雞恍神，被擊退並受到額外暴擊傷害。");
+                                hint.setVisible(true);
+                                freshChick.knockBack();
                             }
                             erhu.initCanAttack();
                         }
@@ -758,8 +800,11 @@ public class FirstLevelController extends LevelController {
                         erhu.portal(2);
                         if (erhu.getCanAttack()) {
                             salmonSteak.minusHealth(erhu.getATK());
-                            if (randomInt.nextInt(200) % 95 == 0) {
-                                salmonSteak.minusHealth(erhu.getATK());
+                            if (randomInt.nextInt(100) % 17 == 0) {
+                                salmonSteak.minusHealth(erhu.getATK() * 3);
+                                hint.setText("二胡北北的音樂太美妙，讓鮭魚排恍神，被擊退並受到額外暴擊傷害。");
+                                hint.setVisible(true);
+                                salmonSteak.knockBack();
                             }
                             erhu.initCanAttack();
                         }
@@ -774,8 +819,11 @@ public class FirstLevelController extends LevelController {
                         erhu.portal(2);
                         if (erhu.getCanAttack()) {
                             yams.minusHealth(erhu.getATK());
-                            if (randomInt.nextInt(200) % 95 == 0) {
-                                yams.minusHealth(erhu.getATK());
+                            if (randomInt.nextInt(100) % 17 == 0) {
+                                yams.minusHealth(erhu.getATK() * 3);
+                                hint.setText("二胡北北的音樂太美妙，讓紫薯恍神，被擊退並受到額外暴擊傷害。");
+                                hint.setVisible(true);
+                                yams.knockBack();
                             }
                             erhu.initCanAttack();
                         }
@@ -789,10 +837,18 @@ public class FirstLevelController extends LevelController {
     }
 
     public void economic() {
-        if (moneyLevel > 10 || money < (moneyMax / 2)) return;
+        if (moneyLevel > 10 || money < (moneyMax / 2)){
+            if (moneyLevel > 10) hint.setText("已達最大等級");
+            else hint.setText("升級所需能量不足");
+            hint.setVisible(true);
+            return;
+        }
+        hint.setText("升級成功");
+        hint.setVisible(true);
         money -= (moneyMax / 2);
         moneyRate++;
         moneyMax += 200;
+        ecoLvpNeed.setText(String.valueOf(moneyMax / 2));
         moneyLevel++;
         economicImg.setImage(new Image("hellofx\\resource\\gameButton\\economy\\economy" + moneyLevel + ".png"));
         labelMax.setText(Integer.toString(moneyMax));
@@ -800,16 +856,25 @@ public class FirstLevelController extends LevelController {
 
     @FXML
     public void shootBoom() {
-        if (fastFoodShoot != 10) return;
+        if (fastFoodShoot != 10) {
+            hint.setText("歡樂薯條飛彈冷卻中");
+            hint.setVisible(true);
+            return;
+        }
 
+        hint.setText("歡樂薯條飛彈發射，為你帶來歡樂無限！");
+        hint.setVisible(true);
         ImageView fastFood = new ImageView(new Image("hellofx\\resource\\role\\Hero\\frenchFries.png"));
         fastFood.setFitWidth(350.0);
         fastFood.setFitHeight(75.0);
         long duration = 600;
-        int minusHealth = 1000;
+        int minusHealth = 500;
         KeyFrame startKey = new KeyFrame(Duration.ZERO, new KeyValue(fastFood.xProperty(), 930), new KeyValue(fastFood.yProperty(), 300));
         KeyFrame endKey = new KeyFrame(new Duration(duration), new KeyValue(fastFood.xProperty(), -350), new KeyValue(fastFood.yProperty(), 420));
         KeyFrame actKey = new KeyFrame(new Duration(800), e -> {
+            hint.setText("吃我的大薯條吧！ 藍藍路 ~");
+            hint.setVisible(true);
+            LANLANRUController.LanLanRuPlay();
             anchorPane.getChildren().remove(fastFood);
             for (TaA taA : taAAL) {
                 taA.minusHealth(minusHealth);

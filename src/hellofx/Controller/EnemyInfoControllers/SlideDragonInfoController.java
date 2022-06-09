@@ -19,11 +19,11 @@ public class SlideDragonInfoController {
     @FXML
     public void initialize() throws IOException {
         hpBar.setProgress(1.0);
-        atkBar.setProgress(0.2);
-        speedBar.setProgress(0.2);
-        atkDistance.setProgress(0.2);
-        dropEnergy.setProgress(0.5);
-        dropMoney.setProgress(0.2);
+        atkBar.setProgress(1.0);
+        speedBar.setProgress(0.17);
+        atkDistance.setProgress(1.0);
+        dropEnergy.setProgress(1.0);
+        dropMoney.setProgress(1.0);
     }
 
     public void backToAd()  throws IOException {

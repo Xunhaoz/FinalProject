@@ -37,18 +37,18 @@ public class xunhaozInfoController {
         levelLabel.setText("LEVEL " + String.format("%02d", Xunhaoz.level + 1));
         levelUpCostLabel.setText(String.format("%04d", levelUpCost));
         iceCreamLabel.setText(String.format("%06d", MarketController.iceCreamNum));
-        hpBar.setProgress(1.0);
-        atkBar.setProgress(0.2);
-        speedBar.setProgress(0.2);
-        atkDistance.setProgress(0.2);
-        createEnergy.setProgress(0.5);
-        cdBar.setProgress(0.2);
+        hpBar.setProgress(0.14);
+        atkBar.setProgress(0.85);
+        speedBar.setProgress(1.0);
+        atkDistance.setProgress(0.14);
+        createEnergy.setProgress(0.85);
+        cdBar.setProgress(0.70);
     }
 
     public void levelUp() {
         if (Xunhaoz.level < 9) {
-            CoinSoundController.soundPlay();
             if (MarketController.iceCreamNum >= levelUpCost && MarketController.iceCreamNum > 0){
+                CoinSoundController.soundPlay();
                 Xunhaoz.Levelup();
                 MarketController.iceCreamNum -= levelUpCost;
                 levelUpCost += 185;

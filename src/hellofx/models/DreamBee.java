@@ -12,8 +12,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DreamBee extends Role {
     public DreamBee(int x, int y) {
         super(x, y);
-        this.health = 4000;
-        this.attack = 42;
+        this.health = 12700;
+        this.attack = 46;
         this.CD = 1;
         this.speed = 2;
         this.cost = 50;
@@ -50,7 +50,8 @@ public class DreamBee extends Role {
         timeline.stop();
         AtomicInteger count = new AtomicInteger(1);
         timeline = new Timeline(new KeyFrame(Duration.millis(295), e -> {
-            if (count.get() % 19 == 0) canAttack = true;
+            if (count.get() > 19) count.set(1);
+            if (count.get() > 15 && count.get() <= 19 ) canAttack = true;
             imageView.setImage(attackImagesArray.get((count.getAndIncrement()) % attackImagesArray.size()));
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);

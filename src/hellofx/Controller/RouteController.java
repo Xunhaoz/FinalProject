@@ -24,6 +24,8 @@ public class RouteController {
     public Button thirdLevel;
     public Label iceCreamLabel;
 
+    public static boolean hasPassword = false;
+
     @FXML
     public void startToSetting() throws IOException {
         ViewController.toSetting();
@@ -61,7 +63,8 @@ public class RouteController {
 
     @FXML
     public void mapToLevel() throws IOException {
-        ViewController.toLevel();
+        if (!hasPassword) ViewController.toPass();
+        else ViewController.toLevel();
         MusicPlayController.checkNowStage();
         ButtonSoundPlayController.buttonSoundPlay();
     }
@@ -103,12 +106,7 @@ public class RouteController {
         ButtonSoundPlayController.buttonSoundPlay();
     }
 
-    @FXML
-    public void dormToMap() throws IOException {
-        ViewController.toMap();
-        MusicPlayController.checkNowStage();
-        ButtonSoundPlayController.buttonSoundPlay();
-    }
+
 
     @FXML
     public void mapToAd() throws IOException {
@@ -195,35 +193,7 @@ public class RouteController {
         ButtonSoundPlayController.buttonSoundPlay();
     }
 
-    public void dormToFreshChickInfoPage() throws IOException {
-        ViewController.toFreshChickInfoPage();
-        MusicPlayController.checkNowStage();
-        ButtonSoundPlayController.buttonSoundPlay();
-    }
 
-    public void dormToSalmonSteakInfoPage() throws IOException {
-        ViewController.toSalmonSteakInfoPage();
-        MusicPlayController.checkNowStage();
-        ButtonSoundPlayController.buttonSoundPlay();
-    }
-
-    public void dormToYamsInfoPage() throws IOException {
-        ViewController.toYamsInfoPage();
-        MusicPlayController.checkNowStage();
-        ButtonSoundPlayController.buttonSoundPlay();
-    }
-
-    public void dormToXunhoazBuBuInfoPage() throws IOException {
-        ViewController.toXunhaozBuBuInfoPage();
-        MusicPlayController.checkNowStage();
-        ButtonSoundPlayController.buttonSoundPlay();
-    }
-
-    public void dormToAlienThrowingHandInfoPage() throws IOException {
-        ViewController.toAlienThrowingHandInfoPage();
-        MusicPlayController.checkNowStage();
-        ButtonSoundPlayController.buttonSoundPlay();
-    }
 
     public void backToAd()  throws IOException {
         ViewController.toAd();
@@ -236,5 +206,4 @@ public class RouteController {
         MusicPlayController.checkNowStage();
         ButtonSoundPlayController.buttonSoundPlay();
     }
-
 }

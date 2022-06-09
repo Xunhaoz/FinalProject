@@ -61,7 +61,7 @@ public class MailController {
             e.printStackTrace();
         }
 
-        label.setText("寄件成功");
+        label.setText("寄件成功，你的導師密碼卡為：「NEVER_CARE_U」");
         emailSelect.getSelectedToggle().setSelected(false);
         textArea.setText("");
         textField.setText("");

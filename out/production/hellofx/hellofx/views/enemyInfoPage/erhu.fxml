@@ -119,7 +119,7 @@
                         <ProgressBar fx:id="dropMoney" prefWidth="200.0"/>
                     </HBox>
                 </VBox>
-                <VBox alignment="TOP_CENTER" prefHeight="345.0" prefWidth="400.0" style="-fx-background-color: rgba(49,39,28,0.15); -fx-background-radius: 15.0">
+                <VBox alignment="TOP_CENTER" spacing="10.0" prefHeight="345.0" prefWidth="400.0" style="-fx-background-color: rgba(49,39,28,0.15); -fx-background-radius: 15.0">
                     <padding>
                         <Insets top="20.0" bottom="20.0" left="10.0" right="10.0"/>
                     </padding>
@@ -128,6 +128,16 @@
                             <Font size="28.0"/>
                         </font>
                     </Label>
+                    <VBox alignment="CENTER" prefHeight="265" prefWidth="200.0" spacing="10.0">
+                        <padding>
+                            <Insets left="20.0" right="20.0"/>
+                        </padding>
+                        <Label text="樂聲四起：用優美的音樂讓對手恍神，在對手沒注意的狀況下，將對手擊退，並造成 3 倍自身攻擊力的傷害。" textFill="azure" wrapText="true">
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                        </Label>
+                    </VBox>
                 </VBox>
             </HBox>
         </VBox>

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlowUpJVM {
+    /*
     //棧深度溢位
     public static void testStackOverFlow() {
         BlowUpJVM.testStackOverFlow();
@@ -58,24 +59,26 @@ public class BlowUpJVM {
         }
     }
 
+     */
+
     @FXML
     public void outOfHeapMemory() {
-        testOutOfHeapMemory();
+        //testOutOfHeapMemory();
     }
 
     @FXML
     public void outOfMemory() {
-        testStackOutOfMemory();
+        //testStackOutOfMemory();
     }
 
     @FXML
     public void pergemOutOfMemory() {
-        testPergemOutOfMemory();
+        //testPergemOutOfMemory();
     }
 
     @FXML
     public void stackOverFlow() {
-        testStackOverFlow();
+        //testStackOverFlow();
     }
 
     @FXML
@@ -86,6 +89,7 @@ public class BlowUpJVM {
     }
 }
 
+/*
 class OOM {
     String abc;
 
@@ -93,3 +97,5 @@ class OOM {
         abc = new String("testPergemOutOfMemory");
     }
 }
+
+ */

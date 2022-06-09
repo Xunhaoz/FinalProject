@@ -145,7 +145,7 @@
                         <ProgressBar fx:id="atkDistance" prefWidth="200.0"/>
                     </HBox>
                     <HBox prefHeight="20.0" prefWidth="380.0" alignment="CENTER" spacing="10.0">
-                        <Label text="掉落能量：" textFill="azure" prefWidth="100.0">
+                        <Label text="召喚花費：" textFill="azure" prefWidth="100.0">
                             <font>
                                 <Font size="20.0"/>
                             </font>
@@ -153,7 +153,7 @@
                         <ProgressBar fx:id="createEnergy" prefWidth="200.0"/>
                     </HBox>
                     <HBox prefHeight="20.0" prefWidth="380.0" alignment="CENTER" spacing="10.0">
-                        <Label text="掉落金錢：" textFill="azure" prefWidth="100.0">
+                        <Label text="冷卻時間：" textFill="azure" prefWidth="100.0">
                             <font>
                                 <Font size="20.0"/>
                             </font>
@@ -161,7 +161,7 @@
                         <ProgressBar fx:id="cdBar" prefWidth="200.0"/>
                     </HBox>
                 </VBox>
-                <VBox alignment="TOP_CENTER" prefHeight="345.0" prefWidth="400.0" style="-fx-background-color: rgba(49,39,28,0.15); -fx-background-radius: 15.0">
+                <VBox alignment="TOP_CENTER" spacing="10.0" prefHeight="345.0" prefWidth="400.0" style="-fx-background-color: rgba(49,39,28,0.15); -fx-background-radius: 15.0">
                     <padding>
                         <Insets top="20.0" bottom="20.0" left="10.0" right="10.0"/>
                     </padding>
@@ -170,6 +170,13 @@
                             <Font size="28.0"/>
                         </font>
                     </Label>
+                    <VBox alignment="CENTER" prefWidth="380" prefHeight="300">
+                        <Label text="無特殊能力" textFill="azure">
+                            <font>
+                                <Font size="20.0"/>
+                            </font>
+                        </Label>
+                    </VBox>
                 </VBox>
             </HBox>
         </VBox>
