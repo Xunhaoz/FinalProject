@@ -73,13 +73,13 @@
                             <Font size="20.0"/>
                         </font>
                     </Label>
-                    <Button fx:id="levelUpButton" onAction="#levelUp" text="升級" textFill="#070726" alignment="CENTER" style="-fx-background-color: rgb(249,193,0); -fx-background-radius: 90.0;">
+                    <Button styleClass="button" stylesheets="@../../styles/buttons.css" fx:id="levelUpButton" onAction="#levelUp" text="升級" textFill="#070726" alignment="CENTER" style="-fx-background-color: rgb(249,193,0); -fx-background-radius: 90.0;">
                         <font>
                             <Font size="20.0"/>
                         </font>
                     </Button>
                 </HBox>
-                <Label fx:id="hint" text="提示字元" textFill="azure" prefWidth="120.0">
+                <Label fx:id="hint" text="提示字元" visible="false" textFill="azure" prefWidth="120.0">
                     <font>
                         <Font size="16.0"/>
                     </font>

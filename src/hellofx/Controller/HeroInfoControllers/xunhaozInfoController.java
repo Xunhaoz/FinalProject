@@ -61,12 +61,14 @@ public class xunhaozInfoController {
                     levelLabel.setText("LEVEL " + String.format("%02d", Xunhaoz.level + 1));
                     levelUpCostLabel.setText(String.format("%04d", levelUpCost));
                     hint.setText("升級成功");
+                    hint.setVisible(true);
                 }
                 iceCreamLabel.setText(String.format("%06d", MarketController.iceCreamNum));
             }
             else {
                 BruhController.bruhPlay();
                 hint.setText("冰淇淋不足");
+                hint.setVisible(true);
             }
         }
         else {
