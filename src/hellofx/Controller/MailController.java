@@ -24,7 +24,7 @@ public class MailController {
     @FXML
     Label label;
 
-    final private String[] customers = {"leo20020529@gmail.com", "sundayevening2249@gmail.com", "orianna901001@gmail.com", "leo20020529@gmail.com"};
+    final private String[] customers = {"hlgau@math.ncu.edu.tw", "mftsai@csie.ncu.edu.tw", "minelabcs@gmail.com", "leo20020529@gmail.com"};
 
     @FXML
     public void sendMail() {

@@ -3,7 +3,6 @@ package hellofx.Controller;
 import hellofx.Controller.MusicControllers.ButtonSoundPlayController;
 import hellofx.Controller.MusicControllers.MusicPlayController;
 import javafx.fxml.FXML;
-import javafx.print.Printer;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
@@ -13,20 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlowUpJVM {
-    /*
-    //棧深度溢位
+
     public static void testStackOverFlow() {
         BlowUpJVM.testStackOverFlow();
     }
 
-
-    //不會引起永久代溢位
     public static void testPergemOutOfMemory() {
         while (true) {
             final OOM oom = new OOM();
             Proxy.newProxyInstance(oom.getClass().getClassLoader(), oom.getClass().getInterfaces(), new InvocationHandler() {
                 public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                    
+
                     Object result = method.invoke(oom, args);
                     return result;
                 }
@@ -34,7 +30,6 @@ public class BlowUpJVM {
         }
     }
 
-    //JVM記憶體溢位
     public static void testStackOutOfMemory() {
         while (true) {
             Thread thread = new Thread(new Runnable() {
@@ -59,26 +54,25 @@ public class BlowUpJVM {
         }
     }
 
-     */
 
     @FXML
     public void outOfHeapMemory() {
-        //testOutOfHeapMemory();
+        testOutOfHeapMemory();
     }
 
     @FXML
     public void outOfMemory() {
-        //testStackOutOfMemory();
+        testStackOutOfMemory();
     }
 
     @FXML
     public void pergemOutOfMemory() {
-        //testPergemOutOfMemory();
+        testPergemOutOfMemory();
     }
 
     @FXML
     public void stackOverFlow() {
-        //testStackOverFlow();
+        testStackOverFlow();
     }
 
     @FXML
@@ -89,7 +83,6 @@ public class BlowUpJVM {
     }
 }
 
-/*
 class OOM {
     String abc;
 
@@ -97,5 +90,3 @@ class OOM {
         abc = new String("testPergemOutOfMemory");
     }
 }
-
- */

@@ -10,7 +10,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../activation.jar!/" />
+          <root url="jar://$MODULE_DIR$/dependency/activation.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,22 +19,21 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../mail.jar!/" />
+          <root url="jar://$MODULE_DIR$/dependency/asm-9.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" exported="" name="lib" level="project" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../asm-9.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/dependency/mail.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="javax.mail-1.6.2" level="project" />
+    <orderEntry type="library" exported="" name="lib1" level="project" />
   </component>
 </module>
